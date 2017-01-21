@@ -4,8 +4,8 @@
 	<groupId>com.iba</groupId>
 	<artifactId>JSFTest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JSFTest</name>
-	<description>JSFTest</description>
+	<name>JSFTestGit</name>
+	<description>JSFTestGit</description>
 
 	<properties>
 		<jsf-api.version>2.2.14</jsf-api.version>
