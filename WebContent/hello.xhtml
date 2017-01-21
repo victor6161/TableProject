@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:p="http://primefaces.org/ui">
+	  
+    <h:head>
+    	 
+    </h:head>
+    <h:body>
+    	<h2>JSF</h2>
+			
+			<p:dataTable var="book" value="#{BasicView.books}">
+    			
+    			<p:column headerText="Name">
+        			<h:outputText value="#{book.bookname}" />
+    			</p:column>
+ 
+    			<p:column headerText="Author">
+        			<h:outputText value="#{book.author}" />
+    			</p:column>
+    			
+    			 <p:column headerText="Price">
+        			<h:outputText value="#{book.price}" />
+    			</p:column>
+ 
+    			<p:column headerText="Username">
+        			<h:outputText value="#{book.username}" />
+    			</p:column>
+    			
+			</p:dataTable>
+    	 
+    </h:body>
+</html>
