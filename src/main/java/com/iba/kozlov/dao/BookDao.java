@@ -58,7 +58,6 @@ public class BookDao {
 		String query = "INSERT INTO books"
 				+ "(bookname, author, price,user_id) VALUES"
 				+ "(?,?,?,?)";
-	    //String query = "INSERT INTO books (bookname,author,price,booked,user_id) VALUES ( 'Zara', 'Ali', 18,true,1)";
 		try {
 			prstmt  = new ConnectionCustomer().getConnection().prepareStatement(query);
 			prstmt.setString(1, bookname);
