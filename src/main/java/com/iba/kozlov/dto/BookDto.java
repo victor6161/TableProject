@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 public class BookDto implements Serializable {
 
-	public BookDto(String bookname, String author, int price, String username) {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5571130680992082254L;
+
+	public BookDto(String bookname, String author, int price, UserDto username) {
 		super();
 		this.bookname = bookname;
 		this.author = author;
@@ -18,7 +23,7 @@ public class BookDto implements Serializable {
 	private String author;
 	private int price;
 	private int userId;
-	private String username; 
+	private UserDto username; 
 
 	public int getId() {
 		return id;
@@ -60,11 +65,11 @@ public class BookDto implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getUsername() {
+	public UserDto getUserDto() {
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public void setUserDto(UserDto username) {
 		this.username = username;
 	}
 

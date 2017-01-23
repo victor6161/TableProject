@@ -11,11 +11,17 @@ import javax.faces.bean.SessionScoped;
 
 import com.iba.kozlov.dto.BookDto;
 import com.iba.kozlov.service.BookService;
+import com.iba.kozlov.viewDto.ViewTableDto;
 
 @ManagedBean(name = "BasicView")
 @SessionScoped
 public class BasicView implements Serializable {
-	private List<BookDto> books = new ArrayList<>();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9060484284854089052L;
+
+	private List<ViewTableDto> books = new ArrayList<>();
 
 	private BookService service = new BookService();
 
@@ -24,11 +30,11 @@ public class BasicView implements Serializable {
 		books = service.createBooks();
 	}
 
-	public List<BookDto> getBooks() {
+	public List<ViewTableDto> getBooks() {
 		return books;
 	}
 
-	public void setBooks(List<BookDto> books) {
+	public void setBooks(List<ViewTableDto> books) {
 		this.books = books;
 	}
 
