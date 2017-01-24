@@ -1,4 +1,4 @@
-package com.iba.kozlov.dto;
+package com.iba.kozlov.db.dto;
 
 import java.io.Serializable;
 
@@ -15,6 +15,11 @@ public class BookDto implements Serializable {
 		this.author = author;
 		this.price = price;
 		this.username=username;
+	}
+
+
+	public BookDto() {
+		// TODO Auto-generated constructor stub
 	}
 
 
@@ -72,5 +77,6 @@ public class BookDto implements Serializable {
 	public void setUserDto(UserDto username) {
 		this.username = username;
 	}
-
+	
+	
 }

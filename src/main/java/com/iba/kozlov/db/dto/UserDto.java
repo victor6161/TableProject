@@ -1,4 +1,4 @@
-package com.iba.kozlov.dto;
+package com.iba.kozlov.db.dto;
 
 public class UserDto {
 	private int id;

@@ -16,10 +16,10 @@
 			<h:outputText value="Search by Author" />
 		</div>
 		<div style="margin: 10px">
-			<p:inputText value="#{AuthorFilter.author}"></p:inputText>
+			<p:inputText value=""></p:inputText>
 		</div>
 		<!-- <p:outputText value="<br/>" escape="false"/> -->
-		<p:dataTable var="book" value="#{BasicView.books}">
+		<p:dataTable var="book" value="#{manageBean.tableRowBeanList}">
 
 			<p:column headerText="Name">
 				<h:outputText value="#{book.bookname}" />
@@ -38,6 +38,26 @@
 			</p:column>
 
 		</p:dataTable>
+		
+		<div style="margin: 10px; font-weight: bold;">
+			<h:outputText value="AuthorName" />
+		</div>
+		<div style="margin: 10px">
+			<p:inputText value="#{manageBean.addBean.author}"></p:inputText>
+		</div>
+		<div style="margin: 10px; font-weight: bold;">
+			<h:outputText value="BookName" />
+		</div>
+		<div style="margin: 10px">
+			<p:inputText value="#{manageBean.addBean.bookname}"></p:inputText>
+		</div>
+		<div style="margin: 10px; font-weight: bold;">
+			<h:outputText value="Price" />
+		</div>
+		<div style="margin: 10px">
+			<p:inputText value="#{manageBean.addBean.price}"></p:inputText>
+		</div>
+		<h:commandButton value="Add" action="#{bookController.add}"/>
 	</div>
 </h:body>
 </html>

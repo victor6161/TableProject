@@ -1,4 +1,4 @@
-package com.iba.kozlov.dao;
+package com.iba.kozlov.db.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,28 +7,28 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.iba.kozlov.dto.BookDto;
-import com.iba.kozlov.dto.UserDto;
-import com.iba.kozlov.exception.CriteriaNullException;
-import com.iba.kozlov.jdbc.ConnectionCustomer;
-import com.iba.kozlov.search.BookSearchCriteria;
+import org.apache.log4j.Logger;
+
+import com.iba.kozlov.bl.service.BookServiceImpl;
+import com.iba.kozlov.db.dto.BookDto;
+import com.iba.kozlov.db.dto.UserDto;
+import com.iba.kozlov.db.xception.CriteriaNullException;
 
 
 
 public class BookDao {
-
+	private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
 	public List<BookDto>  read(BookSearchCriteria pCriteria) {
 		//String query = "SELECT books.id,bookname,author,price,username FROM books LEFT JOIN user ON books.user_id=user.id ";
 		List<BookDto> arrayList=new ArrayList<>();
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = new ConnectionCustomer().getConnection().createStatement();
+			stmt = new CustomConnection().getConnection().createStatement();
 			try {
 				rs = stmt.executeQuery(BookQueryFacade.getQueryBook(pCriteria));
 			} catch (CriteriaNullException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.fatal("CriteriaNullException" +e.getMessage());
 			}
 			while (rs.next()) {
 				int id = rs.getInt(1);
@@ -59,13 +59,13 @@ public class BookDao {
 		return arrayList;
 	}
 	
-	public  void createBook(BookDto bookDto) {
+	public  void addBook(BookDto bookDto) {
 		String query = "INSERT INTO books"
 				+ "(bookname, author, price,user_id) VALUES"
 				+ "(?,?,?,?)";
 		PreparedStatement prstmt = null;
 		try {
-			prstmt  = new ConnectionCustomer().getConnection().prepareStatement(query);
+			prstmt  = new CustomConnection().getConnection().prepareStatement(query);
 			prstmt.setString(1, bookDto.getBookname());
 			prstmt.setString(2, bookDto.getAuthor());
 			prstmt.setInt(3, bookDto.getPrice());
@@ -88,7 +88,7 @@ public class BookDao {
 		String query = "UPDATE books SET price=? WHERE id=?";
 		PreparedStatement prstmt = null;
 		try {
-			prstmt = new ConnectionCustomer().getConnection().prepareStatement(query);
+			prstmt = new CustomConnection().getConnection().prepareStatement(query);
 			prstmt.setInt(1, bookDto.getPrice());
 			prstmt.setInt(2, bookDto.getId());
 			prstmt.executeUpdate();
@@ -109,7 +109,7 @@ public class BookDao {
 		PreparedStatement prstmt = null;
 		try {
 
-			prstmt = new ConnectionCustomer().getConnection().prepareStatement(query);
+			prstmt = new CustomConnection().getConnection().prepareStatement(query);
 			prstmt.setInt(1, id);
 			prstmt.executeUpdate();
 
@@ -128,7 +128,7 @@ public class BookDao {
 		PreparedStatement prstmt = null;
 		try {
 
-			prstmt = new ConnectionCustomer().getConnection().prepareStatement(query);
+			prstmt = new CustomConnection().getConnection().prepareStatement(query);
 			prstmt.setInt(1, bookDto.getId());
 			prstmt.executeUpdate();
 

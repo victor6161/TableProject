@@ -1,7 +1,9 @@
-package com.iba.kozlov.dao;
+package com.iba.kozlov.db.dao;
 
-import com.iba.kozlov.exception.CriteriaNullException;
-import com.iba.kozlov.search.BookSearchCriteria;
+import org.apache.log4j.Logger;
+
+import com.iba.kozlov.bl.service.BookServiceImpl;
+import com.iba.kozlov.db.xception.CriteriaNullException;
 
 public class BookQueryFacade {
 	
@@ -11,11 +13,18 @@ public class BookQueryFacade {
 		boolean bp=false;
 		if(pCriteria==null){
 			throw new CriteriaNullException();
+			
 		}
 		if(pCriteria.getAuthor()==null){
 			throw new CriteriaNullException();
 		}
-		if(pCriteria.getAuthor().isEmpty() && pCriteria.getName().isEmpty() && pCriteria.getPrice().equals(0)){
+	/*	if(pCriteria.getAuthor().isEmpty() && pCriteria.getName().isEmpty() && pCriteria.getPrice().equals(0)){
+			return query.toString();
+		}else{
+			query.append(" where ");
+		}*/
+		//на нулл строки проверить
+		if(pCriteria.isEmpty()){
 			return query.toString();
 		}else{
 			query.append(" where ");

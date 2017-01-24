@@ -1,15 +1,15 @@
-package com.iba.kozlov.viewDto;
+package com.iba.kozlov.web.books.view;
 
 
 
-public class ViewTableDto {
+public class TableRowBean {
 	private int id;
 	private String bookname;
 	private String author;
 	private int price;
 	private String username; 
 	
-	public ViewTableDto(String bookname, String author, int price, String username) {
+	public TableRowBean(String bookname, String author, int price, String username) {
 		super();
 		this.bookname = bookname;
 		this.author = author;
@@ -17,8 +17,10 @@ public class ViewTableDto {
 		this.username = username;
 	}
 
-	public ViewTableDto() {
-		// TODO Auto-generated constructor stub
+	public TableRowBean() {
+		this.bookname="ad";
+		this.author="ads";
+		this.price=100;
 	}
 
 	public int getId() {

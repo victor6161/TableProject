@@ -1,4 +1,4 @@
-package com.iba.kozlov.jdbc;
+package com.iba.kozlov.db.dao;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-public class ConnectionCustomer {
+public class CustomConnection {
 	/*private static final String url = "jdbc:mysql://localhost:3306/mydb";
 	private static final String user = "root";
 	private static final String password = "f68IUZUfiox";*/
@@ -16,7 +16,7 @@ public class ConnectionCustomer {
 
 	private static Connection con;
 
-	public  ConnectionCustomer() {
+	public  CustomConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {

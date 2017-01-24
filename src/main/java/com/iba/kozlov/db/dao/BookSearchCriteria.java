@@ -1,4 +1,4 @@
-package com.iba.kozlov.search;
+package com.iba.kozlov.db.dao;
 
 public class BookSearchCriteria {
 	public BookSearchCriteria(){
@@ -34,5 +34,10 @@ public class BookSearchCriteria {
 		this.price = price;
 	}
 	
+	public boolean isEmpty(){
+		System.out.println("pCriteria");
+		System.out.println(this.getAuthor().isEmpty() && this.getName().isEmpty() && this.getPrice().equals(0));	
+		return this.getAuthor().isEmpty() && this.getName().isEmpty() && this.getPrice().equals(0);
+	}
 /*	public isEmpty*/
 }
