@@ -8,9 +8,9 @@ import javax.faces.bean.SessionScoped;
 
 import com.iba.kozlov.bl.service.BookServiceImpl;
 
-@ManagedBean(name = "manageBean")
+@ManagedBean(name = "mainBean",eager=true)
 @SessionScoped
-public class ManageBean {
+public class MainBean {
 	private SearchBean searchBean;
 	private EditorBean editorBean;
 	
@@ -21,9 +21,10 @@ public class ManageBean {
 
 	@PostConstruct
 	public void init() {
-		setTableRowBeanList(service.createBooks());
+		addBean=new AddBean();
+		/*setTableRowBeanList(service.createBooks());*/
 	}
-
+	
 	
 	public SearchBean getSearchBean() {
 		return searchBean;

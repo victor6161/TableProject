@@ -19,6 +19,7 @@ import com.iba.kozlov.db.xception.CriteriaNullException;
 public class BookDao {
 	private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
 	public List<BookDto>  read(BookSearchCriteria pCriteria) {
+		 LOGGER.info("readDao");
 		//String query = "SELECT books.id,bookname,author,price,username FROM books LEFT JOIN user ON books.user_id=user.id ";
 		List<BookDto> arrayList=new ArrayList<>();
 		Statement stmt = null;
@@ -69,7 +70,7 @@ public class BookDao {
 			prstmt.setString(1, bookDto.getBookname());
 			prstmt.setString(2, bookDto.getAuthor());
 			prstmt.setInt(3, bookDto.getPrice());
-			prstmt.setInt(4, bookDto.getUserDto().getId());
+			prstmt.setInt(4, 2);
 			prstmt.executeUpdate();
 
 		} catch (SQLException sqlEx) {

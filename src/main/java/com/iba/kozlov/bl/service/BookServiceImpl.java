@@ -17,8 +17,7 @@ import com.iba.kozlov.web.books.view.TableRowBean;
 public class BookServiceImpl implements BookService{
 	private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
 	
-	@Override
-	public List<TableRowBean> createBooks() {
+	public List<TableRowBean> readBooks() {
 		LOGGER.info("createBooks method");
 		BookSearchCriteria bookSearchCriteria =  new BookSearchCriteria();
 	/*	bookSearchCriteria.setAuthor("turgenev");

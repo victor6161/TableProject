@@ -14,6 +14,7 @@ import com.iba.kozlov.web.books.view.TableRowBean;
  *
  */
 public interface BookService {
-	List<TableRowBean> createBooks();
+
 	void addBooks(AddBean addBean);
+	List<TableRowBean> readBooks();
 }

@@ -9,37 +9,33 @@ import java.util.Properties;
 
 
 public class CustomConnection {
-	/*private static final String url = "jdbc:mysql://localhost:3306/mydb";
-	private static final String user = "root";
-	private static final String password = "f68IUZUfiox";*/
-	
 
 	private static Connection con;
 
 	public  CustomConnection() {
+		Properties prop = new Properties();
+		InputStream input = null;
+		input=this.getClass().getClassLoader().getResourceAsStream("config.properties");
+		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			prop.load(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		    String url=prop.getProperty("url");
+		    String user=prop.getProperty("user");
+		    String password=prop.getProperty("password");
+		    String driver=prop.getProperty("driver");
+		try {
+			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 			try {
-				Properties prop = new Properties();
-				InputStream input = null;
-				input=this.getClass().getClassLoader().getResourceAsStream("config.properties");
-				
-				try {
-					prop.load(input);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				   System.out.println(prop.getProperty("url"));
-				    System.out.println(prop.getProperty("user"));
-				    System.out.println(prop.getProperty("password"));
-				    String url=prop.getProperty("url");
-				    String user=prop.getProperty("user");
-				    String password=prop.getProperty("password");
+			
 				con = DriverManager.getConnection(url, user, password);
 			} catch (SQLException sqlEx) {
 				sqlEx.printStackTrace();
