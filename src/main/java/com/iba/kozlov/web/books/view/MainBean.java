@@ -6,23 +6,20 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.iba.kozlov.bl.service.BookServiceImpl;
 
 @ManagedBean(name = "mainBean",eager=true)
 @SessionScoped
 public class MainBean {
 	private SearchBean searchBean;
-	private EditorBean editorBean;
+	private EditorBean editorBean;	
 	
 	private List<TableRowBean> tableRowBeanList;
 	private AddBean addBean;
 	
-	private BookServiceImpl service = new BookServiceImpl();
 
 	@PostConstruct
 	public void init() {
 		addBean=new AddBean();
-		/*setTableRowBeanList(service.createBooks());*/
 	}
 	
 	

@@ -25,15 +25,22 @@ import com.iba.kozlov.web.books.view.MainBean;
 @SessionScoped
 public class BookController implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4973724563495030465L;
+	
 	@ManagedProperty(value="#{mainBean}")
 	private MainBean mainBean;
+	
+	BookDataFacade facade = new BookDataFacade(this);
+	
     public MainBean getMainBean() {
 		return mainBean;
 	}
     
     @PostConstruct
 	public void init() {
-		
 		mainBean.setTableRowBeanList(bookService.readBooks());
 	}
 
@@ -42,10 +49,7 @@ public class BookController implements Serializable {
 	}
 
 	BookService bookService=new BookServiceImpl();
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4973724563495030465L;
+
 
 	public void onSearch() {
 		
@@ -54,6 +58,9 @@ public class BookController implements Serializable {
 	public void add() {
 		bookService.addBooks(mainBean.getAddBean());
 		mainBean.setTableRowBeanList(bookService.readBooks());
+		mainBean.getAddBean().setAuthor(null);
+		mainBean.getAddBean().setBookname(null);
+		mainBean.getAddBean().setPrice(0);
 	}
 	
 	public void onRemove(){

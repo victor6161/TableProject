@@ -19,8 +19,7 @@ import com.iba.kozlov.db.xception.CriteriaNullException;
 public class BookDao {
 	private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
 	public List<BookDto>  read(BookSearchCriteria pCriteria) {
-		 LOGGER.info("readDao");
-		//String query = "SELECT books.id,bookname,author,price,username FROM books LEFT JOIN user ON books.user_id=user.id ";
+		LOGGER.info("readDao");
 		List<BookDto> arrayList=new ArrayList<>();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -61,12 +60,10 @@ public class BookDao {
 	}
 	
 	public  void addBook(BookDto bookDto) {
-		String query = "INSERT INTO books"
-				+ "(bookname, author, price,user_id) VALUES"
-				+ "(?,?,?,?)";
+		
 		PreparedStatement prstmt = null;
 		try {
-			prstmt  = new CustomConnection().getConnection().prepareStatement(query);
+			prstmt  = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryInsertBook());
 			prstmt.setString(1, bookDto.getBookname());
 			prstmt.setString(2, bookDto.getAuthor());
 			prstmt.setInt(3, bookDto.getPrice());

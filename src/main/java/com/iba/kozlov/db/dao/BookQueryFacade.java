@@ -7,6 +7,10 @@ import com.iba.kozlov.db.xception.CriteriaNullException;
 
 public class BookQueryFacade {
 	
+	public static String getQueryInsertBook(){
+		return "INSERT INTO books (bookname, author, price,user_id) VALUES (?,?,?,?)";
+	}
+	
 	public static String getQueryBook(BookSearchCriteria pCriteria) throws CriteriaNullException {
 		StringBuffer query=new StringBuffer("SELECT  books.id,bookname,author,price,username FROM books LEFT JOIN user ON books.user_id=user.id");
 		
