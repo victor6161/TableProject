@@ -20,6 +20,7 @@ public class MainBean {
 	@PostConstruct
 	public void init() {
 		addBean=new AddBean();
+		editorBean=new EditorBean();
 	}
 	
 	

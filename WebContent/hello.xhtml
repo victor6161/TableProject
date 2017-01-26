@@ -19,10 +19,16 @@
 			<p:inputText value=""></p:inputText>
 		</div>
 		<!-- <p:outputText value="<br/>" escape="false"/> -->
-		<p:dataTable id="customerTableForm" var="book" value="#{bookController.mainBean.tableRowBeanList}"  rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
+		<p:dataTable id="customerTableForm" var="book"
+			value="#{bookController.mainBean.tableRowBeanList}" rows="10"
+			paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15"
+		>
+			<p:column headerText="id">
+				<h:outputText value="#{book.id}" />
+			</p:column>
+		
 
 			<p:column headerText="Name">
 				<h:outputText value="#{book.bookname}" />
@@ -39,30 +45,19 @@
 			<p:column headerText="Username">
 				<h:outputText value="#{book.username}" />
 			</p:column>
+			<p:column style="width:32px;text-align: center" headerText="Edit">
+				<p:commandButton icon="ui-icon-pencil" onclick="PF('updateBook').show();" title="View">
+				</p:commandButton>
+				
+				<ui:include src="/WEB-INF/inline_page/UpdateBook.xhtml" ></ui:include>
+			</p:column>
+			<f:facet name="footer">
+				<p:commandButton icon="ui-icon-search"
+					onclick="PF('createBook').show();" />
 
+			</f:facet>
 		</p:dataTable>
-		<h:form>
-			<div style="margin: 10px; font-weight: bold;">
-				<h:outputText value="AuthorName" />
-			</div>
-			<div style="margin: 10px">
-				<p:inputText id="author" value="#{mainBean.addBean.author}"></p:inputText>
-			</div>
-			
-			<div style="margin: 10px; font-weight: bold;">
-				<h:outputText value="BookName" />
-			</div>
-			<div style="margin: 10px">
-				<p:inputText id="bookname" value="#{mainBean.addBean.bookname}"></p:inputText>
-			</div>
-			<div style="margin: 10px; font-weight: bold;">
-				<h:outputText value="Price" />
-			</div>
-			<div style="margin: 10px">
-				<p:inputText id="price" value="#{mainBean.addBean.price}"></p:inputText>
-			</div>
-			<p:commandButton value="Add" action="#{bookController.add}" update=":#{p:component('customerTableForm')} @form"/>
-		</h:form>
+		<ui:include src="/WEB-INF/inline_page/AddBook.xhtml" ></ui:include>
 	</div>
 </h:body>
 </html>

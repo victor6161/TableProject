@@ -9,8 +9,9 @@ public class BookDto implements Serializable {
 	 */
 	private static final long serialVersionUID = 5571130680992082254L;
 
-	public BookDto(String bookname, String author, int price, UserDto username) {
+	public BookDto(int id,String bookname, String author, int price, UserDto username) {
 		super();
+		this.id=id;
 		this.bookname = bookname;
 		this.author = author;
 		this.price = price;

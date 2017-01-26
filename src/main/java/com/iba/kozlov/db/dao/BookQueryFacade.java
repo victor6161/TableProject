@@ -6,7 +6,9 @@ import com.iba.kozlov.bl.service.BookServiceImpl;
 import com.iba.kozlov.db.xception.CriteriaNullException;
 
 public class BookQueryFacade {
-	
+	public static String getQueryUpdateBook(){
+		return "UPDATE books SET price=? WHERE id=?";
+	}
 	public static String getQueryInsertBook(){
 		return "INSERT INTO books (bookname, author, price,user_id) VALUES (?,?,?,?)";
 	}

@@ -17,7 +17,7 @@ import com.iba.kozlov.db.xception.CriteriaNullException;
 
 
 public class BookDao {
-	private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(BookDao.class);
 	public List<BookDto>  read(BookSearchCriteria pCriteria) {
 		LOGGER.info("readDao");
 		List<BookDto> arrayList=new ArrayList<>();
@@ -36,11 +36,7 @@ public class BookDao {
 				String author = rs.getString(3);
 				int price=rs.getInt(4);
 				String username=rs.getString(5);
-				System.out.println("Books id : " + id);
-				System.out.println("BookName :" + bookname);
-				System.out.println("author :" + author);
-				System.out.println("userId :" + username);
-				arrayList.add(new BookDto(bookname,author,price,new UserDto(username)));
+				arrayList.add(new BookDto(id,bookname,author,price,new UserDto(username)));
 			}
 			return arrayList;
 		} catch (SQLException sqlEx) {
@@ -60,7 +56,7 @@ public class BookDao {
 	}
 	
 	public  void addBook(BookDto bookDto) {
-		
+		LOGGER.info("addBook");
 		PreparedStatement prstmt = null;
 		try {
 			prstmt  = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryInsertBook());
@@ -83,10 +79,10 @@ public class BookDao {
 	}
 
 	public  void updatePrice(BookDto bookDto) {
-		String query = "UPDATE books SET price=? WHERE id=?";
+		LOGGER.info("updatePrice id=" +bookDto.getId()+" new price is "+bookDto.getPrice());
 		PreparedStatement prstmt = null;
 		try {
-			prstmt = new CustomConnection().getConnection().prepareStatement(query);
+			prstmt = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryUpdateBook());
 			prstmt.setInt(1, bookDto.getPrice());
 			prstmt.setInt(2, bookDto.getId());
 			prstmt.executeUpdate();

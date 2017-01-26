@@ -10,6 +10,7 @@ import com.iba.kozlov.db.dao.BookSearchCriteria;
 import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.web.books.Mapper;
 import com.iba.kozlov.web.books.view.AddBean;
+import com.iba.kozlov.web.books.view.EditorBean;
 import com.iba.kozlov.web.books.view.TableRowBean;
 
 /*@ManagedBean(name = "bookService")
@@ -33,8 +34,14 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public void addBooks(AddBean addBean) {
-		
+		LOGGER.info("addBook");
 		new BookDao().addBook(new Mapper().AddBeanToBookDto(addBean));
+
+	}
+	@Override
+	public void editBooks(EditorBean editorBean) {
+		LOGGER.info("editBook");
+		new BookDao().updatePrice(new Mapper().EditorBeanToBookDto(editorBean));
 	
 	}
 }
