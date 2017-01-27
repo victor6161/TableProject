@@ -1,8 +1,8 @@
 package com.iba.kozlov.web.books.view;
 
-import lombok.Setter;
-
 public class EditorBean {
+	
+	
 	
 	private int id;
 	private int price;

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface />
+
+<composite:implementation>
+	<p:dialog header="Create Book" widgetVar="createBook" minHeight="40">
+		<h:form>
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="AuthorName" />
+			</div>
+			<div style="margin: 10px">
+				<p:inputText id="author" value="#{mainBean.addBean.author}">
+					<f:validateRequired />
+				</p:inputText>
+			</div>
+
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="BookName" />
+			</div>
+			<div style="margin: 10px">
+				<p:inputText id="bookname" value="#{mainBean.addBean.bookname}">
+					<f:validateRequired />
+				</p:inputText>
+			</div>
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="Price" />
+			</div>
+			<div style="margin: 10px">
+				<p:inputText id="price" value="#{mainBean.addBean.price}">
+					<f:validateRequired />
+				</p:inputText>
+			</div>
+
+			<p:commandButton value="Add" action="#{bookController.add}" update=":#{p:component('customerTableForm')} @form" />
+		</h:form>
+	</p:dialog>
+</composite:implementation>
+</html>

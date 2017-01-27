@@ -5,7 +5,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:book="http://java.sun.com/jsf/composite/book/kozlov">
 
 <h:head>
 
@@ -48,8 +49,8 @@
 			<p:column style="width:32px;text-align: center" headerText="Edit">
 				<p:commandButton icon="ui-icon-pencil" onclick="PF('updateBook').show();" title="View">
 				</p:commandButton>
+				<book:UpdateBook id="updateBook" />
 				
-				<ui:include src="/WEB-INF/inline_page/UpdateBook.xhtml" ></ui:include>
 			</p:column>
 			<f:facet name="footer">
 				<p:commandButton icon="ui-icon-search"
@@ -57,7 +58,8 @@
 
 			</f:facet>
 		</p:dataTable>
-		<ui:include src="/WEB-INF/inline_page/AddBook.xhtml" ></ui:include>
+		<book:AddBook id="addBook" />
+		
 	</div>
 </h:body>
 </html>
