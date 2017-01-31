@@ -38,6 +38,7 @@
 			</div>
 
 			<p:commandButton value="Add" action="#{bookController.add}" update=":#{p:component('customerTableForm')} @form" />
+			<p:commandButton value="Close" onclick="PF('createBook').hide();" immediate="true" />
 		</h:form>
 	</p:dialog>
 </composite:implementation>

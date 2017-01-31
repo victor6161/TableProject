@@ -19,6 +19,16 @@ public class MainBean {
 
 	
 	private TableRowBean selectedBook;
+	public TableRowBean getSelectedBook() {
+		return selectedBook;
+	}
+
+
+	public void setSelectedBook(TableRowBean selectedBook) {
+		this.selectedBook = selectedBook;
+	}
+
+
 	private List<TableRowBean> tableRowBeanList;
 	private AddBean addBean;
 	

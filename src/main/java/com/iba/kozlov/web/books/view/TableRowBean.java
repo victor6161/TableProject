@@ -1,8 +1,22 @@
 package com.iba.kozlov.web.books.view;
 
-
+import com.iba.kozlov.db.dto.BookDto;
 
 public class TableRowBean {
+	
+	@Override
+	public String toString() {
+		return "TableRowBean [bookDto=" + bookDto + ", id=" + id + ", bookname=" + bookname + ", author=" + author
+				+ ", price=" + price + ", username=" + username + "]";
+	}
+	private BookDto bookDto;
+	public BookDto getBookDto() {
+		return bookDto;
+	}
+
+	public void setBookDto(BookDto bookDto) {
+		this.bookDto = bookDto;
+	}
 	private int id;
 	private String bookname;
 	private String author;

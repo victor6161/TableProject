@@ -19,12 +19,18 @@
 		<div style="margin: 10px">
 			<p:inputText value=""></p:inputText>
 		</div>
-
+<h:form>
 		<p:dataTable id="customerTableForm" var="book"
 			value="#{bookController.mainBean.tableRowBeanList}" rows="10"
-			paginator="true"
+			paginator="true" 
+			lazy="true"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15">
+			rowsPerPageTemplate="5,10,15"
+			selectionMode="single" 
+			selection="#{bookController.mainBean.selectedBook}" 
+			rowKey="#{book.id}">
+			
+		
 
 			<p:column headerText="id">
 				<h:outputText value="#{book.id}" />
@@ -46,63 +52,71 @@
 			<p:column headerText="Username">
 				<h:outputText value="#{book.username}" />
 			</p:column>
-			<p:column style="width:32px;text-align: center" headerText="Edit">
-				<p:commandButton icon="ui-icon-pencil"
-						immediate="true"
-				 		action="bookController.initEdit"
-						oncomplete="PF('updateBook').show();"
-					 	title="View">
+			<!-- <p:column style="width:32px;text-align: center" headerText="Edit">
+		
+			</p:column> -->
+			<f:facet name="footer">
+				<p:commandButton icon="ui-icon-pencil"					
+					actionListener="#{bookController.onEditOpen}"
+					update=":#{p:component('updateBook')}" 
+					oncomplete="PF('updateBook').show();" 
+					title="View" >
+					
+					<p:resetInput target=":#{p:component('updateBook')}" ></p:resetInput> 
+					
+					
 
-					<f:setPropertyActionListener value="#{book.id}" target="#{mainBean.editorBean.id}"/>
-
-					<f:param name="editId" value="#{book.id}" />
+					
+							<!-- 	
+					action="bookController.initEdit" -->
+					<!-- <f:setPropertyActionListener value="#{book.bookname}" target="#{mainBean.editorBean.bookname}" /> -->
+					<!-- <f:param name="editId" value="#{book.id}" /> -->
 					<!-- <book:UpdateBook price="#{book.price}" /> -->
 
 				</p:commandButton>
-
-				<p:dialog header="Update Book" widgetVar="updateBook" minHeight="40">
+				
+				<p:commandButton icon="ui-icon-add" onclick="PF('createBook').show();" />
+				
+			</f:facet>
+		</p:dataTable>
+		</h:form>
+		<book:AddBook id="addBook" />
+		
+			<p:dialog id="updateBook" header="Update Book" widgetVar="updateBook" minHeight="40">
 					<h:form>
 					
 						<div style="margin: 10px; font-weight: bold;">
 							<h:outputText value="Update bookname" />
 						</div>
 						<div style="margin: 10px">
-							<p:inputText  value="#{mainBean.editorBean.bookname}" >
+							<p:inputText value="#{bookController.mainBean.editorBean.bookname}">
 								<f:validateRequired />
 							</p:inputText>
 						</div>
-				<!-- 	binding="#{mainBean.editorBean.bookname}" -->
+						<!-- 	binding="#{mainBean.editorBean.bookname}" -->
 						<div style="margin: 10px; font-weight: bold;">
 							<h:outputText value="Update author" />
 						</div>
 						<div style="margin: 10px">
-							<p:inputText value="#{mainBean.editorBean.author}">
+							<p:inputText value="#{bookController.mainBean.editorBean.author}">
 								<f:validateRequired />
 							</p:inputText>
 						</div>
-						
+
 						<div style="margin: 10px; font-weight: bold;">
 							<h:outputText value="Update Price" />
 						</div>
 						<div style="margin: 10px">
-							<p:inputText  value="#{mainBean.editorBean.price}">
+							<p:inputText value="#{bookController.mainBean.editorBean.price}">
 								<f:validateRequired />
 							</p:inputText>
 						</div>
 
-						<p:commandButton value="Update" action="#{bookController.edit}" update=":#{p:component('customerTableForm')} @form"/>
+						<p:commandButton value="Update" action="#{bookController.edit}"
+							update=":#{p:component('customerTableForm')} @form" onclick="PF('updateBook').hide();"/>
+							<p:commandButton value="Close" onclick="PF('updateBook').hide();" immediate="true" ></p:commandButton>
 					</h:form>
 				</p:dialog>
-
-
-
-
-			</p:column>
-			<f:facet name="footer">
-				<p:commandButton icon="ui-icon-search" onclick="PF('createBook').show();" />
-			</f:facet>
-		</p:dataTable>
-		<book:AddBook id="addBook" />
 
 	</div>
 </h:body>

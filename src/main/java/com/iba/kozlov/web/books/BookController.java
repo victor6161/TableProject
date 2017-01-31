@@ -4,7 +4,6 @@
 package com.iba.kozlov.web.books;
 
 import java.io.Serializable;
-
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +16,7 @@ import org.apache.log4j.Logger;
 
 import com.iba.kozlov.bl.service.BookService;
 import com.iba.kozlov.bl.service.BookServiceImpl;
-
+import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.web.books.view.EditorBean;
 import com.iba.kozlov.web.books.view.MainBean;
 
@@ -33,7 +32,7 @@ public class BookController implements Serializable {
 	private static final long serialVersionUID = -4973724563495030465L;
 
 	@ManagedProperty(value = "#{mainBean}")
-	private MainBean mainBean;
+	private MainBean mainBean = new MainBean();
 
 	BookDataFacade facade = new BookDataFacade(this);
 	BookService bookService = new BookServiceImpl();
@@ -45,6 +44,7 @@ public class BookController implements Serializable {
 	@PostConstruct
 	public void init() {
 		mainBean.setTableRowBeanList(bookService.readBooks());
+		mainBean.setEditorBean(new EditorBean());
 	}
 
 	public void setMainBean(MainBean mainBean) {
@@ -61,18 +61,27 @@ public class BookController implements Serializable {
 		editBean.setPrice(bookService.findPriceById(editId));
 		LOGGER.info("price=" + bookService.findPriceById(editId));
 		mainBean.setEditorBean(editBean);
-		
 
 	}
 
 	public void edit() {
-		LOGGER.info("edit"+mainBean.getEditorBean().getId());
+		LOGGER.info("edit" + mainBean.getEditorBean().getId());
 		bookService.editBooks(mainBean.getEditorBean());
 		mainBean.setTableRowBeanList(bookService.readBooks());
 	}
 
+	public void select(EditorBean editorBean) {
+		LOGGER.info("select method" + editorBean.toString());
+	}
+
 	public void onSearch() {
 
+	}
+
+	public void onEditOpen() {
+		BookDto bookDto = new Mapper().ViewTableDtoToBookDto(mainBean.getSelectedBook());
+		LOGGER.info("onEditOpen"+bookDto.toString());
+		mainBean.setEditorBean(new Mapper().BookDtoToEditorBean(bookDto));
 	}
 
 	public void add() {

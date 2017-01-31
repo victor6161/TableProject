@@ -6,6 +6,10 @@ public class EditorBean {
 	
 	
 	
+	@Override
+	public String toString() {
+		return "EditorBean [id=" + id + ", price=" + price + ", bookname=" + bookname + ", author=" + author + "]";
+	}
 	private int id;
 	private int price;
 	private String bookname;
