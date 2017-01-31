@@ -19,17 +19,17 @@
 		<div style="margin: 10px">
 			<p:inputText value=""></p:inputText>
 		</div>
-		<!-- <p:outputText value="<br/>" escape="false"/> -->
+
 		<p:dataTable id="customerTableForm" var="book"
 			value="#{bookController.mainBean.tableRowBeanList}" rows="10"
 			paginator="true"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15"
-		>
+			rowsPerPageTemplate="5,10,15">
+
 			<p:column headerText="id">
 				<h:outputText value="#{book.id}" />
 			</p:column>
-		
+
 
 			<p:column headerText="Name">
 				<h:outputText value="#{book.bookname}" />
@@ -47,19 +47,63 @@
 				<h:outputText value="#{book.username}" />
 			</p:column>
 			<p:column style="width:32px;text-align: center" headerText="Edit">
-				<p:commandButton icon="ui-icon-pencil" onclick="PF('updateBook').show();" title="View">
+				<p:commandButton icon="ui-icon-pencil"
+						immediate="true"
+				 		action="bookController.initEdit"
+						oncomplete="PF('updateBook').show();"
+					 	title="View">
+
+					<f:setPropertyActionListener value="#{book.id}" target="#{mainBean.editorBean.id}"/>
+
+					<f:param name="editId" value="#{book.id}" />
+					<!-- <book:UpdateBook price="#{book.price}" /> -->
+
 				</p:commandButton>
-				<book:UpdateBook id="updateBook" />
-				
+
+				<p:dialog header="Update Book" widgetVar="updateBook" minHeight="40">
+					<h:form>
+					
+						<div style="margin: 10px; font-weight: bold;">
+							<h:outputText value="Update bookname" />
+						</div>
+						<div style="margin: 10px">
+							<p:inputText  value="#{mainBean.editorBean.bookname}" >
+								<f:validateRequired />
+							</p:inputText>
+						</div>
+				<!-- 	binding="#{mainBean.editorBean.bookname}" -->
+						<div style="margin: 10px; font-weight: bold;">
+							<h:outputText value="Update author" />
+						</div>
+						<div style="margin: 10px">
+							<p:inputText value="#{mainBean.editorBean.author}">
+								<f:validateRequired />
+							</p:inputText>
+						</div>
+						
+						<div style="margin: 10px; font-weight: bold;">
+							<h:outputText value="Update Price" />
+						</div>
+						<div style="margin: 10px">
+							<p:inputText  value="#{mainBean.editorBean.price}">
+								<f:validateRequired />
+							</p:inputText>
+						</div>
+
+						<p:commandButton value="Update" action="#{bookController.edit}" update=":#{p:component('customerTableForm')} @form"/>
+					</h:form>
+				</p:dialog>
+
+
+
+
 			</p:column>
 			<f:facet name="footer">
-				<p:commandButton icon="ui-icon-search"
-					onclick="PF('createBook').show();" />
-
+				<p:commandButton icon="ui-icon-search" onclick="PF('createBook').show();" />
 			</f:facet>
 		</p:dataTable>
 		<book:AddBook id="addBook" />
-		
+
 	</div>
 </h:body>
 </html>

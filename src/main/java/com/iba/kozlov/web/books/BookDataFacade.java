@@ -1,19 +1,11 @@
-/**
- * 
- */
 package com.iba.kozlov.web.books;
 
 import java.io.Serializable;
 
-/**
- * @author KazlouV
- *
- */
+
 public class BookDataFacade implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -5823792094177216548L;
 	
 	private BookController controller; 

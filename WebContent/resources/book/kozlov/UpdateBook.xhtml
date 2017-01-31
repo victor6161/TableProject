@@ -4,9 +4,12 @@
  xmlns:h="http://java.sun.com/jsf/html"
  xmlns:ui="http://java.sun.com/jsf/facelets"
  xmlns:p="http://primefaces.org/ui"
- xmlns:composite="http://java.sun.com/jsf/composite">
+ xmlns:composite="http://java.sun.com/jsf/composite"
+>
 
-<composite:interface />
+<composite:interface>
+    <composite:attribute name="price" required="true"/>
+</composite:interface>
 
 <composite:implementation>
 	<p:dialog header="Update Book" widgetVar="updateBook" minHeight="40">
@@ -15,12 +18,13 @@
 				<h:outputText value="Update Price" />
 			</div>
 			<div style="margin: 10px">
-				<p:inputText id="price" value="#{mainBean.editorBean.price}">
+				<p:inputText id="price" value="#{cc.attrs.price}">
 					<f:validateRequired />
 				</p:inputText>
 			</div>
+			
 			<p:commandButton value="Update" action="#{bookController.edit}" update=":#{p:component('customerTableForm')} @form">
-				<f:setPropertyActionListener value="#{book.id}" target="#{mainBean.editorBean.id}"></f:setPropertyActionListener>
+				
 			</p:commandButton>
 		</h:form>
 	</p:dialog>

@@ -31,6 +31,8 @@ public class Mapper{
 		BookDto bookDto=new BookDto();
 		bookDto.setPrice(editorBean.getPrice());
 		bookDto.setId(editorBean.getId());
+		bookDto.setAuthor(editorBean.getAuthor());
+		bookDto.setBookname(editorBean.getBookname());
 		return bookDto;
 	}
 }

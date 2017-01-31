@@ -30,4 +30,10 @@ public class AddBean {
 	public void setAuthor(String author) {
 		this.author = author;
 	} 
+	
+	public void destructor(){
+		setAuthor(null);
+		setBookname(null);
+		setPrice(0);
+	}
 }

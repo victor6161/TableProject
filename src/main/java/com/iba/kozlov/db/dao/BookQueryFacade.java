@@ -1,14 +1,16 @@
 package com.iba.kozlov.db.dao;
 
-import org.apache.log4j.Logger;
 
-import com.iba.kozlov.bl.service.BookServiceImpl;
 import com.iba.kozlov.db.xception.CriteriaNullException;
 
 public class BookQueryFacade {
-	public static String getQueryUpdateBook(){
+	public static String getQueryUpdatePrice(){
 		return "UPDATE books SET price=? WHERE id=?";
 	}
+	public static String getQueryUpdateBook(){
+		return "UPDATE books SET price=?,bookname=?,author=?  WHERE id=?";
+	}
+	
 	public static String getQueryInsertBook(){
 		return "INSERT INTO books (bookname, author, price,user_id) VALUES (?,?,?,?)";
 	}

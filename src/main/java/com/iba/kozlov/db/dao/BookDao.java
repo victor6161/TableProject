@@ -82,7 +82,7 @@ public class BookDao {
 		LOGGER.info("updatePrice id=" +bookDto.getId()+" new price is "+bookDto.getPrice());
 		PreparedStatement prstmt = null;
 		try {
-			prstmt = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryUpdateBook());
+			prstmt = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryUpdatePrice());
 			prstmt.setInt(1, bookDto.getPrice());
 			prstmt.setInt(2, bookDto.getId());
 			prstmt.executeUpdate();
@@ -135,5 +135,28 @@ public class BookDao {
 				}
 		}
 		
+	}
+
+	public void updateAll(BookDto bookDto) {
+		
+		LOGGER.info("updatePrice id=" +bookDto.getId()+" new price is "+bookDto.getPrice()+" new bookname is "+bookDto.getBookname()+" new author is "+bookDto.getAuthor());
+		PreparedStatement prstmt = null;
+		try {
+			prstmt = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryUpdateBook());
+			prstmt.setInt(1, bookDto.getPrice());
+			prstmt.setString(2, bookDto.getBookname());
+			prstmt.setString(3, bookDto.getAuthor());
+			prstmt.setInt(4, bookDto.getId());
+			prstmt.executeUpdate();
+		} catch (SQLException sqlEx) {
+			sqlEx.printStackTrace();
+		} finally {
+
+				try {
+					prstmt.close();
+				} catch (SQLException se1) {
+				}
+			
+		}
 	}
 }

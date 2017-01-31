@@ -41,7 +41,20 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public void editBooks(EditorBean editorBean) {
 		LOGGER.info("editBook");
-		new BookDao().updatePrice(new Mapper().EditorBeanToBookDto(editorBean));
+		new BookDao().updateAll(new Mapper().EditorBeanToBookDto(editorBean));
+		//new BookDao().updatePrice(new Mapper().EditorBeanToBookDto(editorBean));
 	
+	}
+	@Override
+	public int findPriceById(int id) {
+		
+	
+		List<BookDto> bookDto= new BookDao().read(new BookSearchCriteria());
+		for(BookDto book:bookDto){
+			if(new Integer(book.getId()).equals(id)){
+				return book.getPrice();
+			}
+		}
+		return 0;
 	}
 }
