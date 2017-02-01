@@ -14,16 +14,26 @@
 <h:body>
 	<div style="padding-left: 150px; padding-right: 150px;">
 		<h:form>
-			<div style="margin: 10px; font-weight: bold;">
-				<h:outputText value="Search by Author" />
-			</div>
+			<p:outputLabel value="Search by author" for="authorSearch" />
 			<div style="margin: 10px">
-				<p:autoComplete id="something" value="#{bookController.autoCompleteText}"
-					completeMethod="#{bookController.complete}" />
+				<p:autoComplete id="authorSearch"
+					value="#{bookController.autoCompleteText}"
+					completeMethod="#{bookController.complete}" var="book"
+					itemValue="#{book}" converter="com.iba.kozlov.AuthorConverter">
+
+
+					<p:column>
+						<h:outputText value="#{book.bookname}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{book.author}" />
+					</p:column>
+
+				</p:autoComplete>
 			</div>
 		</h:form>
 		<h:form>
-			
+
 			<p:dataTable id="customerTableForm" var="book"
 				value="#{bookController.mainBean.tableRowBeanList}" rows="15"
 				paginator="true" lazy="true"

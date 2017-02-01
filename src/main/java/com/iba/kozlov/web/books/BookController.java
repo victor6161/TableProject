@@ -50,9 +50,9 @@ public class BookController implements Serializable {
 	private boolean isEmptyAutoComplete = true;
 	List<TableRowBean> bookAll= new ArrayList<>();;
 	
-	public List<String> complete(String autoCompleteText) {
+	public List<TableRowBean> complete(String autoCompleteText) {
 		LOGGER.info("complete method");
-		List<String> results = new ArrayList<String>();
+		List<TableRowBean> results = new ArrayList<>();
 		
 		if (isEmptyAutoComplete) {
 			bookAll = new ArrayList<>();
@@ -64,7 +64,7 @@ public class BookController implements Serializable {
 			if (book.getAuthor() == null)
 				continue;
 			if (book.getAuthor().contains(autoCompleteText)) {
-				results.add(book.getAuthor());
+				results.add(book);
 			}
 		}
 		return results;
