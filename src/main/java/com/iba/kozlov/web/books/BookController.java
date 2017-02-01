@@ -4,21 +4,28 @@
 package com.iba.kozlov.web.books;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
+import org.primefaces.event.SelectEvent;
 
 import com.iba.kozlov.bl.service.BookService;
 import com.iba.kozlov.bl.service.BookServiceImpl;
 import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.web.books.view.EditorBean;
 import com.iba.kozlov.web.books.view.MainBean;
+import com.iba.kozlov.web.books.view.TableRowBean;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author KazlouV
@@ -32,10 +39,36 @@ public class BookController implements Serializable {
 	private static final long serialVersionUID = -4973724563495030465L;
 
 	@ManagedProperty(value = "#{mainBean}")
-	private MainBean mainBean = new MainBean();
+	private MainBean mainBean;
 
 	BookDataFacade facade = new BookDataFacade(this);
 	BookService bookService = new BookServiceImpl();
+
+	@Setter
+	@Getter
+	private String autoCompleteText;
+	private boolean isEmptyAutoComplete = true;
+	List<TableRowBean> bookAll= new ArrayList<>();;
+	
+	public List<String> complete(String autoCompleteText) {
+		LOGGER.info("complete method");
+		List<String> results = new ArrayList<String>();
+		
+		if (isEmptyAutoComplete) {
+			bookAll = new ArrayList<>();
+			bookAll = bookService.readBooks();
+			isEmptyAutoComplete = false;
+		}
+		for (TableRowBean book : bookAll) {
+
+			if (book.getAuthor() == null)
+				continue;
+			if (book.getAuthor().contains(autoCompleteText)) {
+				results.add(book.getAuthor());
+			}
+		}
+		return results;
+	}
 
 	public MainBean getMainBean() {
 		return mainBean;
@@ -49,19 +82,6 @@ public class BookController implements Serializable {
 
 	public void setMainBean(MainBean mainBean) {
 		this.mainBean = mainBean;
-	}
-
-	public void initEdit() {
-		LOGGER.info("initEdit");
-		Map<String, String> param = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		int editId = Integer.valueOf(param.get("editId"));
-		EditorBean editBean = new EditorBean();
-		editBean.setId(editId);
-		LOGGER.info("id=" + editId);
-		editBean.setPrice(bookService.findPriceById(editId));
-		LOGGER.info("price=" + bookService.findPriceById(editId));
-		mainBean.setEditorBean(editBean);
-
 	}
 
 	public void edit() {
@@ -80,7 +100,7 @@ public class BookController implements Serializable {
 
 	public void onEditOpen() {
 		BookDto bookDto = new Mapper().ViewTableDtoToBookDto(mainBean.getSelectedBook());
-		LOGGER.info("onEditOpen"+bookDto.toString());
+		LOGGER.info("onEditOpen" + bookDto.toString());
 		mainBean.setEditorBean(new Mapper().BookDtoToEditorBean(bookDto));
 	}
 
@@ -91,6 +111,14 @@ public class BookController implements Serializable {
 		mainBean.getAddBean().destructor();
 
 	}
+
+	/*
+	 * public void onRowSelect(SelectEvent event) {
+	 * 
+	 * FacesMessage msg = new FacesMessage("Car Selected", ((BookController)
+	 * event.getObject()).getMainBean().getSelectedBook().getAuthor());
+	 * FacesContext.getCurrentInstance().addMessage(null, msg); }
+	 */
 
 	public void onRemove() {
 

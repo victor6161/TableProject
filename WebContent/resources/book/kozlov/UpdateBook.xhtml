@@ -7,26 +7,47 @@
  xmlns:composite="http://java.sun.com/jsf/composite"
 >
 
-<composite:interface>
-    <composite:attribute name="price" required="true"/>
-</composite:interface>
+<composite:interface/>
+    
+
 
 <composite:implementation>
-	<p:dialog header="Update Book" widgetVar="updateBook" minHeight="40">
-		<h:form>
-			<div style="margin: 10px; font-weight: bold;">
-				<h:outputText value="Update Price" />
-			</div>
-			<div style="margin: 10px">
-				<p:inputText id="price" value="#{cc.attrs.price}">
-					<f:validateRequired />
-				</p:inputText>
-			</div>
-			
-			<p:commandButton value="Update" action="#{bookController.edit}" update=":#{p:component('customerTableForm')} @form">
-				
-			</p:commandButton>
-		</h:form>
-	</p:dialog>
+<p:dialog id="updateBook" header="Update Book" widgetVar="updateBook" minHeight="40" modal="true">
+			<h:form>
+
+				<div style="margin: 10px; font-weight: bold;">
+					<h:outputText value="Update bookname" />
+				</div>
+				<div style="margin: 10px">
+					<p:inputText value="#{bookController.mainBean.editorBean.bookname}">
+						<f:validateRequired />
+					</p:inputText>
+				</div>
+				<!-- 	binding="#{mainBean.editorBean.bookname}" -->
+				<div style="margin: 10px; font-weight: bold;">
+					<h:outputText value="Update author" />
+				</div>
+				<div style="margin: 10px">
+					<p:inputText value="#{bookController.mainBean.editorBean.author}">
+						<f:validateRequired />
+					</p:inputText>
+				</div>
+
+				<div style="margin: 10px; font-weight: bold;">
+					<h:outputText value="Update Price" />
+				</div>
+				<div style="margin: 10px">
+					<p:inputText value="#{bookController.mainBean.editorBean.price}">
+						<f:validateRequired />
+					</p:inputText>
+				</div>
+
+				<p:commandButton value="Update" action="#{bookController.edit}"
+					update=":#{p:component('customerTableForm')} @form"
+					onclick="PF('updateBook').hide();" />
+				<p:commandButton value="Close" onclick="PF('updateBook').hide();"
+					immediate="true"></p:commandButton>
+			</h:form>
+		</p:dialog>
 </composite:implementation>
 </html>

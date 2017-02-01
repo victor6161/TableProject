@@ -31,6 +31,7 @@ public class BookServiceImpl implements BookService{
 		}
 		return viewTableDto;
 	}
+	
 
 	@Override
 	public void addBooks(AddBean addBean) {
@@ -47,8 +48,6 @@ public class BookServiceImpl implements BookService{
 	}
 	@Override
 	public int findPriceById(int id) {
-		
-	
 		List<BookDto> bookDto= new BookDao().read(new BookSearchCriteria());
 		for(BookDto book:bookDto){
 			if(new Integer(book.getId()).equals(id)){

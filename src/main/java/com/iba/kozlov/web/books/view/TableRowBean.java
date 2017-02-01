@@ -2,6 +2,9 @@ package com.iba.kozlov.web.books.view;
 
 import com.iba.kozlov.db.dto.BookDto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class TableRowBean {
 	
 	@Override
@@ -9,18 +12,23 @@ public class TableRowBean {
 		return "TableRowBean [bookDto=" + bookDto + ", id=" + id + ", bookname=" + bookname + ", author=" + author
 				+ ", price=" + price + ", username=" + username + "]";
 	}
+	@Setter
+	@Getter
 	private BookDto bookDto;
-	public BookDto getBookDto() {
-		return bookDto;
-	}
-
-	public void setBookDto(BookDto bookDto) {
-		this.bookDto = bookDto;
-	}
+	@Setter
+	@Getter
 	private int id;
+	@Setter
+	@Getter
 	private String bookname;
+	@Setter
+	@Getter
 	private String author;
+	@Setter
+	@Getter
 	private int price;
+	@Setter
+	@Getter
 	private String username; 
 	
 	public TableRowBean(String bookname, String author, int price, String username) {
@@ -37,36 +45,7 @@ public class TableRowBean {
 		this.price=100;
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getBookname() {
-		return bookname;
-	}
-	public void setBookname(String bookname) {
-		this.bookname = bookname;
-	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+
 
 	
 }
