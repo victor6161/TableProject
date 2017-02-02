@@ -22,4 +22,5 @@ public interface BookService {
 
 	
 	int findPriceById(int editId);
+	List<TableRowBean> search();
 }

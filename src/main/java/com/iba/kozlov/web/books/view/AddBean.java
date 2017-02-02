@@ -10,12 +10,13 @@ public class AddBean {
 	@Setter
 	@Getter
 	private String author;
-	@Setter
-	@Getter
-	private int price;
+
 	@Setter
 	@Getter
 	private String username;
+	@Setter
+	@Getter
+	private int price;
 
 
 }

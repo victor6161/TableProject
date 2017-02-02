@@ -56,4 +56,15 @@ public class BookServiceImpl implements BookService{
 		}
 		return 0;
 	}
+	
+	public List<TableRowBean> search(){
+		BookSearchCriteria bookSearchCriteria =  new BookSearchCriteria();
+		List<BookDto> bookDto= new BookDao().read(bookSearchCriteria);
+		
+		List<TableRowBean> viewTableDto = new ArrayList<>();
+		for(BookDto bookDtoItem :bookDto){
+			viewTableDto.add(new Mapper().BookDtoToViewTableDto(bookDtoItem));
+		}
+		return viewTableDto;	
+	}
 }

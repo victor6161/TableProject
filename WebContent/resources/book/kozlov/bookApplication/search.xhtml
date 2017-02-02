@@ -11,11 +11,11 @@
 <composite:implementation>
 	<p:row>
 		<h:form>
-			<p:column style="text-align: center;">
+				<p:column style="text-align: center;">
 				<p:outputLabel value="Search by author" for="authorSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="authorSearch"
-						value="#{bookController.autoCompleteText}"
+						value="#{bookController.mainBean.searchBean.author}"
 						completeMethod="#{bookController.complete}" var="book"
 						itemValue="#{book}" converter="com.iba.kozlov.AuthorConverter">
 
@@ -28,18 +28,16 @@
 
 					</p:autoComplete>
 				</div>
-			</p:column>
-			<p:column style="text-align: center;">
 				<p:outputLabel value="Search by bookname" for="booknameSearch" />
 				<div style="margin: 10px">
-					<p:autoComplete id="booknameSearch" />
+					<p:autoComplete id="booknameSearch" value="#{bookController.mainBean.searchBean.bookname}" completeMethod="#{bookController.complete}" />
 				</div>
-			</p:column>
-			<p:column style="text-align: center;">
 				<p:outputLabel value="Search by username" for="usernameSearch" />
 				<div style="margin: 10px">
-					<p:autoComplete id="usernameSearch" />
+					<p:autoComplete id="usernameSearch" value="#{bookController.mainBean.searchBean.username}" completeMethod="#{bookController.complete}"/>
 				</div>
+				<p:commandButton value="Search" action="#{bookController.onSearch}">
+				</p:commandButton>
 			</p:column>
 		</h:form>
 	</p:row>

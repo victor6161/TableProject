@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.iba.kozlov.web.books;
 
 import java.io.Serializable;
@@ -8,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
-import org.primefaces.event.SelectEvent;
 
 import com.iba.kozlov.bl.service.BookService;
 import com.iba.kozlov.bl.service.BookServiceImpl;
@@ -27,10 +23,6 @@ import com.iba.kozlov.web.books.view.TableRowBean;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author KazlouV
- *
- */
 @ManagedBean(name = "bookController", eager = true)
 @SessionScoped
 public class BookController implements Serializable {
@@ -44,16 +36,14 @@ public class BookController implements Serializable {
 	BookDataFacade facade = new BookDataFacade(this);
 	BookService bookService = new BookServiceImpl();
 
-	@Setter
-	@Getter
-	private String autoCompleteText;
-	private boolean isEmptyAutoComplete = true;
-	List<TableRowBean> bookAll= new ArrayList<>();;
 	
+	private boolean isEmptyAutoComplete = true;
+	List<TableRowBean> bookAll = new ArrayList<>();;
+
 	public List<TableRowBean> complete(String autoCompleteText) {
 		LOGGER.info("complete method");
 		List<TableRowBean> results = new ArrayList<>();
-		
+
 		if (isEmptyAutoComplete) {
 			bookAll = new ArrayList<>();
 			bookAll = bookService.readBooks();
@@ -68,6 +58,14 @@ public class BookController implements Serializable {
 			}
 		}
 		return results;
+	}
+
+	@Setter
+	@Getter
+	private String rowsPerPage = "10";
+
+	public void onPaginate() {
+		LOGGER.info("select row " + rowsPerPage);
 	}
 
 	public MainBean getMainBean() {
@@ -90,12 +88,11 @@ public class BookController implements Serializable {
 		mainBean.setTableRowBeanList(bookService.readBooks());
 	}
 
-	public void select(EditorBean editorBean) {
-		LOGGER.info("select method" + editorBean.toString());
-	}
-
 	public void onSearch() {
-
+		LOGGER.info("onSearch"+mainBean.getSearchBean().getAuthor()+mainBean.getSearchBean().getBookname()+mainBean.getSearchBean().getUsername());
+		mainBean.getSearchBean().getAuthor();
+		
+		
 	}
 
 	public void onEditOpen() {
@@ -110,17 +107,8 @@ public class BookController implements Serializable {
 		mainBean.setTableRowBeanList(bookService.readBooks());
 		mainBean.getAddBean().setAuthor(null);
 		mainBean.getAddBean().setBookname(null);
-		mainBean.getAddBean().setPrice(0);;
-
+		mainBean.getAddBean().setPrice(0);
 	}
-
-	/*
-	 * public void onRowSelect(SelectEvent event) {
-	 * 
-	 * FacesMessage msg = new FacesMessage("Car Selected", ((BookController)
-	 * event.getObject()).getMainBean().getSelectedBook().getAuthor());
-	 * FacesContext.getCurrentInstance().addMessage(null, msg); }
-	 */
 
 	public void onRemove() {
 

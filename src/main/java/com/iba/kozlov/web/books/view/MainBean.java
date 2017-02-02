@@ -30,6 +30,7 @@ public class MainBean {
 	private AddBean addBean;
 
 	public MainBean() {
+		searchBean=new SearchBean();
 		addBean = new AddBean();
 		editorBean = new EditorBean();
 	}
