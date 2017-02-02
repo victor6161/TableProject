@@ -9,23 +9,39 @@
 <composite:interface />
 
 <composite:implementation>
-	<h:form>
-		<p:outputLabel value="Search by author" for="authorSearch" />
-		<div style="margin: 10px">
-			<p:autoComplete id="authorSearch"
-				value="#{bookController.autoCompleteText}"
-				completeMethod="#{bookController.complete}" var="book"
-				itemValue="#{book}" converter="com.iba.kozlov.AuthorConverter">
+	<p:row>
+		<h:form>
+			<p:column style="text-align: center;">
+				<p:outputLabel value="Search by author" for="authorSearch" />
+				<div style="margin: 10px">
+					<p:autoComplete id="authorSearch"
+						value="#{bookController.autoCompleteText}"
+						completeMethod="#{bookController.complete}" var="book"
+						itemValue="#{book}" converter="com.iba.kozlov.AuthorConverter">
 
-				<p:column>
-					<h:outputText value="#{book.bookname}" />
-				</p:column>
-				<p:column>
-					<h:outputText value="#{book.author}" />
-				</p:column>
+						<p:column>
+							<h:outputText value="#{book.bookname}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{book.author}" />
+						</p:column>
 
-			</p:autoComplete>
-		</div>
-	</h:form>
+					</p:autoComplete>
+				</div>
+			</p:column>
+			<p:column style="text-align: center;">
+				<p:outputLabel value="Search by bookname" for="booknameSearch" />
+				<div style="margin: 10px">
+					<p:autoComplete id="booknameSearch" />
+				</div>
+			</p:column>
+			<p:column style="text-align: center;">
+				<p:outputLabel value="Search by username" for="usernameSearch" />
+				<div style="margin: 10px">
+					<p:autoComplete id="usernameSearch" />
+				</div>
+			</p:column>
+		</h:form>
+	</p:row>
 </composite:implementation>
 </html>

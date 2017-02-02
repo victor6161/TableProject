@@ -17,10 +17,5 @@ public class AddBean {
 	@Getter
 	private String username;
 
-	
-	public void destructor(){
-		setAuthor(null);
-		setBookname(null);
-		setPrice(0);
-	}
+
 }

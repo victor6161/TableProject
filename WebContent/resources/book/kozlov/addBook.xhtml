@@ -9,7 +9,7 @@
 <composite:interface />
 
 <composite:implementation>
-	<p:dialog header="Create Book" widgetVar="createBook" minHeight="40" modal="true">
+	<p:dialog id="createBook" header="Create Book" widgetVar="createBook" minHeight="40" modal="true">
 		<h:form>
 			<div style="margin: 10px; font-weight: bold;">
 				<h:outputText value="AuthorName" />
@@ -37,8 +37,10 @@
 				</p:inputText>
 			</div>
 
-			<p:commandButton value="Add" action="#{bookController.add}" update=":#{p:component('customerTableForm')} @form" />
-			<p:commandButton value="Close" onclick="PF('createBook').hide();" immediate="true" />
+			<p:commandButton value="Add" action="#{bookController.add}" update=":#{p:component('customerTableForm')} :#{p:component('createBook')} @form"   />
+			<p:commandButton value="Close" onclick="PF('createBook').hide();" immediate="true"  update=":#{p:component('createBook')}" >
+				<p:resetInput target=":#{p:component('createBook')}"></p:resetInput>
+			</p:commandButton>
 		</h:form>
 	</p:dialog>
 </composite:implementation>

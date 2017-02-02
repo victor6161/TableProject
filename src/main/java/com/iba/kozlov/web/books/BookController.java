@@ -108,7 +108,9 @@ public class BookController implements Serializable {
 		LOGGER.info("add");
 		bookService.addBooks(mainBean.getAddBean());
 		mainBean.setTableRowBeanList(bookService.readBooks());
-		mainBean.getAddBean().destructor();
+		mainBean.getAddBean().setAuthor(null);
+		mainBean.getAddBean().setBookname(null);
+		mainBean.getAddBean().setPrice(0);;
 
 	}
 

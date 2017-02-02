@@ -43,7 +43,7 @@
 				</div>
 
 				<p:commandButton value="Update" action="#{bookController.edit}"
-					update=":#{p:component('customerTableForm')} @form"
+					update=":#{p:component('customerTableForm')} :#{p:component('updateBook')} @form"
 					onclick="PF('updateBook').hide();" />
 				<p:commandButton value="Close" onclick="PF('updateBook').hide();"
 					immediate="true"></p:commandButton>

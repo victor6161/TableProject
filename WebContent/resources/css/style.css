@@ -1,31 +1,50 @@
-.footer {
-    position: fixed;
-    width: 100%;
-    height: 50px;
-    bottom: 0;
-    padding: 20px 0 20px;
-    background: #717f86;
+.bookApplication {
+	margin-bottom:50px;
 }
 
-.footer p{
-    text-align: center;
-    line-height: 14px;
-    color: #F5F5F5;
-    font-size: 14px;
+
+
+.footer {
+	position: fixed;
+	width: 100%;
+	height: 10px;
+	bottom: 0;
+	/* padding: 20px 0 20px; */
+	background: #717f86;
+	margin-top:50px;
+}
+
+.footer p {
+	text-align: center;
+	line-height: 14px;
+	color: #F5F5F5;
+	font-size: 14px;
 }
 
 .navigation {
-    position: fixed;
-    width: 100%;
-    height: 50px;
-    top: 0;
-    padding: 20px 0 20px;
-    background: #717f86;
+	position: fixed;
+	width: 100%;
+	height: 50px;
+	top: 0;
+	padding: 20px 0 20px;
+	background: #717f86;
 }
 
-.navigation p{
-    text-align: center;
-    line-height: 14px;
-    color: #F5F5F5;
-    font-size: 14px;
+.navigation p {
+	text-align: center;
+	line-height: 14px;
+	color: #F5F5F5;
+	font-size: 14px;
+}
+
+ul.hr {
+	margin: 0; /* Обнуляем значение отступов */
+	padding: 4px; /* Значение полей */
+}
+
+ul.hr li {
+	display: inline; /* Отображать как строчный элемент */
+	margin-right: 5px; /* Отступ слева */
+	border: 1px solid #000; /* Рамка вокруг текста */
+	padding: 3px; /* Поля вокруг текста */
 }
