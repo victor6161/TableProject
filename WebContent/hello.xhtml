@@ -6,89 +6,21 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:book="http://java.sun.com/jsf/composite/book/kozlov">
+	xmlns:book="http://java.sun.com/jsf/composite/book/kozlov"
+	xmlns:general="http://java.sun.com/jsf/composite/book/kozlov/general">
 
 <h:head>
-
+	<h:outputScript library="js" name="selectRow.js" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 </h:head>
 <h:body>
-	<div style="padding-left: 150px; padding-right: 150px;">
-		<h:form>
-			<p:outputLabel value="Search by author" for="authorSearch" />
-			<div style="margin: 10px">
-				<p:autoComplete id="authorSearch"
-					value="#{bookController.autoCompleteText}"
-					completeMethod="#{bookController.complete}" var="book"
-					itemValue="#{book}" converter="com.iba.kozlov.AuthorConverter">
-
-
-					<p:column>
-						<h:outputText value="#{book.bookname}" />
-					</p:column>
-					<p:column>
-						<h:outputText value="#{book.author}" />
-					</p:column>
-
-				</p:autoComplete>
-			</div>
-		</h:form>
-		<h:form>
-
-			<p:dataTable id="customerTableForm" var="book"
-				value="#{bookController.mainBean.tableRowBeanList}" rows="15"
-				paginator="true" lazy="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="5,10,15" selectionMode="single"
-				selection="#{bookController.mainBean.selectedBook}"
-				rowKey="#{book.id}">
-
-				<!-- <p:ajax event="rowSelect" listener="#{dtSelectionView.onRowSelect}"
-					update=":#{p:component('updateBook')}"
-					oncomplete="PF('updateBook').show();" /> -->
-
-
-
-				<p:column headerText="id">
-					<h:outputText value="#{book.id}" />
-				</p:column>
-
-
-				<p:column headerText="Name">
-					<h:outputText value="#{book.bookname}" />
-				</p:column>
-
-				<p:column headerText="Author">
-					<h:outputText value="#{book.author}" />
-				</p:column>
-
-				<p:column headerText="Price">
-					<h:outputText value="#{book.price}" />
-				</p:column>
-
-				<p:column headerText="Username">
-					<h:outputText value="#{book.username}" />
-				</p:column>
-
-				<p:column headerText="Username">
-					<p:commandButton icon="ui-icon-pencil"
-						actionListener="#{bookController.onEditOpen}"
-						update=":#{p:component('updateBook')}"
-						oncomplete="PF('updateBook').show();">
-
-						<p:resetInput target=":#{p:component('updateBook')}"></p:resetInput>
-					</p:commandButton>
-				</p:column>
-
-				<f:facet name="footer">
-					<p:commandButton icon="ui-icon-add"
-						onclick="PF('createBook').show();" />
-				</f:facet>
-			</p:dataTable>
-		</h:form>
-		<book:AddBook id="addBook" />
-
-		<book:UpdateBook />
-
+	<general:navigation />
+	<div style="padding-left: 150px; padding-right: 150px; margin-top: 100px;">
+		<book:bookApplication />
+		<book:addBook />
+		<book:updateBook />
 	</div>
+	<general:footer />
 </h:body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface />
+
+<composite:implementation>
+	<h:form>
+
+			<p:dataTable id="customerTableForm" 
+				var="book"
+				value="#{bookController.mainBean.tableRowBeanList}" 
+				rows="15"
+				paginator="true" 
+				lazy="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" 
+				selectionMode="single"
+				selection="#{bookController.mainBean.selectedBook}"
+				rowKey="#{book.id}">
+
+				<p:column headerText="id">
+					<h:outputText value="#{book.id}" />
+				</p:column>
+
+
+				<p:column headerText="Name">
+					<h:outputText value="#{book.bookname}" />
+				</p:column>
+
+				<p:column headerText="Author">
+					<h:outputText value="#{book.author}" />
+				</p:column>
+
+				<p:column headerText="Price">
+					<h:outputText value="#{book.price}" />
+				</p:column>
+
+				<p:column headerText="Username">
+					<h:outputText value="#{book.username}" />
+				</p:column>
+
+				<p:column headerText="Username">
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{bookController.onEditOpen}"
+						update=":#{p:component('updateBook')}"
+						oncomplete="PF('updateBook').show();">
+
+						<p:resetInput target=":#{p:component('updateBook')}"></p:resetInput>
+					</p:commandButton>
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton icon="ui-icon-add"
+						onclick="PF('createBook').show();" />
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+</composite:implementation>
+</html>
