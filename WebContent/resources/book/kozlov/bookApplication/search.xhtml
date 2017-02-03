@@ -10,9 +10,10 @@
 
 <composite:implementation>
 	<p:row>
-		<h:form>
-				<p:column style="text-align: center;">
-				<p:outputLabel value="Search by author" for="authorSearch" />
+
+		<p:column style="text-align: center;">
+			<h:form>
+				<p:outputLabel value="Search by Author" for="authorSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="authorSearch"
 						value="#{bookController.mainBean.searchBean.author}"
@@ -30,16 +31,26 @@
 				</div>
 				<p:outputLabel value="Search by bookname" for="booknameSearch" />
 				<div style="margin: 10px">
-					<p:autoComplete id="booknameSearch" value="#{bookController.mainBean.searchBean.bookname}" completeMethod="#{bookController.complete}" />
+					<p:autoComplete id="booknameSearch"
+						value="#{bookController.mainBean.searchBean.bookname}"
+						completeMethod="#{bookController.complete}" />
 				</div>
 				<p:outputLabel value="Search by username" for="usernameSearch" />
 				<div style="margin: 10px">
-					<p:autoComplete id="usernameSearch" value="#{bookController.mainBean.searchBean.username}" completeMethod="#{bookController.complete}"/>
+					<p:autoComplete id="usernameSearch"
+						value="#{bookController.mainBean.searchBean.username}"
+						completeMethod="#{bookController.complete}" />
 				</div>
-				<p:commandButton value="Search" action="#{bookController.onSearch}">
+
+
+				<p:commandButton value="Search" action="#{bookController.onSearch}"
+					update=":#{p:component('customerTableForm')}">
+					<p:resetInput target=":#{p:component('booknameSearch')}"></p:resetInput>
 				</p:commandButton>
-			</p:column>
-		</h:form>
+			</h:form>
+
+		</p:column>
+
 	</p:row>
 </composite:implementation>
 </html>

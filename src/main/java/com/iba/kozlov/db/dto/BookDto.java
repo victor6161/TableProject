@@ -2,82 +2,46 @@ package com.iba.kozlov.db.dto;
 
 import java.io.Serializable;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class BookDto implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5571130680992082254L;
 
-	public BookDto(int id,String bookname, String author, int price, UserDto username) {
+	public BookDto(int id, String bookname, int price, ReaderDto reader, WriterDto writer) {
 		super();
-		this.id=id;
+		this.id = id;
 		this.bookname = bookname;
-		this.author = author;
 		this.price = price;
-		this.username=username;
+		this.reader = reader;
+		this.writer = writer;
 	}
-
 
 	public BookDto() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-
+	@Setter
+	@Getter
 	private int id;
+	@Setter
+	@Getter
 	private String bookname;
-	private String author;
+	@Setter
+	@Getter
 	private int price;
-	private int userId;
-	private UserDto username; 
+	@Setter
+	@Getter
+	private ReaderDto reader;
+	@Setter
+	@Getter
+	private WriterDto writer;
+	@Setter
+	@Getter
+	private int writer_id;
+	@Setter
+	@Getter
+	private int reader_id;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getBookname() {
-		return bookname;
-	}
-
-	public void setBookname(String bookname) {
-		this.bookname = bookname;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUsernameId(int userId) {
-		this.userId = userId;
-	}
-
-	public UserDto getUserDto() {
-		return username;
-	}
-
-	public void setUserDto(UserDto username) {
-		this.username = username;
-	}
-	
-	
 }

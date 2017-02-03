@@ -15,7 +15,7 @@
 				<h:outputText value="AuthorName" />
 			</div>
 			<div style="margin: 10px">
-				<p:inputText id="author" value="#{mainBean.addBean.author}">
+				<p:inputText id="author" value="#{bookController.mainBean.addBean.author}">
 					<f:validateRequired />
 				</p:inputText>
 			</div>
@@ -24,7 +24,7 @@
 				<h:outputText value="BookName" />
 			</div>
 			<div style="margin: 10px">
-				<p:inputText id="bookname" value="#{mainBean.addBean.bookname}">
+				<p:inputText id="bookname" value="#{bookController.mainBean.addBean.bookname}">
 					<f:validateRequired />
 				</p:inputText>
 			</div>
@@ -32,7 +32,7 @@
 				<h:outputText value="Price" />
 			</div>
 			<div style="margin: 10px">
-				<p:inputText id="price" value="#{mainBean.addBean.price}">
+				<p:inputText id="price" value="#{bookController.mainBean.addBean.price}">
 					<f:validateRequired />
 				</p:inputText>
 			</div>

@@ -16,57 +16,86 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `books`
+-- Table structure for table `book`
 --
 
-DROP TABLE IF EXISTS `books`;
+DROP TABLE IF EXISTS `book`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `books` (
+CREATE TABLE `book` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `bookname` varchar(45) DEFAULT NULL,
-  `author` varchar(45) DEFAULT NULL,
   `price` varchar(45) DEFAULT NULL,
-  `booked` tinyint(1) DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
+  `reader_id` int(11) NOT NULL,
+  `writer_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_books_user_idx` (`user_id`),
-  CONSTRAINT `fk_books_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  KEY `fk_book_reader_idx` (`reader_id`),
+  KEY `fk_book_writer1_idx` (`writer_id`),
+  CONSTRAINT `fk_book_reader` FOREIGN KEY (`reader_id`) REFERENCES `reader` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_book_writer1` FOREIGN KEY (`writer_id`) REFERENCES `writer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `books`
+-- Dumping data for table `book`
 --
 
-LOCK TABLES `books` WRITE;
-/*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (2,'Zara','Ali','18',1,1),(7,'igra prestolov','mkyong','10',NULL,1),(10,'war and peace','tolsti','7',NULL,1),(11,'war and war','chechov','8',NULL,1),(12,'war, war and only war','turgenev','30',NULL,1);
-/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+LOCK TABLES `book` WRITE;
+/*!40000 ALTER TABLE `book` DISABLE KEYS */;
+INSERT INTO `book` VALUES (1,'green mile','10',2,1),(2,'Eugene Onegin','11',1,5),(3,'Call of the wild','9',3,2),(4,'shine','17',2,1),(10,'Ruslan and Ludmila','7',2,5);
+/*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `user`
+-- Table structure for table `reader`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `reader`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
+CREATE TABLE `reader` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `surname` varchar(45) DEFAULT NULL,
+  `date_registration` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `reader`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'petya');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `reader` WRITE;
+/*!40000 ALTER TABLE `reader` DISABLE KEYS */;
+INSERT INTO `reader` VALUES (1,'not booked',NULL,NULL),(2,'viktor','ivanov',NULL),(3,'vasiliy','petrov',NULL),(4,'evgenii','rodionov',NULL);
+/*!40000 ALTER TABLE `reader` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `writer`
+--
+
+DROP TABLE IF EXISTS `writer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `writer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `surname` varchar(45) DEFAULT NULL,
+  `country` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `writer`
+--
+
+LOCK TABLES `writer` WRITE;
+/*!40000 ALTER TABLE `writer` DISABLE KEYS */;
+INSERT INTO `writer` VALUES (1,'Stephen','King','USA'),(2,'Jack','London','USA'),(3,'Mark','Twain','USA'),(5,'Sergei','Pushkin','Russia'),(6,'Ivan','Turgenev','Russia'),(7,'Yanka','Kupala','Belarus');
+/*!40000 ALTER TABLE `writer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -78,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-21 14:04:48
+-- Dump completed on 2017-02-03 17:12:28

@@ -9,9 +9,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.iba.kozlov.bl.service.BookServiceImpl;
+
 import com.iba.kozlov.db.dto.BookDto;
-import com.iba.kozlov.db.dto.UserDto;
+import com.iba.kozlov.db.dto.ReaderDto;
+import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.db.xception.CriteriaNullException;
 
 
@@ -33,10 +34,17 @@ public class BookDao {
 			while (rs.next()) {
 				int id = rs.getInt(1);
 				String bookname = rs.getString(2);
-				String author = rs.getString(3);
-				int price=rs.getInt(4);
-				String username=rs.getString(5);
-				arrayList.add(new BookDto(id,bookname,author,price,new UserDto(username)));
+				int price=rs.getInt(3);
+				String writerSurname = rs.getString(4);
+				String readerSurname=rs.getString(5);
+				ReaderDto readerDto=new ReaderDto(readerSurname);
+				WriterDto writerDto=new WriterDto(writerSurname);
+				LOGGER.info("id "+id);
+				LOGGER.info("bookname "+bookname);
+				LOGGER.info("price "+price);
+				LOGGER.info("writerSurname "+writerSurname);
+				LOGGER.info("readerSurname "+readerSurname);
+				arrayList.add(new BookDto(id,bookname,price,readerDto,writerDto));
 			}
 			return arrayList;
 		} catch (SQLException sqlEx) {
@@ -61,8 +69,8 @@ public class BookDao {
 		try {
 			prstmt  = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryInsertBook());
 			prstmt.setString(1, bookDto.getBookname());
-			prstmt.setString(2, bookDto.getAuthor());
-			prstmt.setInt(3, bookDto.getPrice());
+			prstmt.setInt(2, bookDto.getPrice());
+			prstmt.setInt(3, bookDto.getWriter_id());
 			prstmt.setInt(4, 2);
 			prstmt.executeUpdate();
 
@@ -77,6 +85,7 @@ public class BookDao {
 			
 		}
 	}
+	/*
 
 	public  void updatePrice(BookDto bookDto) {
 		LOGGER.info("updatePrice id=" +bookDto.getId()+" new price is "+bookDto.getPrice());
@@ -158,5 +167,5 @@ public class BookDao {
 				}
 			
 		}
-	}
+	}*/
 }
