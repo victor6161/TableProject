@@ -16,12 +16,13 @@ public interface BookService {
 
 	void addBooks(AddBean addBean);
 	List<TableRowBean> readBooks();
-/*	void editBooks(EditorBean editorBean);
+	void editBooks(EditorBean editorBean);
 
-	
+	/*
 	int findPriceById(int editId);
 
 	List<TableRowBean> findBooks(SearchBean search);*/
+	
 
 	
 }

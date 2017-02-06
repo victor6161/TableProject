@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 import com.iba.kozlov.bl.service.BookService;
 import com.iba.kozlov.bl.service.BookServiceImpl;
-
+import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.web.books.view.EditorBean;
 import com.iba.kozlov.web.books.view.MainBean;
 import com.iba.kozlov.web.books.view.TableRowBean;
@@ -82,25 +82,24 @@ public class BookController implements Serializable {
 		this.mainBean = mainBean;
 	}
 
-/*	public void edit() {
-		LOGGER.info("edit" + mainBean.getEditorBean().getId());
+	public void edit() {
+		LOGGER.info("edit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + mainBean.getEditorBean().toString());
 		bookService.editBooks(mainBean.getEditorBean());
 		mainBean.setTableRowBeanList(bookService.readBooks());
 	}
-
+	/*
 	public void onSearch() {
 		LOGGER.info("onSearch"+mainBean.getSearchBean().getAuthor()+mainBean.getSearchBean().getBookname()+mainBean.getSearchBean().getUsername());
 		mainBean.setTableRowBeanList(bookService.findBooks(mainBean.getSearchBean()));
-		
-		
 	}
-
+	 */
+	
 	public void onEditOpen() {
 		BookDto bookDto = new Mapper().ViewTableDtoToBookDto(mainBean.getSelectedBook());
 		LOGGER.info("onEditOpen" + bookDto.toString());
 		mainBean.setEditorBean(new Mapper().BookDtoToEditorBean(bookDto));
 	}
-*/
+
 	public void add() {
 		LOGGER.info("add");
 		bookService.addBooks(mainBean.getAddBean());

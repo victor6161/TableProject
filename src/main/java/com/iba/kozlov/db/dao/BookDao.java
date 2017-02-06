@@ -62,6 +62,42 @@ public class BookDao {
 		}
 		return arrayList;
 	}
+	public List<BookDto>  readId(BookSearchCriteria pCriteria) {
+		LOGGER.info("readId");
+		List<BookDto> arrayList=new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = new CustomConnection().getConnection().createStatement();
+			rs = stmt.executeQuery(BookQueryFacade.getQueryIdWriterIdBook());
+			
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				
+				int writerId=rs.getInt(2);
+				
+				LOGGER.info("id "+id);
+				LOGGER.info("writerId "+writerId);
+			
+				arrayList.add(new BookDto(id,writerId));
+			}
+			return arrayList;
+		} catch (SQLException sqlEx) {
+			sqlEx.printStackTrace();
+		} finally {
+				try {
+					stmt.close();
+				} catch (SQLException se1) {
+				}
+				try {
+					rs.close();
+				} catch (SQLException se1) {
+				}
+			
+		}
+		return arrayList;
+	}
+	
 	
 	public  void addBook(BookDto bookDto) {
 		LOGGER.info("addBook");
@@ -70,7 +106,7 @@ public class BookDao {
 			prstmt  = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryInsertBook());
 			prstmt.setString(1, bookDto.getBookname());
 			prstmt.setInt(2, bookDto.getPrice());
-			prstmt.setInt(3, bookDto.getWriter_id());
+			prstmt.setInt(3, bookDto.getWriterId());
 			prstmt.setInt(4, 2);
 			prstmt.executeUpdate();
 
@@ -144,18 +180,18 @@ public class BookDao {
 				}
 		}
 		
-	}
+	}*/
 
 	public void updateAll(BookDto bookDto) {
 		
-		LOGGER.info("updatePrice id=" +bookDto.getId()+" new price is "+bookDto.getPrice()+" new bookname is "+bookDto.getBookname()+" new author is "+bookDto.getAuthor());
+		LOGGER.info("updatePrice id=" +bookDto.getId()+" new price is "+bookDto.getPrice()+" new bookname is "+bookDto.getBookname());
 		PreparedStatement prstmt = null;
 		try {
 			prstmt = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryUpdateBook());
 			prstmt.setInt(1, bookDto.getPrice());
 			prstmt.setString(2, bookDto.getBookname());
-			prstmt.setString(3, bookDto.getAuthor());
-			prstmt.setInt(4, bookDto.getId());
+		/*	prstmt.setString(3, bookDto.getWriter().getSurname());*/
+			prstmt.setInt(3, bookDto.getId());
 			prstmt.executeUpdate();
 		} catch (SQLException sqlEx) {
 			sqlEx.printStackTrace();
@@ -167,5 +203,5 @@ public class BookDao {
 				}
 			
 		}
-	}*/
+	}
 }
