@@ -7,6 +7,7 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
 import com.iba.kozlov.bl.service.BookServiceImpl;
+import com.iba.kozlov.web.books.AutoComplete;
 import com.iba.kozlov.web.books.BookController;
 
 @FacesConverter("com.iba.kozlov.AuthorConverter")
@@ -17,8 +18,8 @@ public class AuthorConverter implements Converter {
 		
 	    if(value != null && value.trim().length() > 0) {
             try {
-                BookController controller = (BookController) fc.getExternalContext().getApplicationMap();
-                return  controller.complete(value);
+            	AutoComplete autoComplete = (AutoComplete) fc.getExternalContext().getApplicationMap();
+                return  autoComplete.byAuthor(value);
             } catch(NumberFormatException e) {
                 throw new ConverterException();
             }
@@ -31,7 +32,9 @@ public class AuthorConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext fc, UIComponent component, Object value) {
 		
-		return value.toString();
+	   
+       return value.toString();
+       
 	}
 	
 }

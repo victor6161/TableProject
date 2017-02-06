@@ -27,4 +27,9 @@ public class WriterDto {
 		this.id=id;
 		this.surname=writerSurname;
 	}
+	public WriterDto(int id, String writerName, String writerSurname) {
+		this.id=id;
+		this.surname=writerSurname;
+		this.name=writerName;
+	}
 }

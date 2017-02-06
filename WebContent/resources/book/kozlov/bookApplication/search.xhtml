@@ -17,15 +17,16 @@
 				<div style="margin: 10px">
 					<p:autoComplete id="authorSearch"
 						value="#{bookController.mainBean.searchBean.author}"
-						completeMethod="#{bookController.complete}" var="book"
-						itemValue="#{book}" converter="com.iba.kozlov.AuthorConverter">
+						completeMethod="#{autoComplete.byAuthor}" var="writer" itemLabel="#{writer.surname}"
+						itemValue="#{writer}" converter="com.iba.kozlov.AuthorConverter" forceSelection="true">
 
 						<p:column>
-							<h:outputText value="#{book.bookname}" />
+							<h:outputText value="#{writer.name}" />
 						</p:column>
 						<p:column>
-							<h:outputText value="#{book.author}" />
+							<h:outputText value="#{writer.surname}" />
 						</p:column>
+
 
 					</p:autoComplete>
 				</div>
@@ -33,14 +34,43 @@
 				<div style="margin: 10px">
 					<p:autoComplete id="booknameSearch"
 						value="#{bookController.mainBean.searchBean.bookname}"
-						completeMethod="#{bookController.complete}" />
+						completeMethod="#{autoComplete.byBookname}"
+						var="book" 
+						itemLabel="#{book.bookname}"
+						itemValue="#{book}" 
+						converter="com.iba.kozlov.BookConverter">
+
+						<p:column>
+							<h:outputText value="#{book.bookname}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{book.price}" />
+						</p:column>
+
+
+					</p:autoComplete>
 				</div>
-				<p:outputLabel value="Search by username" for="usernameSearch" />
+				<p:outputLabel value="Search by reader" for="readerSearch" />
 				<div style="margin: 10px">
-					<p:autoComplete id="usernameSearch"
+					<p:autoComplete id="readerSearch"
 						value="#{bookController.mainBean.searchBean.username}"
-						completeMethod="#{bookController.complete}" />
+						completeMethod="#{autoComplete.byReader}"
+						var="reader" 
+						itemLabel="#{reader.surname}"
+						itemValue="#{reader}" 
+						converter="com.iba.kozlov.BookConverter">
+
+						<p:column>
+							<h:outputText value="#{reader.name}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{reader.surname}" />
+						</p:column>
+
+
+					</p:autoComplete>
 				</div>
+
 
 
 				<p:commandButton value="Search" action="#{bookController.onSearch}"

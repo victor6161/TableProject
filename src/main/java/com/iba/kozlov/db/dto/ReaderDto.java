@@ -23,4 +23,10 @@ public class ReaderDto {
 		
 	}
 
+	public ReaderDto(int id, String readerName, String readerSurname) {
+		this.id=id;
+		this.name=readerName;
+		this.surname=readerSurname;
+	}
+
 }

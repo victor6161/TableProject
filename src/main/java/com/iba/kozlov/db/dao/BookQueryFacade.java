@@ -19,7 +19,11 @@ public class BookQueryFacade {
 	}
 	
 	public static String getQueryReadWriter(){
-		return "SELECT id,surname FROM writer";
+		return "SELECT id,name,surname FROM writer";
+	}
+
+	public static String getQueryReadReader(){
+		return "SELECT id,name,surname FROM reader";
 	}
 	public static String getQueryIdWriterIdBook(){
 		return "SELECT id,writer_id FROM book";

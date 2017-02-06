@@ -16,7 +16,7 @@ public class WriterDao {
 	private static final Logger LOGGER = Logger.getLogger(BookDao.class);
 
 	public List<WriterDto> read(BookSearchCriteria pCriteria) {
-		LOGGER.info("read all writer method");
+		LOGGER.info("method read all writer");
 		List<WriterDto> arrayList = new ArrayList<>();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -27,12 +27,13 @@ public class WriterDao {
 
 			while (rs.next()) {
 				int id = rs.getInt(1);
-				String writerSurname = rs.getString(2);
+				String writerName=rs.getString(2);
+				String writerSurname = rs.getString(3);
 
 				LOGGER.info("id " + id);
 				LOGGER.info("bookname " + writerSurname);
 
-				arrayList.add(new WriterDto(id, writerSurname));
+				arrayList.add(new WriterDto(id,writerName, writerSurname));
 			}
 			return arrayList;
 		} catch (SQLException sqlEx) {

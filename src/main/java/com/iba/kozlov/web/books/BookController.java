@@ -37,28 +37,7 @@ public class BookController implements Serializable {
 	BookService bookService = new BookServiceImpl();
 
 	
-	private boolean isEmptyAutoComplete = true;
-	List<TableRowBean> bookAll = new ArrayList<>();;
 
-	public List<TableRowBean> complete(String autoCompleteText) {
-		LOGGER.info("complete method");
-		List<TableRowBean> results = new ArrayList<>();
-
-		if (isEmptyAutoComplete) {
-			bookAll = new ArrayList<>();
-			bookAll = bookService.readBooks();
-			isEmptyAutoComplete = false;
-		}
-		for (TableRowBean book : bookAll) {
-
-			if (book.getAuthor() == null)
-				continue;
-			if (book.getAuthor().contains(autoCompleteText)) {
-				results.add(book);
-			}
-		}
-		return results;
-	}
 
 	@Setter
 	@Getter
