@@ -2,6 +2,8 @@ package com.iba.kozlov.web.books;
 
 
 
+import java.io.Writer;
+
 import org.apache.log4j.Logger;
 
 import com.iba.kozlov.bl.service.BookServiceImpl;
@@ -12,6 +14,7 @@ import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.books.view.AddBean;
 import com.iba.kozlov.web.books.view.EditorBean;
 import com.iba.kozlov.web.books.view.TableRowBean;
+import com.iba.kozlov.web.books.view.WriterBean;
 
 public class Mapper {
 	WriterService writerService=new WriterService();
@@ -41,6 +44,7 @@ public class Mapper {
 		BookDto bookDto = new BookDto();
 		bookDto.setBookname(addBean.getBookname());
 		bookDto.setPrice(addBean.getPrice());
+		bookDto.setWriter(new WriterDto(addBean.getAuthor()));
 		return bookDto;
 	}
 	private static final Logger LOGGER = Logger.getLogger(BookController.class);
@@ -63,5 +67,13 @@ public class Mapper {
 		editorBean.setBookname(bookDto.getBookname());
 		editorBean.setPrice(bookDto.getPrice());
 		return editorBean;
+	}
+	public WriterBean ViewWriterBean(WriterDto writerDto){
+		WriterBean writerBean=new WriterBean();
+		writerBean.setId(writerDto.getId());
+		writerBean.setName(writerDto.getName());
+		writerBean.setSurname(writerDto.getSurname());
+		
+		return writerBean;
 	}
 }

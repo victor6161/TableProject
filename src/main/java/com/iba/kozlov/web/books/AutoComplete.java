@@ -23,9 +23,9 @@ import com.iba.kozlov.web.books.view.TableRowBean;
 @SessionScoped
 public class AutoComplete {
 	private static final Logger LOGGER = Logger.getLogger(BookController.class);
-	private boolean isEmptyAutoComplete = true;
-	private boolean isEmptyAutoCompleteBook = true;
-	private boolean isEmptyAutoCompleteReader = true;
+	 static boolean isEmptyAutoCompleteAuthor = true;
+	 static boolean isEmptyAutoCompleteBook = true;
+	 static boolean isEmptyAutoCompleteReader = true;
 	List<WriterDto> writerDto = new ArrayList<>();
 	List<ReaderDto> readerDto = new ArrayList<>();
 	List<BookDto> bookDto = new ArrayList<>();
@@ -35,10 +35,10 @@ public class AutoComplete {
 		LOGGER.info("complete method by author");
 		List<WriterDto> results = new ArrayList<>();
 
-		if (isEmptyAutoComplete) {
+		if (isEmptyAutoCompleteAuthor) {
 			writerDto = new ArrayList<>();
 			writerDto = new WriterDao().read(new BookSearchCriteria());
-			isEmptyAutoComplete = false;
+			isEmptyAutoCompleteAuthor = false;
 		}
 		for (WriterDto writer : writerDto) {
 

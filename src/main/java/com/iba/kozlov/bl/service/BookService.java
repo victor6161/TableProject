@@ -5,23 +5,22 @@ package com.iba.kozlov.bl.service;
 
 import java.util.List;
 
-
+import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.web.books.view.AddBean;
 import com.iba.kozlov.web.books.view.EditorBean;
 import com.iba.kozlov.web.books.view.SearchBean;
-import com.iba.kozlov.web.books.view.TableRowBean;
+
 
 
 public interface BookService {
 
-	void addBooks(AddBean addBean);
-	List<TableRowBean> readBooks();
-	void editBooks(EditorBean editorBean);
+	void addBooks(BookDto bookDto);
+	List<BookDto> readBooks();
+	void editBooks(BookDto BookDto);
+	
 
-	/*
-	int findPriceById(int editId);
 
-	List<TableRowBean> findBooks(SearchBean search);*/
+
 	
 
 	

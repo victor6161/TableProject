@@ -22,7 +22,6 @@ public class WriterDao {
 		ResultSet rs = null;
 		try {
 			stmt = new CustomConnection().getConnection().createStatement();
-
 			rs = stmt.executeQuery(BookQueryFacade.getQueryReadWriter());
 
 			while (rs.next()) {
@@ -57,8 +56,7 @@ public class WriterDao {
 		LOGGER.info(" new author is " + bookDto.getWriter().getSurname() + " id " + bookDto.getWriter().getId());
 		PreparedStatement prstmt = null;
 		try {
-			prstmt = new CustomConnection().getConnection()
-					.prepareStatement(BookQueryFacade.getQueryUpdateWriterSurname());
+			prstmt = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryUpdateWriterSurname());
 			prstmt.setString(1, bookDto.getWriter().getSurname());
 			prstmt.setInt(2, bookDto.getWriter().getId());
 			prstmt.executeUpdate();
@@ -73,4 +71,25 @@ public class WriterDao {
 
 		}
 	}
+	
+	public void createWriter(WriterDto writerDto){
+		LOGGER.info(writerDto.toString());
+		PreparedStatement prstmt = null;
+		try {
+			prstmt = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryCreateWriter());
+			
+			prstmt.setString(1, writerDto.getSurname());
+			prstmt.executeUpdate();
+		} catch (SQLException sqlEx) {
+			sqlEx.printStackTrace();
+		} finally {
+
+			try {
+				prstmt.close();
+			} catch (SQLException se1) {
+			}
+
+		}
+	}
+	
 }
