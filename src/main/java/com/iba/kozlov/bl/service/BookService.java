@@ -17,6 +17,7 @@ public interface BookService {
 	void addBooks(BookDto bookDto);
 	List<BookDto> readBooks();
 	void editBooks(BookDto BookDto);
+	List<BookDto> searchBooks(BookDto bookDto);
 	
 
 

@@ -16,7 +16,7 @@
 				<p:outputLabel value="Search by Author" for="authorSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="authorSearch"
-						value="#{bookController.mainBean.searchBean.author}"
+						value="#{bookController.mainBean.searchBean.authorSearch}"
 						completeMethod="#{autoComplete.byAuthor}" var="writer" itemLabel="#{writer.surname}"
 						itemValue="#{writer}" converter="com.iba.kozlov.AuthorConverter" forceSelection="true">
 

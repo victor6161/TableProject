@@ -22,7 +22,7 @@ import com.iba.kozlov.web.books.view.TableRowBean;
 @ManagedBean(name = "autoComplete", eager = true)
 @SessionScoped
 public class AutoComplete {
-	private static final Logger LOGGER = Logger.getLogger(BookController.class);
+	private static final Logger LOGGER = Logger.getLogger(AutoComplete.class);
 	 static boolean isEmptyAutoCompleteAuthor = true;
 	 static boolean isEmptyAutoCompleteBook = true;
 	 static boolean isEmptyAutoCompleteReader = true;

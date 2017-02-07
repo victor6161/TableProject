@@ -30,7 +30,7 @@ public class WriterDao {
 				String writerSurname = rs.getString(3);
 
 				LOGGER.info("id " + id);
-				LOGGER.info("bookname " + writerSurname);
+				LOGGER.info("writer " + writerSurname);
 
 				arrayList.add(new WriterDto(id,writerName, writerSurname));
 			}

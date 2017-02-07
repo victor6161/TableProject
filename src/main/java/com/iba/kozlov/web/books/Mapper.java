@@ -76,4 +76,12 @@ public class Mapper {
 		
 		return writerBean;
 	}
+	public WriterDto WriterBeanToDto(WriterBean writerBean){
+		WriterDto writerDto=new WriterDto();
+		writerDto.setId(writerBean.getId());
+		writerDto.setName(writerBean.getName());
+		writerDto.setSurname(writerBean.getSurname());
+		
+		return writerDto;
+	}
 }

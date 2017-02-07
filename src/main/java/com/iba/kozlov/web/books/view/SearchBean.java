@@ -7,9 +7,11 @@ import lombok.Setter;
 
 public class SearchBean {
 	
+
 	@Override
 	public String toString() {
-		return "SearchBean [bookname=" + bookname + ", author=" + author + ", username=" + username + "]";
+		return "SearchBean [bookname=" + bookname + ", author=" + author + ", username=" + username + ", authorSearch="
+				+ authorSearch + "]";
 	}
 	@Setter
 	@Getter
@@ -20,6 +22,7 @@ public class SearchBean {
 	@Setter
 	@Getter
 	private String username;
-	
+	@Setter
+	@Getter
 	private WriterDto authorSearch;
 }

@@ -1,10 +1,20 @@
 package com.iba.kozlov.db.dto;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
-public class WriterDto {
-	@Setter
+public class WriterDto implements Serializable  {
+	@Override
+	public String toString() {
+		return "WriterDto [name=" + name + ", id=" + id + ", surname=" + surname + ", country=" + country + "]";
+	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Setter 
 	@Getter
 	private String name;
 	@Setter
@@ -21,6 +31,10 @@ public class WriterDto {
 		this.surname=writerSurname;
 	}
 	public WriterDto() {
+		
+	}
+	public WriterDto(int id) {
+		this.id=id;
 		
 	}
 	public WriterDto(int id, String writerSurname) {

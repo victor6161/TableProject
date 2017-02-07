@@ -27,6 +27,7 @@ public class BookDao {
 		try {
 			stmt = new CustomConnection().getConnection().createStatement();
 			try {
+				LOGGER.info(BookQueryFacade.getQueryBook(pCriteria));
 				rs = stmt.executeQuery(BookQueryFacade.getQueryBook(pCriteria));
 			} catch (CriteriaNullException e) {
 				LOGGER.fatal("CriteriaNullException" +e.getMessage());

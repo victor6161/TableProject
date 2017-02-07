@@ -44,7 +44,7 @@ public class MainBean {
 		editorBean = new EditorBean();
 
 	}
-/*	@PostConstruct
+	@PostConstruct
 	public void init() {
 		List<WriterDto> writerDto= new WriterService().readWriters();
 		List<WriterBean> writerBean=new ArrayList<>();
@@ -55,7 +55,7 @@ public class MainBean {
 		
 		setWriterBean(writerBean);
 		
-	}*/
+	}
 	}
 
 

@@ -89,13 +89,17 @@ public class BookController implements Serializable {
 	}
 
 	public void onSearch() {
-		LOGGER.info("Search*********************");
-		/*
-		 * LOGGER.info("onSearch!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +
-		 * mainBean.getSearchBean().toString());
-		 * mainBean.setTableRowBeanList(bookService.findBooks(mainBean.
-		 * getSearchBean()));
-		 */
+		LOGGER.info("Search*********************"+mainBean.getSearchBean().toString());
+		
+		BookDto bookDto= new BookDto();
+		bookDto.setWriter(mainBean.getSearchBean().getAuthorSearch());
+		
+		List<BookDto> resultSearch = bookService.searchBooks(bookDto);
+		List<TableRowBean> viewTableDto = new ArrayList<>();
+		for (BookDto bookDtoItem : resultSearch) {
+			viewTableDto.add(new Mapper().BookDtoToViewTableDto(bookDtoItem));
+		}
+		mainBean.setTableRowBeanList(viewTableDto);
 	}
 
 	public void onEditOpen() {

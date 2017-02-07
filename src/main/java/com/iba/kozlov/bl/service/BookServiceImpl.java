@@ -57,6 +57,16 @@ public class BookServiceImpl implements BookService {
 		}
 		return 0;
 	}
+	@Override
+	public List<BookDto> searchBooks(BookDto bookDto) {
+		LOGGER.info("createBooks method");
+		BookSearchCriteria bookSearchCriteria = new BookSearchCriteria();
+		if(bookDto.getWriter()!=null){
+			bookSearchCriteria.setWriterId(bookDto.getWriter().getId());
+		}
+		return new BookDao().read(bookSearchCriteria);
+	}
+	
 
 
 }
