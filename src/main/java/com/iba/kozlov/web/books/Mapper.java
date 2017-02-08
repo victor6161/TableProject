@@ -14,7 +14,9 @@ import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.books.view.AddBean;
 import com.iba.kozlov.web.books.view.EditorBean;
 import com.iba.kozlov.web.books.view.TableRowBean;
-import com.iba.kozlov.web.books.view.WriterBean;
+import com.iba.kozlov.web.books.view.searchBean.BookBean;
+import com.iba.kozlov.web.books.view.searchBean.ReaderBean;
+import com.iba.kozlov.web.books.view.searchBean.WriterBean;
 
 public class Mapper {
 	WriterService writerService=new WriterService();
@@ -83,5 +85,34 @@ public class Mapper {
 		writerDto.setSurname(writerBean.getSurname());
 		
 		return writerDto;
+	}
+	
+	public ReaderBean ReaderDtoToBean(ReaderDto readerDto){
+		ReaderBean readerBean=new ReaderBean();
+		readerBean.setId(readerDto.getId());
+		readerBean.setName(readerDto.getName());
+		readerBean.setSurname(readerDto.getSurname());
+		return readerBean;
+		
+	}
+
+	public ReaderDto ReaderBeanToDto(ReaderBean reader) {
+		ReaderDto readerDto=new ReaderDto();
+		readerDto.setId(reader.getId());
+		readerDto.setName(reader.getName());
+		readerDto.setSurname(reader.getSurname());
+		return readerDto;
+	}
+	public BookDto BookBeanToDto(BookBean bookBean) {
+		BookDto bookDto=new BookDto();
+		bookDto.setId(bookBean.getId());
+		bookDto.setBookname(bookBean.getBookname());
+		return bookDto;
+	}
+	public BookBean BookDtoToBean(BookDto bookDto) {
+		BookBean bookBean=new BookBean();
+		bookBean.setId(bookDto.getId());
+		bookBean.setBookname(bookDto.getBookname());
+		return bookBean;
 	}
 }

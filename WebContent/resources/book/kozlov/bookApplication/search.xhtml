@@ -33,7 +33,7 @@
 				<p:outputLabel value="Search by bookname" for="booknameSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="booknameSearch"
-						value="#{bookController.mainBean.searchBean.bookname}"
+						value="#{bookController.mainBean.searchBean.bookSearch}"
 						completeMethod="#{autoComplete.byBookname}"
 						var="book" 
 						itemLabel="#{book.bookname}"
@@ -53,12 +53,12 @@
 				<p:outputLabel value="Search by reader" for="readerSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="readerSearch"
-						value="#{bookController.mainBean.searchBean.username}"
+						value="#{bookController.mainBean.searchBean.readerSearch}"
 						completeMethod="#{autoComplete.byReader}"
 						var="reader" 
 						itemLabel="#{reader.surname}"
 						itemValue="#{reader}" 
-						converter="com.iba.kozlov.BookConverter">
+						converter="com.iba.kozlov.ReaderConverter">
 
 						<p:column>
 							<h:outputText value="#{reader.name}" />

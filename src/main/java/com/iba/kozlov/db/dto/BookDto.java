@@ -44,7 +44,7 @@ public class BookDto implements Serializable {
 
 	@Setter
 	@Getter
-	private int id;
+	private Integer id;
 	@Setter
 	@Getter
 	private String bookname;

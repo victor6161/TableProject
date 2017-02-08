@@ -21,7 +21,7 @@ import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.books.view.EditorBean;
 import com.iba.kozlov.web.books.view.MainBean;
 import com.iba.kozlov.web.books.view.TableRowBean;
-import com.iba.kozlov.web.books.view.WriterBean;
+import com.iba.kozlov.web.books.view.searchBean.WriterBean;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -59,17 +59,6 @@ public class BookController implements Serializable {
 		}
 		mainBean.setTableRowBeanList(viewTableDto);
 		mainBean.setEditorBean(new EditorBean());
-		// List<WriterDto> writerDto= new WriterService().readWriters();
-		// List<WriterBean> writerBean=new ArrayList<>();
-		// Mapper mapper=new Mapper();
-		// for(WriterDto writer:writerDto){
-		// writerBean.add(mapper.ViewWriterBean(writer));
-		// }
-		//
-		// mainBean.setWriterBean(writerBean);
-		// for(WriterBean writerBean2: mainBean.getWriterBean()){
-		// LOGGER.info(writerBean2.toString());
-		// }
 
 	}
 
@@ -89,12 +78,16 @@ public class BookController implements Serializable {
 	}
 
 	public void onSearch() {
-		LOGGER.info("Search*********************"+mainBean.getSearchBean().toString());
-		
-		BookDto bookDto= new BookDto();
+		LOGGER.info("Search****" + mainBean.getSearchBean().toString() );
+
+		BookDto bookDto = new BookDto();
 		bookDto.setWriter(mainBean.getSearchBean().getAuthorSearch());
-		
+		bookDto.setReader(mainBean.getSearchBean().getReaderSearch());
+		if(mainBean.getSearchBean().getBookSearch()!=null)
+		 bookDto.setId(mainBean.getSearchBean().getBookSearch().getId());
+
 		List<BookDto> resultSearch = bookService.searchBooks(bookDto);
+
 		List<TableRowBean> viewTableDto = new ArrayList<>();
 		for (BookDto bookDtoItem : resultSearch) {
 			viewTableDto.add(new Mapper().BookDtoToViewTableDto(bookDtoItem));

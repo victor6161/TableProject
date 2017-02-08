@@ -55,24 +55,24 @@ public class BookQueryFacade {
 		}
 	
 		
-		if(pCriteria.getWriterId()!=0){
+		if(!pCriteria.getWriterId().equals(0)){
 			bp=true;
 			query.append("w.id='"+pCriteria.getWriterId()+"'");
 		}
 		
-		if(!pCriteria.getName().isEmpty()){
+		if(!pCriteria.getReaderId().equals(0)){
 			if(bp){
 				query.append(" and ");
 			}
 			bp=true;
-			query.append("bookname='"+pCriteria.getName()+"'");
+			query.append("r.id='"+pCriteria.getReaderId()+"'");
 		}
-	/*	if(!pCriteria.getPrice().equals(0)){
+		if(pCriteria.getBookId()!=null){
 			if(bp){
 				query.append(" and ");
 			}
-			query.append("price<"+pCriteria.getPrice().toString());
-		}*/
+			query.append("b.id='"+pCriteria.getBookId()+"'");
+		}
 		return query.toString();
 	}
 }

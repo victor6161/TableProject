@@ -1,4 +1,4 @@
-package com.iba.kozlov.web.books.view;
+package com.iba.kozlov.web.books.view.searchBean;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -13,7 +13,7 @@ import com.iba.kozlov.db.dto.WriterDto;
 
 
 public class WriterService {
-	private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(WriterService.class);
 	private WriterDao writerDao=new WriterDao();
 	public int findIdBySurname(String writerSurname) {
 		LOGGER.info("findIdBySurname method");

@@ -2,9 +2,7 @@ package com.iba.kozlov.converter;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -13,18 +11,16 @@ import javax.faces.convert.FacesConverter;
 
 import org.apache.log4j.Logger;
 
-import com.iba.kozlov.bl.service.BookServiceImpl;
+
 import com.iba.kozlov.db.dto.WriterDto;
-import com.iba.kozlov.web.books.AutoComplete;
-import com.iba.kozlov.web.books.BookController;
+
 import com.iba.kozlov.web.books.Mapper;
 import com.iba.kozlov.web.books.view.MainBean;
-import com.iba.kozlov.web.books.view.WriterBean;
+import com.iba.kozlov.web.books.view.searchBean.WriterBean;
 
 
 
 @FacesConverter("com.iba.kozlov.AuthorConverter")
-//@RequestScoped
 public class AuthorConverter implements Converter {
 	private static final Logger LOGGER = Logger.getLogger(AuthorConverter.class);
 
@@ -53,9 +49,7 @@ public class AuthorConverter implements Converter {
 		}
 		// получить список
 		// найти по id - value
-	/*	 AutoComplete autoComplete = (AutoComplete)
-		 fc.getExternalContext().getApplicationMap();
-		 return autoComplete.byAuthor(value);*/
+	
 	}
 
 	@Override

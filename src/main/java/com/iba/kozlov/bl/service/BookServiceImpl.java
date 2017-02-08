@@ -64,6 +64,12 @@ public class BookServiceImpl implements BookService {
 		if(bookDto.getWriter()!=null){
 			bookSearchCriteria.setWriterId(bookDto.getWriter().getId());
 		}
+		if(bookDto.getReader()!=null){
+			bookSearchCriteria.setReaderId(bookDto.getReader().getId());
+		}
+		if(bookDto.getId()!=null){
+			bookSearchCriteria.setBookId(bookDto.getId());
+		}
 		return new BookDao().read(bookSearchCriteria);
 	}
 	

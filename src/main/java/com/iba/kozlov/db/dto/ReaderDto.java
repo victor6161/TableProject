@@ -4,6 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class ReaderDto {
+	@Override
+	public String toString() {
+		return "ReaderDto [id=" + id + ", name=" + name + ", surname=" + surname + "]";
+	}
+
 	@Setter
 	@Getter
 	private int id;
