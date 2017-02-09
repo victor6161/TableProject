@@ -1,6 +1,7 @@
 package com.iba.kozlov.web.books.view;
 
 import com.iba.kozlov.db.dto.BookDto;
+import com.iba.kozlov.web.books.view.searchBean.WriterBean;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,9 @@ public class TableRowBean {
 	@Setter
 	@Getter
 	private int id;
+	@Setter
+	@Getter
+	private WriterBean writerBean;
 	@Setter
 	@Getter
 	private String bookname;

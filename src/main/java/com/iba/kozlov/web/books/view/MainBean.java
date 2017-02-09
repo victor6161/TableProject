@@ -1,7 +1,9 @@
 package com.iba.kozlov.web.books.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -82,6 +84,21 @@ public class MainBean {
 			bookBean.add(mapper.BookDtoToBean(book));
 		}
 		setBookBean(bookBean);
+	/*	List<WriterDto> writerDto = new WriterService().readWriters();
+		List<WriterBean> writerBean = new ArrayList<>();
+		
+		for (WriterDto writer : writerDto) {
+			writerBean.add(mapper.ViewWriterBean(writer));
+		}*/
+	/*	Map<WriterBean, WriterBean> writers = new HashMap<WriterBean, WriterBean>();
+		for (WriterBean writer : writerBean) {
+			writers.put(writer, writer);
+		}*/
+		getEditorBean().setWriters(writerBean);
+		
+	
+	
+		
 	}
 	}
 

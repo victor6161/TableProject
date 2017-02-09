@@ -1,53 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
- xmlns:f="http://java.sun.com/jsf/core"
- xmlns:h="http://java.sun.com/jsf/html"
- xmlns:ui="http://java.sun.com/jsf/facelets"
- xmlns:p="http://primefaces.org/ui"
- xmlns:composite="http://java.sun.com/jsf/composite"
->
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
 
-<composite:interface/>
-    
+<composite:interface />
+
 
 
 <composite:implementation>
-<p:dialog id="updateBook" header="Update Book" widgetVar="updateBook" minHeight="40" modal="true">
-			<h:form>
+	<p:dialog id="updateBook" header="Update Book" widgetVar="updateBook"
+		minHeight="40" modal="true">
+<h:form>
 
-				<div style="margin: 10px; font-weight: bold;">
-					<h:outputText value="Update bookname" />
-				</div>
-				<div style="margin: 10px">
-					<p:inputText value="#{bookController.mainBean.editorBean.bookname}">
-						<f:validateRequired />
-					</p:inputText>
-				</div>
-				<!-- 	binding="#{mainBean.editorBean.bookname}" -->
-				<div style="margin: 10px; font-weight: bold;">
+		<div style="margin: 10px; font-weight: bold;">
+			<h:outputText value="Update bookname" />
+		</div>
+		<div style="margin: 10px">
+			<p:inputText value="#{bookController.mainBean.editorBean.bookname}">
+				<f:validateRequired />
+			</p:inputText>
+		</div>
+
+		<!-- 	<div style="margin: 10px; font-weight: bold;">
 					<h:outputText value="Update author" />
-				</div>
-				<div style="margin: 10px">
-					<p:inputText value="#{bookController.mainBean.editorBean.author}">
-						<f:validateRequired />
-					</p:inputText>
-				</div>
+				</div> -->
 
-				<div style="margin: 10px; font-weight: bold;">
-					<h:outputText value="Update Price" />
-				</div>
-				<div style="margin: 10px">
-					<p:inputText value="#{bookController.mainBean.editorBean.price}">
-						<f:validateRequired />
-					</p:inputText>
-				</div>
 
-				<p:commandButton value="Update" action="#{bookController.edit}"
-					update=":#{p:component('customerTableForm')} :#{p:component('updateBook')} @form"
-					onclick="PF('updateBook').hide();" />
-				<p:commandButton value="Close" onclick="PF('updateBook').hide();"
-					immediate="true"></p:commandButton>
-			</h:form>
-		</p:dialog>
+		<div style="margin: 10px; font-weight: bold;">
+			<h:outputText value="Update Price" />
+		</div>
+		<div style="margin: 10px">
+			<p:inputText value="#{bookController.mainBean.editorBean.price}">
+				<f:validateRequired />
+			</p:inputText>
+		</div>
+
+		<div style="margin: 10px">
+			
+				<p:selectOneMenu value="{bookController.mainBean.editorBean.writer}" style="width:150px"
+					converter="com.iba.kozlov.AuthorConverter">
+					<f:selectItem itemLabel="Select Writer" itemValue=""  />
+					<f:selectItems value="#{bookController.mainBean.editorBean.writers}" var="writer"
+						itemLabel="#{writer.name} #{writer.surname}" itemValue="#{writer}"  noSelectionOption="true"/>
+				</p:selectOneMenu>
+			
+			<!-- 		<p:inputText value="#{bookController.mainBean.editorBean.author}">
+						<f:validateRequired />
+					</p:inputText> -->
+		</div>
+		
+			<p:commandButton value="Update" actionListener="#{bookController.edit}"
+				update=":#{p:component('customerTableForm')} :#{p:component('updateBook')} @form"
+				oncomplete="PF('updateBook').hide();" />
+		
+			<p:commandButton value="Close" onclick="PF('updateBook').hide();"
+				immediate="true"></p:commandButton>
+		</h:form>
+	</p:dialog>
 </composite:implementation>
 </html>

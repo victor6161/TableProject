@@ -3,7 +3,9 @@ package com.iba.kozlov.web.books;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -36,6 +38,10 @@ public class BookController implements Serializable {
 	@Getter
 	@ManagedProperty(value = "#{mainBean}")
 	private MainBean mainBean;
+/*	@Setter
+	@Getter
+	@ManagedProperty(value = "#{dropdownView}")
+	private DropdownView dropdownView;*/
 
 	BookDataFacade facade = new BookDataFacade(this);
 	BookService bookService = new BookServiceImpl();
@@ -52,23 +58,25 @@ public class BookController implements Serializable {
 	public void init() {
 
 		List<BookDto> bookDto = bookService.readBooks();
-
+		Mapper mapper = new Mapper();
 		List<TableRowBean> viewTableDto = new ArrayList<>();
 		for (BookDto bookDtoItem : bookDto) {
-			viewTableDto.add(new Mapper().BookDtoToViewTableDto(bookDtoItem));
+			viewTableDto.add(mapper.BookDtoToViewTableDto(bookDtoItem));
 		}
 		mainBean.setTableRowBeanList(viewTableDto);
-		mainBean.setEditorBean(new EditorBean());
+	
+
 
 	}
 
 	public void edit() {
 		LOGGER.info("edit" + mainBean.getEditorBean().toString());
+		LOGGER.info("***********************************************writer is "+mainBean.getEditorBean().getWriter());
 		AutoComplete.isEmptyAutoCompleteAuthor = true;
 		AutoComplete.isEmptyAutoCompleteBook = true;
 		AutoComplete.isEmptyAutoCompleteReader = true;
 
-		bookService.editBooks(new Mapper().EditorBeanToBookDto(mainBean.getEditorBean()));
+		//bookService.editBooks(new Mapper().EditorBeanToBookDto(mainBean.getEditorBean()));
 		List<BookDto> bookDto = bookService.readBooks();
 		List<TableRowBean> viewTableDto = new ArrayList<>();
 		for (BookDto bookDtoItem : bookDto) {
@@ -102,9 +110,17 @@ public class BookController implements Serializable {
 	}
 
 	public void onEditOpen() {
-		BookDto bookDto = new Mapper().ViewTableDtoToBookDto(mainBean.getSelectedBook());
+		
+		Mapper mapper= new Mapper();
+		BookDto bookDto = mapper.ViewTableDtoToBookDto(mainBean.getSelectedBook());
 		LOGGER.info("onEditOpen" + bookDto.toString());
-		mainBean.setEditorBean(new Mapper().BookDtoToEditorBean(bookDto));
+		
+		
+		List <WriterBean> writerBean=new ArrayList<WriterBean>();// не смог в маппер получить mainBean , так сохраняется ,  список писателей
+		writerBean=mainBean.getEditorBean().getWriters();
+		mainBean.setEditorBean(mapper.BookDtoToEditorBean(bookDto));
+		mainBean.getEditorBean().setWriters(writerBean);
+		//mainBean.getEditorBean().setWriter(writer);
 	}
 
 	public void add() {

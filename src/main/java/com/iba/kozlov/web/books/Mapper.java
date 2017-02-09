@@ -2,9 +2,6 @@ package com.iba.kozlov.web.books;
 
 
 
-import java.io.Writer;
-
-import org.apache.log4j.Logger;
 
 import com.iba.kozlov.bl.service.BookServiceImpl;
 import com.iba.kozlov.bl.service.WriterService;
@@ -13,13 +10,17 @@ import com.iba.kozlov.db.dto.ReaderDto;
 import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.books.view.AddBean;
 import com.iba.kozlov.web.books.view.EditorBean;
+
 import com.iba.kozlov.web.books.view.TableRowBean;
 import com.iba.kozlov.web.books.view.searchBean.BookBean;
 import com.iba.kozlov.web.books.view.searchBean.ReaderBean;
 import com.iba.kozlov.web.books.view.searchBean.WriterBean;
 
+
+
 public class Mapper {
 	WriterService writerService=new WriterService();
+
 
 	public TableRowBean BookDtoToViewTableDto(BookDto bookDto) {
 		TableRowBean viewDto = new TableRowBean();
@@ -49,7 +50,7 @@ public class Mapper {
 		bookDto.setWriter(new WriterDto(addBean.getAuthor()));
 		return bookDto;
 	}
-	private static final Logger LOGGER = Logger.getLogger(BookController.class);
+	
 	public BookDto EditorBeanToBookDto(EditorBean editorBean) {
 		BookDto bookDto = new BookDto();
 		bookDto.setPrice(editorBean.getPrice());
@@ -63,8 +64,9 @@ public class Mapper {
 	
 	public EditorBean BookDtoToEditorBean(BookDto bookDto) {
 		EditorBean editorBean = new EditorBean();
+	/*	=mainBean.getEditorBean();*/
 		editorBean.setId(bookDto.getId());
-		editorBean.setAuthor(bookDto.getWriter().getSurname());
+		/*editorBean.setAuthor(bookDto.getWriter().getSurname());*/
 		editorBean.setBookname(bookDto.getBookname());
 		editorBean.setPrice(bookDto.getPrice());
 		return editorBean;

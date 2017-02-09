@@ -18,9 +18,7 @@ public class WriterBean {
 	@Getter
 	private String surname;
 	public WriterBean(){
-		this.id=0;
-		this.name="";
-		this.surname="";
+	
 	}
 	public WriterBean(String writerSurname) {
 		this.surname=writerSurname;
