@@ -18,6 +18,9 @@ import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.db.dto.ReaderDto;
 import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.books.view.TableRowBean;
+import com.iba.kozlov.web.books.view.searchBean.BookBean;
+import com.iba.kozlov.web.books.view.searchBean.ReaderBean;
+import com.iba.kozlov.web.books.view.searchBean.WriterBean;
 
 @ManagedBean(name = "autoComplete", eager = true)
 @SessionScoped
@@ -31,9 +34,9 @@ public class AutoComplete {
 	List<BookDto> bookDto = new ArrayList<>();
 	BookService bookService = new BookServiceImpl();
 
-	public List<WriterDto> byAuthor(String autoCompleteText) {
+	public List<WriterBean> byAuthor(String autoCompleteText) {
 		LOGGER.info("complete method by author");
-		List<WriterDto> results = new ArrayList<>();
+		List<WriterBean> results = new ArrayList<>();
 
 		if (isEmptyAutoCompleteAuthor) {
 			writerDto = new ArrayList<>();
@@ -41,19 +44,19 @@ public class AutoComplete {
 			isEmptyAutoCompleteAuthor = false;
 		}
 		for (WriterDto writer : writerDto) {
-
 			if (writer == null)
 				continue;
 			if (writer.getSurname().contains(autoCompleteText)) {
-				results.add(writer);
+				results.add(new Mapper().ViewWriterBean(writer));
 			}
 		}
+		
 		return results;
 	}
 
-	public List<BookDto> byBookname(String autoCompleteText) {
+	public List<BookBean> byBookname(String autoCompleteText) {
 		LOGGER.info("complete method by bookname");
-		List<BookDto> results = new ArrayList<>();
+		List<BookBean> results = new ArrayList<>();
 
 		if (isEmptyAutoCompleteBook) {
 			bookDto = new ArrayList<>();
@@ -65,15 +68,15 @@ public class AutoComplete {
 			if (book == null)
 				continue;
 			if (book.getBookname().contains(autoCompleteText)) {
-				results.add(book);
+				results.add(new Mapper().BookDtoToBean(book));
 			}
 		}
 		return results;
 	}
 
-	public List<ReaderDto> byReader(String autoCompleteText) {
+	public List<ReaderBean> byReader(String autoCompleteText) {
 		LOGGER.info("complete method by reader");
-		List<ReaderDto> results = new ArrayList<>();
+		List<ReaderBean> results = new ArrayList<>();
 
 		if (isEmptyAutoCompleteReader) {
 			readerDto = new ArrayList<>();
@@ -85,7 +88,7 @@ public class AutoComplete {
 			if (reader == null || reader.getSurname() == null)
 				continue;
 			if (reader.getSurname().contains(autoCompleteText)) {
-				results.add(reader);
+				results.add(new Mapper().ReaderDtoToBean(reader));
 			}
 		}
 		return results;

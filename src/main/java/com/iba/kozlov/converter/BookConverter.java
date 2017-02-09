@@ -32,7 +32,7 @@ public class BookConverter implements Converter {
 			try {
 				for (BookBean book : bookBean) {
 					if (value.equals(String.valueOf(book.getId()))) {
-						return new Mapper().BookBeanToDto(book);
+						return book;
 					}
 				}
 				return null;
@@ -50,8 +50,8 @@ public class BookConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext fc, UIComponent component, Object value) {
 		//получается что отсюда берется value для getAsObject
-		if (value instanceof BookDto)
-			return String.valueOf((((BookDto) value).getId()));
+		if (value instanceof BookBean)
+			return String.valueOf((((BookBean) value).getId()));
 		
 		return null;
 

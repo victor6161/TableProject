@@ -37,7 +37,7 @@ public class AuthorConverter implements Converter {
 			try {
 				for (WriterBean writer : writerBean) {
 					if (value.equals(String.valueOf(writer.getId()))) {
-						return new Mapper().WriterBeanToDto(writer);
+						return writer;
 					}
 				}
 				return null;
@@ -55,8 +55,8 @@ public class AuthorConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext fc, UIComponent component, Object value) {
 		//получается что отсюда берется value для getAsObject
-		if (value instanceof WriterDto)
-			return String.valueOf((((WriterDto) value).getId()));
+		if (value instanceof WriterBean)
+			return String.valueOf((((WriterBean) value).getId()));
 		
 		return null;
 

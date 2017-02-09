@@ -31,7 +31,7 @@ public class ReaderConverter implements Converter {
 			try {
 				for (ReaderBean reader : readerBean) {
 					if (value.equals(String.valueOf(reader.getId()))) {
-						return new Mapper().ReaderBeanToDto(reader);
+						return reader;
 					}
 				}
 				return null;
@@ -50,8 +50,8 @@ public class ReaderConverter implements Converter {
 	public String getAsString(FacesContext fc, UIComponent component, Object value) {
 		 
 		// отсюда берется value для getAsObject
-		if (value instanceof ReaderDto)
-			return String.valueOf((((ReaderDto) value).getId()));
+		if (value instanceof ReaderBean)
+			return String.valueOf((((ReaderBean) value).getId()));
 
 		return null;
 

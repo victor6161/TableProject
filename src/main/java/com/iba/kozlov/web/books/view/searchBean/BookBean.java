@@ -10,5 +10,8 @@ public class BookBean {
 	@Setter
 	@Getter
 	private String bookname;
+	@Setter
+	@Getter
+	private Integer price;
 
 }

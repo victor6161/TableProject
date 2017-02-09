@@ -55,7 +55,6 @@ public class Mapper {
 		bookDto.setPrice(editorBean.getPrice());
 		bookDto.setId(editorBean.getId());
 	 	int writerId= new BookServiceImpl().findWriterIdInBook(editorBean.getId());
-	 	 LOGGER.info("writerId*************************** "+ writerId);
 		WriterDto writerDto=new WriterDto(writerId,editorBean.getAuthor());
 		bookDto.setWriter(writerDto);
 		bookDto.setBookname(editorBean.getBookname());
@@ -113,6 +112,7 @@ public class Mapper {
 		BookBean bookBean=new BookBean();
 		bookBean.setId(bookDto.getId());
 		bookBean.setBookname(bookDto.getBookname());
+		bookBean.setPrice(bookDto.getPrice());
 		return bookBean;
 	}
 }

@@ -78,13 +78,19 @@ public class BookController implements Serializable {
 	}
 
 	public void onSearch() {
-		LOGGER.info("Search****" + mainBean.getSearchBean().toString() );
+		LOGGER.info("Search****" + mainBean.getSearchBean().toString());
 
 		BookDto bookDto = new BookDto();
-		bookDto.setWriter(mainBean.getSearchBean().getAuthorSearch());
-		bookDto.setReader(mainBean.getSearchBean().getReaderSearch());
-		if(mainBean.getSearchBean().getBookSearch()!=null)
-		 bookDto.setId(mainBean.getSearchBean().getBookSearch().getId());
+		if (mainBean.getSearchBean().getAuthorSearch() != null) {
+			bookDto.setWriter(new Mapper().WriterBeanToDto(mainBean.getSearchBean().getAuthorSearch()));
+		}
+		if (mainBean.getSearchBean().getReaderSearch() != null) {
+			bookDto.setReader(new Mapper().ReaderBeanToDto(mainBean.getSearchBean().getReaderSearch()));
+		}
+		if (mainBean.getSearchBean().getBookSearch() != null) {
+			
+			bookDto.setId(mainBean.getSearchBean().getBookSearch().getId());
+		}
 
 		List<BookDto> resultSearch = bookService.searchBooks(bookDto);
 
