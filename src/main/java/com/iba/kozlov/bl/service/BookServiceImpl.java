@@ -12,14 +12,13 @@ import com.iba.kozlov.db.dto.WriterDto;
 
 public class BookServiceImpl implements BookService {
 	private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
-
+	BookDao bookDao=new BookDao();
 	@Override
 	public List<BookDto> readBooks() {
 		LOGGER.info("createBooks method");
 		BookSearchCriteria bookSearchCriteria = new BookSearchCriteria();
-		return new BookDao().read(bookSearchCriteria);
+		return bookDao.read(bookSearchCriteria);
 	}
-
 
 	@Override
 	public void addBooks(BookDto bookDto) {
@@ -30,12 +29,12 @@ public class BookServiceImpl implements BookService {
 		int writerId = new WriterService().findIdBySurname(bookDto.getWriter().getSurname());
 		if (new Integer(writerId).equals(0)) {
 			new WriterService().createWriter(new WriterDto(bookDto.getWriter().getSurname()));
-			writerId=new WriterService().findIdBySurname(bookDto.getWriter().getSurname());
+			writerId = new WriterService().findIdBySurname(bookDto.getWriter().getSurname());
 			bookDto.setWriterId(writerId);
 		} else {
 			bookDto.setWriterId(writerId);
 		}
-		new BookDao().addBook(bookDto);
+		bookDao.addBook(bookDto);
 	}
 
 	@Override
@@ -57,22 +56,21 @@ public class BookServiceImpl implements BookService {
 		}
 		return 0;
 	}
+
 	@Override
 	public List<BookDto> searchBooks(BookDto bookDto) {
 		LOGGER.info("createBooks method");
 		BookSearchCriteria bookSearchCriteria = new BookSearchCriteria();
-		if(bookDto.getWriter()!=null){
+		if (bookDto.getWriter() != null) {
 			bookSearchCriteria.setWriterId(bookDto.getWriter().getId());
 		}
-		if(bookDto.getReader()!=null){
+		if (bookDto.getReader() != null) {
 			bookSearchCriteria.setReaderId(bookDto.getReader().getId());
 		}
-		if(bookDto.getId()!=null){
+		if (bookDto.getId() != null) {
 			bookSearchCriteria.setBookId(bookDto.getId());
 		}
-		return new BookDao().read(bookSearchCriteria);
+		return bookDao.read(bookSearchCriteria);
 	}
-	
-
 
 }

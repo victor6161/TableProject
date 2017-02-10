@@ -1,4 +1,4 @@
-package com.iba.kozlov.converter;
+package com.iba.kozlov.web.converter;
 
 import java.util.List;
 
@@ -8,13 +8,10 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-import com.iba.kozlov.db.dto.ReaderDto;
-import com.iba.kozlov.db.dto.WriterDto;
 
-import com.iba.kozlov.web.books.Mapper;
-import com.iba.kozlov.web.books.view.MainBean;
-import com.iba.kozlov.web.books.view.searchBean.ReaderBean;
-import com.iba.kozlov.web.books.view.searchBean.WriterBean;
+import com.iba.kozlov.web.application.AutoCompleteValueBean;
+import com.iba.kozlov.web.application.ReaderBean;
+
 
 @FacesConverter("com.iba.kozlov.ReaderConverter")
 public class ReaderConverter implements Converter {
@@ -22,11 +19,11 @@ public class ReaderConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent component, String value) {
 
-		MainBean mainBean = null;
+		AutoCompleteValueBean autoCompleteValueBean = null;
 
-		mainBean = (MainBean) fc.getApplication().evaluateExpressionGet(fc, "#{mainBean}", MainBean.class);
+		autoCompleteValueBean = (AutoCompleteValueBean) fc.getApplication().evaluateExpressionGet(fc, "#{autoCompleteValueBean}", AutoCompleteValueBean.class);
 
-		List<ReaderBean> readerBean = mainBean.getReaderBean();
+		List<ReaderBean> readerBean = autoCompleteValueBean.getReaderBean();
 		if (value != null && value.trim().length() > 0) {
 			try {
 				for (ReaderBean reader : readerBean) {

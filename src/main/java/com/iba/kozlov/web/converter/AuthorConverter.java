@@ -1,4 +1,4 @@
-package com.iba.kozlov.converter;
+package com.iba.kozlov.web.converter;
 
 import java.util.List;
 
@@ -12,11 +12,10 @@ import javax.faces.convert.FacesConverter;
 import org.apache.log4j.Logger;
 
 
-import com.iba.kozlov.db.dto.WriterDto;
 
-import com.iba.kozlov.web.books.Mapper;
-import com.iba.kozlov.web.books.view.MainBean;
-import com.iba.kozlov.web.books.view.searchBean.WriterBean;
+import com.iba.kozlov.web.application.AutoCompleteValueBean;
+import com.iba.kozlov.web.application.WriterBean;
+
 
 
 
@@ -27,12 +26,12 @@ public class AuthorConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent component, String value) {
 
-		MainBean mainBean = null;
+		AutoCompleteValueBean autoCompleteValueBean = null;
 
-		mainBean = (MainBean) fc.getApplication().evaluateExpressionGet(fc, "#{mainBean}", MainBean.class);
+		autoCompleteValueBean = (AutoCompleteValueBean) fc.getApplication().evaluateExpressionGet(fc, "#{autoCompleteValueBean}", AutoCompleteValueBean.class);
 
 
-		List<WriterBean> writerBean = mainBean.getWriterBean();
+		List<WriterBean> writerBean = autoCompleteValueBean.getWriterBean();
 		if (value != null && value.trim().length() > 0) {
 			try {
 				for (WriterBean writer : writerBean) {

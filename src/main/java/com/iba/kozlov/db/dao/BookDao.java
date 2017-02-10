@@ -38,13 +38,15 @@ public class BookDao {
 				int price=rs.getInt(3);
 				String writerSurname = rs.getString(4);
 				String readerSurname=rs.getString(5);
+				int writerId=rs.getInt(6);
+				String writerName=rs.getString(7);
 				ReaderDto readerDto=new ReaderDto(readerSurname);
-				WriterDto writerDto=new WriterDto(writerSurname);
-				LOGGER.info("id "+id);
+				WriterDto writerDto=new WriterDto(writerId,writerName,writerSurname);
+			/*	LOGGER.info("id "+id);
 				LOGGER.info("bookname "+bookname);
 				LOGGER.info("price "+price);
 				LOGGER.info("writerSurname "+writerSurname);
-				LOGGER.info("readerSurname "+readerSurname);
+				LOGGER.info("readerSurname "+readerSurname);*/
 				arrayList.add(new BookDto(id,bookname,price,readerDto,writerDto));
 			}
 			return arrayList;
@@ -122,66 +124,7 @@ public class BookDao {
 			
 		}
 	}
-	/*
 
-	public  void updatePrice(BookDto bookDto) {
-		LOGGER.info("updatePrice id=" +bookDto.getId()+" new price is "+bookDto.getPrice());
-		PreparedStatement prstmt = null;
-		try {
-			prstmt = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryUpdatePrice());
-			prstmt.setInt(1, bookDto.getPrice());
-			prstmt.setInt(2, bookDto.getId());
-			prstmt.executeUpdate();
-		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
-		} finally {
-
-				try {
-					prstmt.close();
-				} catch (SQLException se1) {
-				}
-			
-		}
-	}
-
-	public void deleteBook(int id) {
-		String query = "DELETE FROM books WHERE id=?";
-		PreparedStatement prstmt = null;
-		try {
-
-			prstmt = new CustomConnection().getConnection().prepareStatement(query);
-			prstmt.setInt(1, id);
-			prstmt.executeUpdate();
-
-		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
-		} finally {
-				try {
-					prstmt.close();
-				} catch (SQLException se1) {
-				}
-		}
-		
-	}
-	public void deleteBook(BookDto bookDto) {
-		String query = "DELETE FROM books WHERE id=?";
-		PreparedStatement prstmt = null;
-		try {
-
-			prstmt = new CustomConnection().getConnection().prepareStatement(query);
-			prstmt.setInt(1, bookDto.getId());
-			prstmt.executeUpdate();
-
-		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
-		} finally {
-				try {
-					prstmt.close();
-				} catch (SQLException se1) {
-				}
-		}
-		
-	}*/
 
 	public void updateAll(BookDto bookDto) {
 		
@@ -191,8 +134,8 @@ public class BookDao {
 			prstmt = new CustomConnection().getConnection().prepareStatement(BookQueryFacade.getQueryUpdateBook());
 			prstmt.setInt(1, bookDto.getPrice());
 			prstmt.setString(2, bookDto.getBookname());
-		/*	prstmt.setString(3, bookDto.getWriter().getSurname());*/
-			prstmt.setInt(3, bookDto.getId());
+			prstmt.setInt(3, bookDto.getWriter().getId());
+			prstmt.setInt(4, bookDto.getId());
 			prstmt.executeUpdate();
 		} catch (SQLException sqlEx) {
 			sqlEx.printStackTrace();

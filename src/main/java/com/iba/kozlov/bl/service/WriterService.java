@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 
-import com.iba.kozlov.db.dao.BookSearchCriteria;
+
 import com.iba.kozlov.db.dao.WriterDao;
 
 import com.iba.kozlov.db.dto.WriterDto;
@@ -17,8 +17,8 @@ public class WriterService {
 	private WriterDao writerDao=new WriterDao();
 	public int findIdBySurname(String writerSurname) {
 		LOGGER.info("findIdBySurname method");
-		BookSearchCriteria bookSearchCriteria = new BookSearchCriteria();
-		List<WriterDto> writerDto = writerDao.read(bookSearchCriteria);
+		
+		List<WriterDto> writerDto = writerDao.read();
 		
 		for(WriterDto writer:writerDto){
 			if(writer.getSurname().equals(writerSurname)){
@@ -28,10 +28,12 @@ public class WriterService {
 		return 0;
 	}
 	public List<WriterDto> readWriters(){
-		return writerDao.read(new BookSearchCriteria());
+		LOGGER.info("readWriters");
+		return writerDao.read();
 		
 	}
 	public void createWriter(WriterDto writerDto){
+		LOGGER.info("createWriter");
 		writerDao.createWriter(writerDto);
 	}
 

@@ -3,18 +3,18 @@ package com.iba.kozlov.web.books;
 
 
 
-import com.iba.kozlov.bl.service.BookServiceImpl;
+
 import com.iba.kozlov.bl.service.WriterService;
 import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.db.dto.ReaderDto;
 import com.iba.kozlov.db.dto.WriterDto;
+import com.iba.kozlov.web.application.BookBean;
+import com.iba.kozlov.web.application.ReaderBean;
+import com.iba.kozlov.web.application.WriterBean;
 import com.iba.kozlov.web.books.view.AddBean;
 import com.iba.kozlov.web.books.view.EditorBean;
 
 import com.iba.kozlov.web.books.view.TableRowBean;
-import com.iba.kozlov.web.books.view.searchBean.BookBean;
-import com.iba.kozlov.web.books.view.searchBean.ReaderBean;
-import com.iba.kozlov.web.books.view.searchBean.WriterBean;
 
 
 
@@ -25,7 +25,7 @@ public class Mapper {
 	public TableRowBean BookDtoToViewTableDto(BookDto bookDto) {
 		TableRowBean viewDto = new TableRowBean();
 		viewDto.setId(bookDto.getId());
-		viewDto.setAuthor(bookDto.getWriter().getSurname());
+		viewDto.setWriterBean(ViewWriterBean(bookDto.getWriter()));
 		viewDto.setBookname(bookDto.getBookname());
 		viewDto.setPrice(bookDto.getPrice());
 		viewDto.setUsername(bookDto.getReader().getSurname());
@@ -36,7 +36,7 @@ public class Mapper {
 		BookDto boookDto = new BookDto();
 		// boookDto.setBookDto(bookDto);
 		boookDto.setId(viewDto.getId());
-		boookDto.setWriter(new WriterDto(viewDto.getAuthor()));
+		boookDto.setWriter(new WriterDto(viewDto.getWriterBean().getSurname()));
 		boookDto.setBookname(viewDto.getBookname());
 		boookDto.setPrice(viewDto.getPrice());
 		boookDto.setReader(new ReaderDto(viewDto.getUsername()));
@@ -55,9 +55,7 @@ public class Mapper {
 		BookDto bookDto = new BookDto();
 		bookDto.setPrice(editorBean.getPrice());
 		bookDto.setId(editorBean.getId());
-	 	int writerId= new BookServiceImpl().findWriterIdInBook(editorBean.getId());
-		WriterDto writerDto=new WriterDto(writerId,editorBean.getAuthor());
-		bookDto.setWriter(writerDto);
+		bookDto.setWriter(WriterBeanToDto(editorBean.getWriter()));
 		bookDto.setBookname(editorBean.getBookname());
 		return bookDto;
 	}

@@ -1,16 +1,10 @@
 package com.iba.kozlov.web.books.view;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 
-import javax.annotation.PostConstruct;
+import com.iba.kozlov.web.application.WriterBean;
 
-import com.iba.kozlov.bl.service.WriterService;
-import com.iba.kozlov.db.dto.WriterDto;
-import com.iba.kozlov.web.books.Mapper;
-import com.iba.kozlov.web.books.view.searchBean.WriterBean;
 
 import lombok.Getter;
 import lombok.Setter;

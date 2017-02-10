@@ -17,10 +17,10 @@ import com.iba.kozlov.db.dao.WriterDao;
 import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.db.dto.ReaderDto;
 import com.iba.kozlov.db.dto.WriterDto;
-import com.iba.kozlov.web.books.view.TableRowBean;
-import com.iba.kozlov.web.books.view.searchBean.BookBean;
-import com.iba.kozlov.web.books.view.searchBean.ReaderBean;
-import com.iba.kozlov.web.books.view.searchBean.WriterBean;
+import com.iba.kozlov.web.application.BookBean;
+import com.iba.kozlov.web.application.ReaderBean;
+import com.iba.kozlov.web.application.WriterBean;
+
 
 @ManagedBean(name = "autoComplete", eager = true)
 @SessionScoped
@@ -40,7 +40,7 @@ public class AutoComplete {
 
 		if (isEmptyAutoCompleteAuthor) {
 			writerDto = new ArrayList<>();
-			writerDto = new WriterDao().read(new BookSearchCriteria());
+			writerDto = new WriterDao().read();
 			isEmptyAutoCompleteAuthor = false;
 		}
 		for (WriterDto writer : writerDto) {
@@ -80,7 +80,7 @@ public class AutoComplete {
 
 		if (isEmptyAutoCompleteReader) {
 			readerDto = new ArrayList<>();
-			readerDto = new ReaderDao().read(new BookSearchCriteria());
+			readerDto = new ReaderDao().read();
 			isEmptyAutoCompleteReader = false;
 		}
 		for (ReaderDto reader : readerDto) {

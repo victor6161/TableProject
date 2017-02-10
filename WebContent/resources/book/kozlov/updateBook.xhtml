@@ -40,11 +40,11 @@
 
 		<div style="margin: 10px">
 			
-				<p:selectOneMenu value="{bookController.mainBean.editorBean.writer}" style="width:150px"
+				<p:selectOneMenu value="#{bookController.mainBean.editorBean.writer}" style="width:150px"
 					converter="com.iba.kozlov.AuthorConverter">
-					<f:selectItem itemLabel="Select Writer" itemValue=""  />
+					<f:selectItem itemLabel="#{bookController.mainBean.editorBean.writer.name} #{bookController.mainBean.editorBean.writer.surname}" itemValue="#{bookController.mainBean.editorBean.writer}"  />
 					<f:selectItems value="#{bookController.mainBean.editorBean.writers}" var="writer"
-						itemLabel="#{writer.name} #{writer.surname}" itemValue="#{writer}"  noSelectionOption="true"/>
+						itemLabel="#{writer.name} #{writer.surname}" itemValue="#{writer}"/>
 				</p:selectOneMenu>
 			
 			<!-- 		<p:inputText value="#{bookController.mainBean.editorBean.author}">

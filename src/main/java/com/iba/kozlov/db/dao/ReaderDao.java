@@ -14,7 +14,7 @@ public class ReaderDao {
 	
 	private static final Logger LOGGER = Logger.getLogger(BookDao.class);
 	
-	public List<ReaderDto> read(BookSearchCriteria pCriteria) {
+	public List<ReaderDto> read() {
 		LOGGER.info("method read all reader ");
 		List<ReaderDto> arrayList = new ArrayList<>();
 		Statement stmt = null;
@@ -22,7 +22,7 @@ public class ReaderDao {
 		try {
 			stmt = new CustomConnection().getConnection().createStatement();
 
-			rs = stmt.executeQuery(BookQueryFacade.getQueryReadReader());
+			rs = stmt.executeQuery(ReaderQueryFacade.getQueryReadReader());
 
 			while (rs.next()) {
 				int id = rs.getInt(1);

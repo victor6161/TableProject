@@ -1,4 +1,4 @@
-package com.iba.kozlov.converter;
+package com.iba.kozlov.web.converter;
 
 import java.util.List;
 
@@ -8,26 +8,23 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-import com.iba.kozlov.db.dto.BookDto;
-import com.iba.kozlov.db.dto.WriterDto;
-import com.iba.kozlov.web.books.AutoComplete;
-import com.iba.kozlov.web.books.Mapper;
-import com.iba.kozlov.web.books.view.MainBean;
-import com.iba.kozlov.web.books.view.searchBean.BookBean;
-import com.iba.kozlov.web.books.view.searchBean.WriterBean;
+
+import com.iba.kozlov.web.application.AutoCompleteValueBean;
+import com.iba.kozlov.web.application.BookBean;
+
 
 @FacesConverter("com.iba.kozlov.BookConverter")
 public class BookConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent component, String value) {
+		AutoCompleteValueBean autoCompleteValueBean = null;
 
-		MainBean mainBean = null;
+		autoCompleteValueBean = (AutoCompleteValueBean) fc.getApplication().evaluateExpressionGet(fc, "#{autoCompleteValueBean}", AutoCompleteValueBean.class);
+		
 
-		mainBean = (MainBean) fc.getApplication().evaluateExpressionGet(fc, "#{mainBean}", MainBean.class);
 
-
-		List<BookBean> bookBean = mainBean.getBookBean();
+		List<BookBean> bookBean = autoCompleteValueBean.getBookBean();
 		if (value != null && value.trim().length() > 0) {
 			try {
 				for (BookBean book : bookBean) {

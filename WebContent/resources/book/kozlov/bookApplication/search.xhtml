@@ -16,17 +16,11 @@
 				<p:outputLabel value="Search by Author" for="authorSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="authorSearch"
-						value="#{bookController.mainBean.searchBean.authorSearch}"
+						value="#{bookController.autoCompleteValueBean.authorSearch}"
 						completeMethod="#{autoComplete.byAuthor}" var="writer"
 						itemLabel="#{writer.surname}" itemValue="#{writer}"
 						converter="com.iba.kozlov.AuthorConverter" forceSelection="true">
-
-						<p:selectManyMenu id="basic"
-							value="#{selectManyView.selectedOptions}">
-							<f:selectItem itemLabel="Option 1" itemValue="1" />
-							<f:selectItem itemLabel="Option 2" itemValue="2" />
-							<f:selectItem itemLabel="Option 3" itemValue="3" />
-						</p:selectManyMenu>
+						
 						<p:column>
 							<h:outputText value="#{writer.name}" />
 						</p:column>
@@ -40,14 +34,14 @@
 				<p:outputLabel value="Search by bookname" for="booknameSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="booknameSearch"
-						value="#{bookController.mainBean.searchBean.bookSearch}"
+						value="#{bookController.autoCompleteValueBean.bookSearch}"
 						completeMethod="#{autoComplete.byBookname}" var="book"
 						itemLabel="#{book.bookname}" itemValue="#{book}"
 						converter="com.iba.kozlov.BookConverter">
 
 						<p:column>
 							<h:outputText value="#{book.bookname}" />
-						</p:column>
+						</p:column> 
 						<p:column>
 							<h:outputText value="#{book.price}" />
 						</p:column>
@@ -58,7 +52,7 @@
 				<p:outputLabel value="Search by reader" for="readerSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="readerSearch"
-						value="#{bookController.mainBean.searchBean.readerSearch}"
+						value="#{bookController.autoCompleteValueBean.readerSearch}"
 						completeMethod="#{autoComplete.byReader}" var="reader"
 						itemLabel="#{reader.surname}" itemValue="#{reader}"
 						converter="com.iba.kozlov.ReaderConverter">
