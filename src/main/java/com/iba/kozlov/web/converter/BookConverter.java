@@ -9,7 +9,7 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
 
-import com.iba.kozlov.web.application.AutoCompleteValueBean;
+import com.iba.kozlov.web.application.ApplicationBean;
 import com.iba.kozlov.web.application.BookBean;
 
 
@@ -18,13 +18,13 @@ public class BookConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent component, String value) {
-		AutoCompleteValueBean autoCompleteValueBean = null;
+		ApplicationBean autoCompleteValueBean = null;
 
-		autoCompleteValueBean = (AutoCompleteValueBean) fc.getApplication().evaluateExpressionGet(fc, "#{autoCompleteValueBean}", AutoCompleteValueBean.class);
+		autoCompleteValueBean = (ApplicationBean) fc.getApplication().evaluateExpressionGet(fc, "#{applicationBean}", ApplicationBean.class);
 		
 
 
-		List<BookBean> bookBean = autoCompleteValueBean.getBookBean();
+		List<BookBean> bookBean = autoCompleteValueBean.getBookBeans();
 		if (value != null && value.trim().length() > 0) {
 			try {
 				for (BookBean book : bookBean) {

@@ -16,7 +16,7 @@ import com.iba.kozlov.bl.service.BookService;
 import com.iba.kozlov.bl.service.BookServiceImpl;
 import com.iba.kozlov.bl.service.ReaderService;
 import com.iba.kozlov.bl.service.WriterService;
-import com.iba.kozlov.web.application.AutoCompleteValueBean;
+import com.iba.kozlov.web.application.ApplicationBean;
 import com.iba.kozlov.web.books.view.MainBean;
 
 
@@ -39,8 +39,8 @@ public class BookController implements Serializable {
 	// application bean
 	@Setter
 	@Getter
-	@ManagedProperty(value = "#{autoCompleteValueBean}")
-	AutoCompleteValueBean autoCompleteValueBean;
+	@ManagedProperty(value = "#{applicationBean}")
+	ApplicationBean applicationBean;
 
 	BookDataFacade facade = new BookDataFacade(this);
 	

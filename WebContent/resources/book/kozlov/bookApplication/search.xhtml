@@ -16,8 +16,8 @@
 				<p:outputLabel value="Search by Author" for="authorSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="authorSearch"
-						value="#{bookController.autoCompleteValueBean.authorSearch}"
-						completeMethod="#{autoComplete.byAuthor}" var="writer"
+						value="#{bookController.mainBean.searchBean.authorSearch}"
+						completeMethod="#{applicationBean.byAuthor}" var="writer"
 						itemLabel="#{writer.surname}" itemValue="#{writer}"
 						converter="com.iba.kozlov.AuthorConverter" forceSelection="true">
 						
@@ -34,8 +34,8 @@
 				<p:outputLabel value="Search by bookname" for="booknameSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="booknameSearch"
-						value="#{bookController.autoCompleteValueBean.bookSearch}"
-						completeMethod="#{autoComplete.byBookname}" var="book"
+						value="#{bookController.mainBean.searchBean.bookSearch}"
+						completeMethod="#{applicationBean.byBookname}" var="book"
 						itemLabel="#{book.bookname}" itemValue="#{book}"
 						converter="com.iba.kozlov.BookConverter">
 
@@ -52,8 +52,8 @@
 				<p:outputLabel value="Search by reader" for="readerSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="readerSearch"
-						value="#{bookController.autoCompleteValueBean.readerSearch}"
-						completeMethod="#{autoComplete.byReader}" var="reader"
+						value="#{bookController.mainBean.searchBean.readerSearch}"
+						completeMethod="#{applicationBean.byReader}" var="reader"
 						itemLabel="#{reader.surname}" itemValue="#{reader}"
 						converter="com.iba.kozlov.ReaderConverter">
 

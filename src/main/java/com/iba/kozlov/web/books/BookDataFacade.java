@@ -30,67 +30,70 @@ public class BookDataFacade implements Serializable {
 	}
 	
 	public void initData() {
+		controller.mainBean.setTableRowBeanList(getTable());
 		
-		List<BookDto> bookDto = controller.bookService.readBooks();
-		
-		List<TableRowBean> viewTableDto = new ArrayList<>();
-		for (BookDto bookDtoItem : bookDto) {
-			viewTableDto.add(controller.mapper.BookDtoToViewTableDto(bookDtoItem));
-		}
-		controller.mainBean.setTableRowBeanList(viewTableDto);
-		
-		List<WriterDto> writerDto= controller.writerService.readWriters();
-		List<WriterBean> writerBean=new ArrayList<>();
+		List<WriterBean> writerBean=getWriters();
+		controller.applicationBean.setWriterBeans(writerBean);
+		controller.mainBean.getEditorBean().setWriters(writerBean);
+		controller.applicationBean.setReaderBeans(getReaders());
+		controller.applicationBean.setBookBeans(getBookBean());
+	}
 	
-		for(WriterDto writer:writerDto){
-			writerBean.add(controller.mapper.ViewWriterBean(writer));
+	public List<BookBean> getBookBean(){
+		List<BookDto> bookDto = controller.bookService.readBooks();
+		List<BookBean> bookBean=new ArrayList<>();
+		for(BookDto book:bookDto){
+			bookBean.add(controller.mapper.BookDtoToBean(book));
 		}
-		controller.autoCompleteValueBean.setWriterBean(writerBean);
-		
+		return bookBean;
+	}
+	public List<ReaderBean> getReaders(){
 		List<ReaderDto> readerDto= controller.readerService.readReaders();
 		List<ReaderBean> readerBean=new ArrayList<>();
 		
 		for(ReaderDto reader:readerDto){
 			readerBean.add(controller.mapper.ReaderDtoToBean(reader));
 		}
-		controller.autoCompleteValueBean.setReaderBean(readerBean);
-		
-		List<BookBean> bookBean=new ArrayList<>();
-		for(BookDto book:bookDto){
-			bookBean.add(controller.mapper.BookDtoToBean(book));
+		return readerBean;
+	}
+	
+	public List<WriterBean> getWriters(){
+		List<WriterDto> writerDto= controller.writerService.readWriters();
+		List<WriterBean> writerBean=new ArrayList<>();
+	
+		for(WriterDto writer:writerDto){
+			writerBean.add(controller.mapper.ViewWriterBean(writer));
 		}
-		controller.autoCompleteValueBean.setBookBean(bookBean);
-		controller.mainBean.getEditorBean().setWriters(writerBean);
-		
+		return writerBean;
 	}
 
-	public void editBook() {
-		AutoComplete.isEmptyAutoCompleteAuthor = true;
-		AutoComplete.isEmptyAutoCompleteBook = true;
-		AutoComplete.isEmptyAutoCompleteReader = true;
-
-		controller.bookService.editBooks(controller.mapper.EditorBeanToBookDto(controller.mainBean.getEditorBean()));
-		
+	public List<TableRowBean> getTable(){
 		List<BookDto> bookDto = controller.bookService.readBooks();
+		
 		List<TableRowBean> viewTableDto = new ArrayList<>();
 		for (BookDto bookDtoItem : bookDto) {
 			viewTableDto.add(controller.mapper.BookDtoToViewTableDto(bookDtoItem));
 		}
-		controller.mainBean.setTableRowBeanList(viewTableDto);
-		
+		return viewTableDto;
+	}
+
+	public void editBook() {
+		controller.bookService.editBooks(controller.mapper.EditorBeanToBookDto(controller.mainBean.getEditorBean()));
+		controller.mainBean.setTableRowBeanList(getTable());
 	}
 
 	public void onSearch() {
+		LOGGER.info("onSearch");
 		BookDto bookDto = new BookDto();
-		if (controller.autoCompleteValueBean.getAuthorSearch() != null) {
-			bookDto.setWriter(controller.mapper.WriterBeanToDto(controller.autoCompleteValueBean.getAuthorSearch()));
+		if (controller.mainBean.getSearchBean().getAuthorSearch() != null) {
+			bookDto.setWriter(controller.mapper.WriterBeanToDto(controller.mainBean.getSearchBean().getAuthorSearch()));
 		}
-		if (controller.autoCompleteValueBean.getReaderSearch() != null) {
-			bookDto.setReader(controller.mapper.ReaderBeanToDto(controller.autoCompleteValueBean.getReaderSearch()));
+		if (controller.mainBean.getSearchBean().getReaderSearch() != null) {
+			bookDto.setReader(controller.mapper.ReaderBeanToDto(controller.mainBean.getSearchBean().getReaderSearch()));
 		}
-		if (controller.autoCompleteValueBean.getBookSearch() != null) {
+		if (controller.mainBean.getSearchBean().getBookSearch() != null) {
 			
-			bookDto.setId(controller.autoCompleteValueBean.getBookSearch().getId());
+			bookDto.setId(controller.mainBean.getSearchBean().getBookSearch().getId());
 		}
 
 		List<BookDto> resultSearch = controller.bookService.searchBooks(bookDto);
@@ -127,15 +130,10 @@ public class BookDataFacade implements Serializable {
 		LOGGER.info("book" + book.toString());
 		controller.bookService.addBooks(book);
 
-		List<BookDto> bookDto = controller.bookService.readBooks();
-		List<TableRowBean> viewTableDto = new ArrayList<>();
-		for (BookDto bookDtoItem : bookDto) {
-			viewTableDto.add(controller.mapper.BookDtoToViewTableDto(bookDtoItem));
-		}
-		AutoComplete.isEmptyAutoCompleteAuthor = true;
-		AutoComplete.isEmptyAutoCompleteBook = true;
-		AutoComplete.isEmptyAutoCompleteReader = true;
-		controller.mainBean.setTableRowBeanList(viewTableDto);
+	
+		controller.mainBean.setTableRowBeanList(getTable());
+	
+		
 		controller.mainBean.getAddBean().setAuthor(null);
 		controller.mainBean.getAddBean().setBookname(null);
 		controller.mainBean.getAddBean().setPrice(0);

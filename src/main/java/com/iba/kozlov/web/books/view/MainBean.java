@@ -31,10 +31,14 @@ public class MainBean {
 	@Setter
 	@Getter
 	private AddBean addBean;
+	
+	@Setter
+	@Getter
+	private SearchBean searchBean;
 
 
 	public MainBean() {
-		
+		searchBean=new SearchBean();
 		addBean = new AddBean();
 		editorBean = new EditorBean();
 
