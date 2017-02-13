@@ -4,6 +4,7 @@
 package com.iba.kozlov.web.books.view;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.iba.kozlov.web.application.BookBean;
 import com.iba.kozlov.web.application.ReaderBean;
@@ -20,7 +21,7 @@ public class SearchBean implements Serializable {
 	
 	@Setter
 	@Getter
-	private WriterBean authorSearch;
+	private List<WriterBean> authorSearch;
 
 	@Setter
 	@Getter

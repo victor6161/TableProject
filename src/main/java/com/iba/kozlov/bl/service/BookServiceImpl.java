@@ -1,5 +1,6 @@
 package com.iba.kozlov.bl.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,7 +13,8 @@ import com.iba.kozlov.db.dto.WriterDto;
 
 public class BookServiceImpl implements BookService {
 	private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
-	BookDao bookDao=new BookDao();
+	BookDao bookDao = new BookDao();
+
 	@Override
 	public List<BookDto> readBooks() {
 		LOGGER.info("createBooks method");
@@ -61,9 +63,19 @@ public class BookServiceImpl implements BookService {
 	public List<BookDto> searchBooks(BookDto bookDto) {
 		LOGGER.info("createBooks method");
 		BookSearchCriteria bookSearchCriteria = new BookSearchCriteria();
-		if (bookDto.getWriter() != null) {
-			bookSearchCriteria.setWriterId(bookDto.getWriter().getId());
+		List<Integer> resultId = new ArrayList<>();
+		if (bookDto.getWriters() != null) {
+			for (WriterDto writer : bookDto.getWriters()) {
+				resultId.add(writer.getId());
+				LOGGER.info("****************" + writer.getSurname() + writer.getId());
+			}
+			bookSearchCriteria.setWritersId(resultId);
 		}
+
+		/*
+		 * if (bookDto.getWriter() != null) {
+		 * bookSearchCriteria.setWriterId(bookDto.getWriter().getId()); }
+		 */
 		if (bookDto.getReader() != null) {
 			bookSearchCriteria.setReaderId(bookDto.getReader().getId());
 		}

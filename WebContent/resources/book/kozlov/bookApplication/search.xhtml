@@ -19,7 +19,9 @@
 						value="#{bookController.mainBean.searchBean.authorSearch}"
 						completeMethod="#{applicationBean.byAuthor}" var="writer"
 						itemLabel="#{writer.surname}" itemValue="#{writer}"
-						converter="com.iba.kozlov.AuthorConverter" forceSelection="true">
+						converter="com.iba.kozlov.AuthorConverter"
+						forceSelection="true"
+						multiple="true">
 						
 						<p:column>
 							<h:outputText value="#{writer.name}" />

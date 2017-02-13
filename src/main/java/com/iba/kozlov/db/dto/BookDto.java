@@ -1,6 +1,7 @@
 package com.iba.kozlov.db.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -57,6 +58,9 @@ public class BookDto implements Serializable {
 	@Setter
 	@Getter
 	private WriterDto writer;
+	@Setter
+	@Getter
+	private List<WriterDto> writers;
 	@Setter
 	@Getter
 	private int writerId;

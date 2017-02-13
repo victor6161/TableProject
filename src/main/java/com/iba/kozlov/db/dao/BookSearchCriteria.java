@@ -1,5 +1,7 @@
 package com.iba.kozlov.db.dao;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,11 +31,14 @@ public class BookSearchCriteria {
 	@Setter
 	@Getter
 	private Integer readerId;
+	@Setter
+	@Getter
+	private List<Integer> writersId;
 
 	
 	public boolean isEmpty(){
 		System.out.println("pCriteria");
 		System.out.println(this.getAuthor().isEmpty() && this.getName().isEmpty() && this.getPrice().equals(0) && this.getWriterId().equals(0) );	
-		return this.getAuthor().isEmpty() && this.getName().isEmpty() && this.getPrice().equals(0) && this.getWriterId().equals(0) && this.getReaderId().equals(0) && this.getBookId()==null;
+		return this.getAuthor().isEmpty() && this.getName().isEmpty() && this.getPrice().equals(0) && this.getWriterId().equals(0) && this.getReaderId().equals(0) && this.getBookId()==null && this.writersId==null;
 	}
 }
