@@ -6,8 +6,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:book="http://java.sun.com/jsf/composite/book/kozlov"
-	xmlns:general="http://java.sun.com/jsf/composite/book/kozlov/general">
+	xmlns:book="http://java.sun.com/jsf/composite/pages/book"
+	xmlns:general="http://java.sun.com/jsf/composite/pages/general">
 
 <h:head>
 	<h:outputScript library="js" name="selectRow.js" />
@@ -18,7 +18,7 @@
 		<f:facet name="header">
 			<general:navigation />
 		</f:facet>
-		<book:bookApplication />
+		<book:mainPartBook />
 		<f:facet name="footer">
 			<general:footer />
 		</f:facet>

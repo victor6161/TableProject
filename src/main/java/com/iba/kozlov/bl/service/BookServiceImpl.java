@@ -72,10 +72,7 @@ public class BookServiceImpl implements BookService {
 			bookSearchCriteria.setWritersId(resultId);
 		}
 
-		/*
-		 * if (bookDto.getWriter() != null) {
-		 * bookSearchCriteria.setWriterId(bookDto.getWriter().getId()); }
-		 */
+	
 		if (bookDto.getReader() != null) {
 			bookSearchCriteria.setReaderId(bookDto.getReader().getId());
 		}
