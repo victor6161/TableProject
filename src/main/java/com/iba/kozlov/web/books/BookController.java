@@ -36,7 +36,7 @@ public class BookController implements Serializable {
 	@ManagedProperty(value = "#{mainBean}")
 	MainBean mainBean;
 	
-	// application bean
+
 	@Setter
 	@Getter
 	@ManagedProperty(value = "#{applicationBean}")
@@ -47,7 +47,6 @@ public class BookController implements Serializable {
 	BookService bookService = new BookServiceImpl();
 	ReaderService readerService=new ReaderService();
 	WriterService writerService=new WriterService();
-	// services
 	
 
 	

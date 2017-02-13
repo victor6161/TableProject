@@ -17,6 +17,10 @@ public class WriterBean {
 	@Setter
 	@Getter
 	private String surname;
+	@Setter
+	@Getter
+	private String country;
+	
 	public WriterBean(){
 	
 	}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:writer="http://java.sun.com/jsf/composite/pages/writer">
+
+<composite:interface />
+
+<composite:implementation>
+	<p:row>
+		<p:column colspan="3">
+			<h:form>
+
+				<p:dataTable id="writerTableForm" rowIndexVar="rowIndex"
+					widgetVar="dtWv" var="writer"
+					value="#{writerController.writerMainBean.tableRowBeanList}"
+					rows="#{writerController.rowsPerPage}" paginator="true" lazy="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" selectionMode="single"
+					selection="#{writerController.writerMainBean.selectedWriter}"
+					rowKey="#{writer.id}">
+
+					<p:column headerText="Writer Name">
+						<h:outputText value="#{writer.name}" />
+					</p:column>
+					<p:column headerText="Writer Surname">
+						<h:outputText value="#{writer.surname}" />
+					</p:column>
+					<p:column headerText="Country">
+						<h:outputText value="#{writer.country}" />
+					</p:column>
+
+					<p:column>
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{writerController.onEditOpen}"
+							update=":#{p:component('updateWriter')}"
+							oncomplete="PF('updateWriter').show();"
+							onmousedown="selectRow(PF('dtWv'), #{rowIndex}, #{writerController.rowsPerPage});">
+
+							<p:resetInput target=":#{p:component('updateWriter')}"></p:resetInput>
+						</p:commandButton>
+					</p:column>
+
+					<f:facet name="footer">
+						<p:commandButton icon="ui-icon-add"
+							onclick="PF('addWriter').show();">
+							<p:resetInput target=":#{p:component('addWriter')}"></p:resetInput>
+						</p:commandButton>
+					</f:facet>
+
+					<p:ajax event="page" oncomplete="rowsPerPageUpdate()" />
+
+				</p:dataTable>
+
+
+			</h:form>
+
+		</p:column>
+	</p:row>
+
+			<script>
+				function selectRow(tableWidjet, rowNumber, rowPerPage) {
+				 	tableWidjet.unselectAllRows();
+				 	tableWidjet.selectRow(rowNumber - tableWidjet.paginator.getCurrentPage()*rowPerPage, false);
+				}
+			</script>
+	<writer:addWriter />
+	<writer:updateWriter />
+</composite:implementation>
+</html>

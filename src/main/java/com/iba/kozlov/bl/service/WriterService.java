@@ -8,8 +8,9 @@ import org.apache.log4j.Logger;
 
 
 import com.iba.kozlov.db.dao.WriterDao;
-
+import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.db.dto.WriterDto;
+
 
 
 public class WriterService {
@@ -36,5 +37,12 @@ public class WriterService {
 		LOGGER.info("createWriter");
 		writerDao.createWriter(writerDto);
 	}
-
+	public void editWriter(WriterDto writerDto) {
+		LOGGER.info("editWriter");
+		writerDao.updateWriter(writerDto);
+	}
+	public List<BookDto> searchWriters(BookDto bookDto) {
+		
+		return null;
+	}
 }

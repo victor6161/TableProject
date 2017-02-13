@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.iba.kozlov.db.dao.BookDao;
 import com.iba.kozlov.db.dao.BookSearchCriteria;
-import com.iba.kozlov.db.dao.WriterDao;
+
 import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.db.dto.WriterDto;
 
@@ -43,7 +43,7 @@ public class BookServiceImpl implements BookService {
 	public void editBooks(BookDto bookDto) {
 		LOGGER.info("editBook" + bookDto.toString());
 		new BookDao().updateAll(bookDto);// ??? транзакция
-		new WriterDao().update(bookDto);
+		/*new WriterDao().update(bookDto);*/
 
 	}
 

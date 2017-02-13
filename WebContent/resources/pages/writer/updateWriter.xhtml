@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface />
+
+
+
+<composite:implementation>
+	<p:dialog id="updateWriter" header="Update Writer" widgetVar="updateWriter" minHeight="40" modal="true">
+		<h:form>
+			
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="Update Name" />
+			</div>
+			<div style="margin: 10px">
+				<p:inputText value="#{writerController.writerMainBean.editorBean.name}">
+					<f:validateRequired />
+				</p:inputText>
+			</div>
+			
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="Update Surname" />
+			</div>
+			<div style="margin: 10px">
+				<p:inputText value="#{writerController.writerMainBean.editorBean.surname}">
+					<f:validateRequired />
+				</p:inputText>
+			</div>
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="Update Country" />
+			</div>
+			<div style="margin: 10px">
+				<p:inputText value="#{writerController.writerMainBean.editorBean.country}">
+					<f:validateRequired />
+				</p:inputText>
+			</div>
+
+		
+
+			<p:commandButton value="Update"
+				actionListener="#{writerController.edit}"
+				update=":#{p:component('writerTableForm')} :#{p:component('updateWriter')} @form"
+				oncomplete="PF('updateWriter').hide();" />
+
+			<p:commandButton value="Close" onclick="PF('updateWriter').hide();"
+				immediate="true"></p:commandButton>
+		</h:form>
+	</p:dialog>
+</composite:implementation>
+</html>

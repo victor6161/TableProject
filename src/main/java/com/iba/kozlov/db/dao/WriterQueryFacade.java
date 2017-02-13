@@ -6,10 +6,15 @@ public class WriterQueryFacade {
 	}
 	
 	public static String getQueryCreate(){
-		return "INSERT INTO writer (surname) VALUES (?)";
+		return "INSERT INTO writer (name,surname,country) VALUES (?,?,?)";
 	}
 	
 	public static String getQueryRead(){
-		return "SELECT id,name,surname FROM writer";
+		return "SELECT id,name,surname,country FROM writer";
+	}
+
+	public static String getQueryUpdate() {
+		
+		return "Update writer SET name=?,surname=?,country=? WHERE id=?";
 	}
 }

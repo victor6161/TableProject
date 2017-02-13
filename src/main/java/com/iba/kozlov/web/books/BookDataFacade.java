@@ -40,7 +40,7 @@ public class BookDataFacade implements Serializable {
 		List<BookDto> bookDto = controller.bookService.readBooks();
 		List<BookBean> bookBean = new ArrayList<>();
 		for (BookDto book : bookDto) {
-			bookBean.add(controller.mapper.BookDtoToBean(book));
+			bookBean.add(controller.mapper.bookDtoToBean(book));
 		}
 		return bookBean;
 	}
@@ -50,7 +50,7 @@ public class BookDataFacade implements Serializable {
 		List<ReaderBean> readerBean = new ArrayList<>();
 
 		for (ReaderDto reader : readerDto) {
-			readerBean.add(controller.mapper.ReaderDtoToBean(reader));
+			readerBean.add(controller.mapper.readerDtoToBean(reader));
 		}
 		return readerBean;
 	}
@@ -60,7 +60,7 @@ public class BookDataFacade implements Serializable {
 		List<WriterBean> writerBean = new ArrayList<>();
 
 		for (WriterDto writer : writerDto) {
-			writerBean.add(controller.mapper.ViewWriterBean(writer));
+			writerBean.add(controller.mapper.viewWriterBean(writer));
 		}
 		return writerBean;
 	}
@@ -70,13 +70,13 @@ public class BookDataFacade implements Serializable {
 
 		List<TableRowBean> viewTableDto = new ArrayList<>();
 		for (BookDto bookDtoItem : bookDto) {
-			viewTableDto.add(controller.mapper.BookDtoToViewTableDto(bookDtoItem));
+			viewTableDto.add(controller.mapper.bookDtoToViewTableDto(bookDtoItem));
 		}
 		return viewTableDto;
 	}
 
 	public void editBook() {
-		controller.bookService.editBooks(controller.mapper.EditorBeanToBookDto(controller.mainBean.getEditorBean()));
+		controller.bookService.editBooks(controller.mapper.editorBeanToBookDto(controller.mainBean.getEditorBean()));
 		controller.mainBean.setTableRowBeanList(getTable());
 	}
 
@@ -90,13 +90,13 @@ public class BookDataFacade implements Serializable {
 			List<WriterDto> result = new ArrayList<>();
 			for (WriterBean writer : writersSearch) {
 				LOGGER.info("2 "+writer.toString());
-				result.add(controller.mapper.WriterBeanToDto(writer));
+				result.add(controller.mapper.writerBeanToDto(writer));
 			}
 			bookDto.setWriters(result);
 
 		}
 		if (controller.mainBean.getSearchBean().getReaderSearch() != null) {
-			bookDto.setReader(controller.mapper.ReaderBeanToDto(controller.mainBean.getSearchBean().getReaderSearch()));
+			bookDto.setReader(controller.mapper.readerBeanToDto(controller.mainBean.getSearchBean().getReaderSearch()));
 		}
 		if (controller.mainBean.getSearchBean().getBookSearch() != null) {
 
@@ -107,7 +107,7 @@ public class BookDataFacade implements Serializable {
 
 		List<TableRowBean> viewTableDto = new ArrayList<>();
 		for (BookDto bookDtoItem : resultSearch) {
-			viewTableDto.add(controller.mapper.BookDtoToViewTableDto(bookDtoItem));
+			viewTableDto.add(controller.mapper.bookDtoToViewTableDto(bookDtoItem));
 		}
 		controller.mainBean.setTableRowBeanList(viewTableDto);
 
@@ -115,7 +115,7 @@ public class BookDataFacade implements Serializable {
 
 	public void onEditOpen() {
 		Mapper mapper = new Mapper();
-		BookDto bookDto = mapper.ViewTableDtoToBookDto(controller.mainBean.getSelectedBook());
+		BookDto bookDto = mapper.viewTableDtoToBookDto(controller.mainBean.getSelectedBook());
 		LOGGER.info("onEditOpen" + bookDto.toString());
 
 		List<WriterBean> writerBean = new ArrayList<WriterBean>();// не смог в
@@ -128,7 +128,7 @@ public class BookDataFacade implements Serializable {
 																	// писателей
 		writerBean = controller.mainBean.getEditorBean().getWriters();
 
-		controller.mainBean.setEditorBean(mapper.BookDtoToEditorBean(bookDto));
+		controller.mainBean.setEditorBean(mapper.bookDtoToEditorBean(bookDto));
 
 		controller.mainBean.getEditorBean().setWriters(writerBean);
 		LOGGER.info("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^onEditOpen"
@@ -140,7 +140,7 @@ public class BookDataFacade implements Serializable {
 
 	public void add() {
 
-		BookDto book = controller.mapper.AddBeanToBookDto(controller.mainBean.getAddBean());
+		BookDto book = controller.mapper.addBeanToBookDto(controller.mainBean.getAddBean());
 		LOGGER.info("book" + book.toString());
 		controller.bookService.addBooks(book);
 

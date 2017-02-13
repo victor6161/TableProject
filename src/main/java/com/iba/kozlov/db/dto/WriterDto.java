@@ -46,4 +46,10 @@ public class WriterDto implements Serializable  {
 		this.surname=writerSurname;
 		this.name=writerName;
 	}
+	public WriterDto(int id, String writerName, String writerSurname, String country) {
+		this.id=id;
+		this.surname=writerSurname;
+		this.name=writerName;
+		this.country=country;
+	}
 }

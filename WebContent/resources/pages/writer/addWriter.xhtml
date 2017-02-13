@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface />
+
+<composite:implementation>
+	<p:dialog id="addWriter" header="Create Writer" widgetVar="addWriter" minHeight="40" modal="true">
+		<h:form>
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="Author Name" />
+			</div>
+			<div style="margin: 10px">
+				<p:inputText value="#{writerController.writerMainBean.addBean.name}">
+					<f:validateRequired />
+				</p:inputText>
+			</div>
+
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="Author Surname" />
+			</div>
+			<div style="margin: 10px">
+				<p:inputText value="#{writerController.writerMainBean.addBean.surname}">
+					<f:validateRequired />
+				</p:inputText>
+			</div>
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="Country" />
+			</div>
+			<div style="margin: 10px">
+				<p:inputText value="#{writerController.writerMainBean.addBean.country}">
+					<f:validateRequired />
+				</p:inputText>
+			</div>
+			<p:commandButton value="Add" actionListener="#{writerController.add}" update=":#{p:component('writerTableForm')} :#{p:component('addWriter')} @form" />
+			<p:commandButton value="Close" onclick="PF('addWriter').hide();" immediate="true" update=":#{p:component('addWriter')}">
+				<p:resetInput target=":#{p:component('addWriter')}"></p:resetInput>
+			</p:commandButton>
+
+		</h:form>
+	</p:dialog>
+</composite:implementation>
+</html>
