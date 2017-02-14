@@ -9,39 +9,55 @@
 <composite:interface />
 
 <composite:implementation>
-	<p:dialog id="addWriter" header="Create Writer" widgetVar="addWriter" minHeight="40" modal="true">
-		<h:form>
+	<p:dialog id="addWriter" header="Create Writer" widgetVar="addWriter"
+		minHeight="40" modal="true">
+		<h:form id="addFormWriter">
 			<div style="margin: 10px; font-weight: bold;">
 				<h:outputText value="Author Name" />
 			</div>
 			<div style="margin: 10px">
-				<p:inputText value="#{writerController.writerMainBean.addBean.name}">
-					<f:validateRequired />
-				</p:inputText>
+				<p:inputText id="writerNameId"
+					value="#{writerController.writerMainBean.addBean.name}"
+					required="true" />
 			</div>
 
 			<div style="margin: 10px; font-weight: bold;">
 				<h:outputText value="Author Surname" />
 			</div>
 			<div style="margin: 10px">
-				<p:inputText value="#{writerController.writerMainBean.addBean.surname}">
-					<f:validateRequired />
-				</p:inputText>
+				<p:inputText
+					value="#{writerController.writerMainBean.addBean.surname}"
+					required="true" />
 			</div>
 			<div style="margin: 10px; font-weight: bold;">
 				<h:outputText value="Country" />
 			</div>
 			<div style="margin: 10px">
-				<p:inputText value="#{writerController.writerMainBean.addBean.country}">
-					<f:validateRequired />
-				</p:inputText>
+				<p:inputText
+					value="#{writerController.writerMainBean.addBean.country}"
+					required="true" />
 			</div>
-			<p:commandButton value="Add" actionListener="#{writerController.add}" update=":#{p:component('writerTableForm')} :#{p:component('addWriter')} @form" />
-			<p:commandButton value="Close" onclick="PF('addWriter').hide();" immediate="true" update=":#{p:component('addWriter')}">
-				<p:resetInput target=":#{p:component('addWriter')}"></p:resetInput>
+			<p:commandButton value="Add" process=":#{p:component('addFormWriter')} :#{p:component('addWriter')}" oncomplete="handleEditRequest(xhr, status,PF('addWriter'));" actionListener="#{writerController.add}"
+				update=":#{p:component('writerTableForm')} :#{p:component('addWriter')} @form" >
+				<p:resetInput target=":#{p:component('addFormWriter')}"></p:resetInput>
+				</p:commandButton>
+			<p:commandButton value="Close" onclick="PF('addWriter').hide();"
+				immediate="true" update=":#{p:component('addWriter')}">
+				<p:resetInput target=":#{p:component('addFormWriter')}"></p:resetInput>
 			</p:commandButton>
 
 		</h:form>
+
+	
+	<script>
+	  	function handleEditRequest(xhr, status, args) {
+		console.log("flaf"+args);
+	   	if (!args.validationFailed)
+	    	PF('addWriter').hide();
+	  	} 
+
+	 </script>
+
 	</p:dialog>
 </composite:implementation>
 </html>

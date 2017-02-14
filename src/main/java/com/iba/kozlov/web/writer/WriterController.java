@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
+import org.primefaces.context.RequestContext;
 
 import com.iba.kozlov.bl.service.BookService;
 import com.iba.kozlov.bl.service.BookServiceImpl;
@@ -55,7 +56,9 @@ public class WriterController {
 	}
 	public void add() {
 		LOGGER.info("add!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
+		if(false)
+		    RequestContext.getCurrentInstance().execute("PF('addWriter').hide()");
+		
 		facade.add();
 	}
 	public void edit() {

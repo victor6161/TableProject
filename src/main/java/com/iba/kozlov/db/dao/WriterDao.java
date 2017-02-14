@@ -9,20 +9,20 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-
 import com.iba.kozlov.db.dto.WriterDto;
 
 public class WriterDao {
 	private static final Logger LOGGER = Logger.getLogger(WriterDao.class);
 
-	public List<WriterDto> read() {
+	public List<WriterDto> read(WriterSearchCriteria pCriteria) {
 		LOGGER.info("method read all writer");
 		List<WriterDto> arrayList = new ArrayList<>();
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = new CustomConnection().getConnection().createStatement();
-			rs = stmt.executeQuery(WriterQueryFacade.getQueryRead());
+			LOGGER.info(WriterQueryFacade.getQueryRead(pCriteria));
+			rs = stmt.executeQuery(WriterQueryFacade.getQueryRead(pCriteria));
 
 			while (rs.next()) {
 				int id = rs.getInt(1);
@@ -77,6 +77,7 @@ public class WriterDao {
 		LOGGER.info(writerDto.toString());
 		PreparedStatement prstmt = null;
 		try {
+			LOGGER.info(WriterQueryFacade.getQueryCreate());
 			prstmt = new CustomConnection().getConnection().prepareStatement(WriterQueryFacade.getQueryCreate());
 			prstmt.setString(1, writerDto.getName());
 			prstmt.setString(2, writerDto.getSurname());

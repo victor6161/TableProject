@@ -7,10 +7,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.iba.kozlov.db.dto.BookDto;
-import com.iba.kozlov.db.dto.ReaderDto;
+
 import com.iba.kozlov.db.dto.WriterDto;
-import com.iba.kozlov.web.application.BookBean;
-import com.iba.kozlov.web.application.ReaderBean;
+
 import com.iba.kozlov.web.application.WriterBean;
 import com.iba.kozlov.web.books.view.TableRowBean;
 
@@ -29,41 +28,12 @@ public class BookDataFacade implements Serializable {
 	public void initData() {
 		controller.mainBean.setTableRowBeanList(getTable());
 
-		List<WriterBean> writerBean = getWriters();
-		controller.applicationBean.setWriterBeans(writerBean);
-		controller.mainBean.getEditorBean().setWriters(writerBean);
-		controller.applicationBean.setReaderBeans(getReaders());
-		controller.applicationBean.setBookBeans(getBookBean());
+		
+		
+		//controller.mainBean.getEditorBean().setWriters(writerBean);
 	}
 
-	public List<BookBean> getBookBean() {
-		List<BookDto> bookDto = controller.bookService.readBooks();
-		List<BookBean> bookBean = new ArrayList<>();
-		for (BookDto book : bookDto) {
-			bookBean.add(controller.mapper.bookDtoToBean(book));
-		}
-		return bookBean;
-	}
 
-	public List<ReaderBean> getReaders() {
-		List<ReaderDto> readerDto = controller.readerService.readReaders();
-		List<ReaderBean> readerBean = new ArrayList<>();
-
-		for (ReaderDto reader : readerDto) {
-			readerBean.add(controller.mapper.readerDtoToBean(reader));
-		}
-		return readerBean;
-	}
-
-	public List<WriterBean> getWriters() {
-		List<WriterDto> writerDto = controller.writerService.readWriters();
-		List<WriterBean> writerBean = new ArrayList<>();
-
-		for (WriterDto writer : writerDto) {
-			writerBean.add(controller.mapper.viewWriterBean(writer));
-		}
-		return writerBean;
-	}
 
 	public List<TableRowBean> getTable() {
 		List<BookDto> bookDto = controller.bookService.readBooks();

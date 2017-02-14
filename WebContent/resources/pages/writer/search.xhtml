@@ -16,12 +16,12 @@
 				<p:outputLabel value="Search by Author Surname" for="authorSearch" />
 				<div style="margin: 10px">
 					<p:autoComplete id="authorSearch"
-						value="#{bookController.mainBean.searchBean.authorSearch}"
+						value="#{writerController.writerMainBean.authorSearch}"
 						completeMethod="#{applicationBean.byAuthor}" var="writer"
 						itemLabel="#{writer.surname}" itemValue="#{writer}"
-						converter="com.iba.kozlov.AuthorConverter"
+						converter="com.iba.kozlov.web.writer.AuthorConverter"
 						forceSelection="true"
-						multiple="true">
+						>
 						
 						<p:column>
 							<h:outputText value="#{writer.name}" />
@@ -34,9 +34,9 @@
 					</p:autoComplete>
 				</div>
 				<p:commandButton value="Search"
-					update=":#{p:component('customerTableForm')}"
-					actionListener="#{bookController.onSearch}">
-					<p:resetInput target=":#{p:component('booknameSearch')}"></p:resetInput>
+					update=":#{p:component('writerTableForm')}"
+					actionListener="#{writerController.onSearch}">
+					
 				</p:commandButton>
 			</h:form>
 

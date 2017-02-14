@@ -5,6 +5,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +25,9 @@ public class MainBean {
 	@Setter
 	@Getter
 	private TableRowBean editorBean;
+	@Setter
+	@Getter
+	private TableRowBean authorSearch;
 
 	public MainBean() {
 		addBean = new TableRowBean();

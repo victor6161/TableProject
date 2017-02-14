@@ -8,6 +8,13 @@ public class TableRowBean {
 	public String toString() {
 		return "TableRowBean [id=" + id + ", name=" + name + ", surname=" + surname + ", country=" + country + "]";
 	}
+	public TableRowBean(){
+		this.id=0;
+		this.name="";
+		this.surname="";
+		this.country="";
+		
+	}
 	@Setter
 	@Getter
 	private int id;

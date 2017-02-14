@@ -47,26 +47,29 @@
 					<f:facet name="footer">
 						<p:commandButton icon="ui-icon-add"
 							onclick="PF('addWriter').show();">
-							<p:resetInput target=":#{p:component('addWriter')}"></p:resetInput>
+							<p:resetInput target=":#{p:component('writerNameId')}"></p:resetInput>
 						</p:commandButton>
 					</f:facet>
-
+					
 					<p:ajax event="page" oncomplete="rowsPerPageUpdate()" />
-
 				</p:dataTable>
-
+				<p:remoteCommand name="rowsPerPageUpdate"
+					actionListener="#{writerController.onPaginate}" />
 
 			</h:form>
-
-		</p:column>
-	</p:row>
-
 			<script>
 				function selectRow(tableWidjet, rowNumber, rowPerPage) {
 				 	tableWidjet.unselectAllRows();
 				 	tableWidjet.selectRow(rowNumber - tableWidjet.paginator.getCurrentPage()*rowPerPage, false);
+				 	Console.log(''+rowNumber)
 				}
+				
 			</script>
+
+		</p:column>
+	</p:row>
+
+	
 	<writer:addWriter />
 	<writer:updateWriter />
 </composite:implementation>

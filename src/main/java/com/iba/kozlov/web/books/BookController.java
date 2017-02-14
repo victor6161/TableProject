@@ -47,9 +47,6 @@ public class BookController implements Serializable {
 	BookService bookService = new BookServiceImpl();
 	ReaderService readerService=new ReaderService();
 	WriterService writerService=new WriterService();
-	
-
-	
 	Mapper mapper = new Mapper();
 
 	@Setter
