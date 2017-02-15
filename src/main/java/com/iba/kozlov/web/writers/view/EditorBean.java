@@ -3,14 +3,7 @@ package com.iba.kozlov.web.writers.view;
 import lombok.Getter;
 import lombok.Setter;
 
-public class AddBean {
-	public AddBean(){
-		this.id=0;
-		this.name="";
-		this.surname="";
-		this.country="";
-		
-	}
+public class EditorBean {
 	@Setter
 	@Getter
 	private int id;

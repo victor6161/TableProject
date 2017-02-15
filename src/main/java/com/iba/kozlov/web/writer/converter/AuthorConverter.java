@@ -11,12 +11,11 @@ import javax.faces.convert.FacesConverter;
 
 import org.apache.log4j.Logger;
 
-
-
+import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.application.ApplicationBean;
 import com.iba.kozlov.web.application.WriterBean;
 import com.iba.kozlov.web.writer.Mapper;
-import com.iba.kozlov.web.writers.view.TableRowBean;
+import com.iba.kozlov.web.writers.view.SearchBean;
 
 
 
@@ -25,6 +24,7 @@ import com.iba.kozlov.web.writers.view.TableRowBean;
 public class AuthorConverter implements Converter {
 	private static final Logger LOGGER = Logger.getLogger(AuthorConverter.class);
 	Mapper mapper=new Mapper();
+	
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent component, String value) {
 
@@ -39,8 +39,9 @@ public class AuthorConverter implements Converter {
 				for (WriterBean writer : writerBean) {
 					if (value.equals(String.valueOf(writer.getId()))) {
 						LOGGER.info("converter"+writer.toString());
-						
-						return  mapper.WriterBeanToTableRowBean(writer);
+						WriterDto writerDto= mapper.writerBeanToDto(writer);
+						SearchBean searchBean=mapper.writerDtoToSearchBean(writerDto);
+						return  searchBean;
 					}
 				}
 				return null;

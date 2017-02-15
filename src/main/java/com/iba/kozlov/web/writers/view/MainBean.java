@@ -18,18 +18,18 @@ public class MainBean {
 	private List<TableRowBean> tableRowBeanList;
 	@Setter
 	@Getter
-	private TableRowBean addBean;
+	private AddBean addBean;
 	@Setter
 	@Getter
 	private TableRowBean selectedWriter;
 	@Setter
 	@Getter
-	private TableRowBean editorBean;
+	private EditorBean editorBean;
 	@Setter
 	@Getter
-	private TableRowBean authorSearch;
+	private SearchBean authorSearch;
 
 	public MainBean() {
-		addBean = new TableRowBean();
+		addBean = new AddBean();
 	}
 }
