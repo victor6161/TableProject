@@ -80,4 +80,9 @@ public class WriterDataFacade {
 		}
 
 	}
+
+	public void onAddOpen() {
+		controller.writerMainBean.setEditorBean(new TableRowBean());
+		
+	}
 }

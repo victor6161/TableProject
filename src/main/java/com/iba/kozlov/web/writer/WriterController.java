@@ -1,12 +1,14 @@
 package com.iba.kozlov.web.writer;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
-import org.primefaces.context.RequestContext;
+
 
 import com.iba.kozlov.bl.service.BookService;
 import com.iba.kozlov.bl.service.BookServiceImpl;
@@ -21,7 +23,11 @@ import lombok.Setter;
 
 @ManagedBean(name = "writerController", eager = true)
 @SessionScoped
-public class WriterController {
+public class WriterController implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9100700357291394307L;
 	private static final Logger LOGGER = Logger.getLogger(WriterController.class);
 	@Setter
 	@Getter
@@ -56,8 +62,8 @@ public class WriterController {
 	}
 	public void add() {
 		LOGGER.info("add!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		if(false)
-		    RequestContext.getCurrentInstance().execute("PF('addWriter').hide()");
+		//if(false)
+		  //  RequestContext.getCurrentInstance().execute("PF('addWriter').hide()");
 		
 		facade.add();
 	}
@@ -70,6 +76,11 @@ public class WriterController {
 		LOGGER.info("onEditOpen");
 
 		facade.onEditOpen();
+	}
+	public void onAddOpen() {
+		LOGGER.info("onAddOpen");
+
+		facade.onAddOpen();
 	}
 	
 	public void onSearch(){

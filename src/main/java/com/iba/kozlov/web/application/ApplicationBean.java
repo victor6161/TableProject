@@ -1,5 +1,6 @@
 package com.iba.kozlov.web.application;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,11 @@ import lombok.Setter;
 
 @ManagedBean(name = "applicationBean", eager = true)
 @SessionScoped
-public class ApplicationBean {
+public class ApplicationBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5550768740315016091L;
 	WriterService writerService = new WriterService();
 	BookService bookService = new BookServiceImpl();
 	ReaderService readerService = new ReaderService();

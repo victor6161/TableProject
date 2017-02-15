@@ -9,16 +9,29 @@
 <composite:interface />
 
 <composite:implementation>
+
+	<script>
+	  	function handleEditRequest(xhr, status, args) {
+			console.log("flaf");
+	   		if (!args.validationFailed)
+	    		PF('addWriter').hide();
+	  	} 
+
+	 </script>
+	 
+
 	<p:dialog id="addWriter" header="Create Writer" widgetVar="addWriter"
-		minHeight="40" modal="true">
-		<h:form id="addFormWriter">
+		minHeight="40" modal="true"  dynamic="true">
+		
+		<h:form id="addFormWriter" >
+		
 			<div style="margin: 10px; font-weight: bold;">
 				<h:outputText value="Author Name" />
 			</div>
 			<div style="margin: 10px">
-				<p:inputText id="writerNameId"
+				<p:inputText 
 					value="#{writerController.writerMainBean.addBean.name}"
-					required="true" />
+					required="true"/>
 			</div>
 
 			<div style="margin: 10px; font-weight: bold;">
@@ -37,27 +50,17 @@
 					value="#{writerController.writerMainBean.addBean.country}"
 					required="true" />
 			</div>
-			<p:commandButton value="Add" process=":#{p:component('addFormWriter')} :#{p:component('addWriter')}" oncomplete="handleEditRequest(xhr, status,PF('addWriter'));" actionListener="#{writerController.add}"
-				update=":#{p:component('writerTableForm')} :#{p:component('addWriter')} @form" >
-				<p:resetInput target=":#{p:component('addFormWriter')}"></p:resetInput>
+			<p:commandButton value="Add"  oncomplete="handleEditRequest(xhr, status,args);" actionListener="#{writerController.add}"
+				update="@form :#{p:component('writerTableForm')}" >
+				
 				</p:commandButton>
 			<p:commandButton value="Close" onclick="PF('addWriter').hide();"
 				immediate="true" update=":#{p:component('addWriter')}">
-				<p:resetInput target=":#{p:component('addFormWriter')}"></p:resetInput>
-			</p:commandButton>
+				
+			</p:commandButton>	
 
-		</h:form>
-
-	
-	<script>
-	  	function handleEditRequest(xhr, status, args) {
-		console.log("flaf"+args);
-	   	if (!args.validationFailed)
-	    	PF('addWriter').hide();
-	  	} 
-
-	 </script>
-
+</h:form>
 	</p:dialog>
+	
 </composite:implementation>
 </html>

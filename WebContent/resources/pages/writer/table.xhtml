@@ -45,9 +45,9 @@
 					</p:column>
 
 					<f:facet name="footer">
-						<p:commandButton icon="ui-icon-add"
-							onclick="PF('addWriter').show();">
-							<p:resetInput target=":#{p:component('writerNameId')}"></p:resetInput>
+						<p:commandButton icon="ui-icon-add" 
+							onclick="PF('addWriter').show();" actionListener="#{writerController.onAddOpen}">
+							<p:resetInput target=":#{p:component('addFormWriter')}"></p:resetInput>
 						</p:commandButton>
 					</f:facet>
 					
