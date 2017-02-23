@@ -50,6 +50,8 @@ public class WriterDataFacade {
 		controller.writerService
 				.editWriter(controller.mapper.editBeanToWriterDto(controller.writerMainBean.getEditorBean()));
 		controller.writerMainBean.setTableRowBeanList(getWriters());
+		
+		
 	}
 
 	public void onEditOpen() {

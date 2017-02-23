@@ -11,6 +11,7 @@ import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.db.dto.WriterDto;
 
 import com.iba.kozlov.web.application.WriterBean;
+
 import com.iba.kozlov.web.books.view.TableRowBean;
 
 public class BookDataFacade implements Serializable {
@@ -27,10 +28,11 @@ public class BookDataFacade implements Serializable {
 
 	public void initData() {
 		controller.mainBean.setTableRowBeanList(getTable());
-
 		
 		
-		//controller.mainBean.getEditorBean().setWriters(writerBean);
+		
+		controller.mainBean.getEditorBean().setWriters(controller.applicationBean.getWriters());
+		controller.mainBean.getAddBean().setWriters(controller.applicationBean.getWriters());
 	}
 
 
@@ -101,7 +103,7 @@ public class BookDataFacade implements Serializable {
 		controller.mainBean.setEditorBean(mapper.bookDtoToEditorBean(bookDto));
 
 		controller.mainBean.getEditorBean().setWriters(writerBean);
-		LOGGER.info("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^onEditOpen"
+		LOGGER.info("onEditOpen"
 				+ controller.mainBean.getSelectedBook().getWriterBean().toString());
 
 		controller.mainBean.getEditorBean().setWriter(controller.mainBean.getSelectedBook().getWriterBean());
@@ -116,10 +118,22 @@ public class BookDataFacade implements Serializable {
 
 		controller.mainBean.setTableRowBeanList(getTable());
 
-		controller.mainBean.getAddBean().setAuthor(null);
-		controller.mainBean.getAddBean().setBookname(null);
+		
+	}
+	public void onAddOpen() {
+		LOGGER.info("onAddOpen");
+		
+		/*addBean.setAuthor("");*/
+		/*addBean.setBookname("");
+		addBean.setPrice(0);
+		addBean.setWriters(controller.applicationBean.getWriters());*/
+		/*controller.mainBean.setAddBean(addBean);*/
+		controller.mainBean.getAddBean().setBookname("");
 		controller.mainBean.getAddBean().setPrice(0);
+		controller.mainBean.getAddBean().setWriter(new WriterBean());
 
+		
+	
 	}
 
 }

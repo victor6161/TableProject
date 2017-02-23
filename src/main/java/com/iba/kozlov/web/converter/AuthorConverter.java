@@ -11,10 +11,17 @@ import javax.faces.convert.FacesConverter;
 
 import org.apache.log4j.Logger;
 
-
-
 import com.iba.kozlov.web.application.ApplicationBean;
 import com.iba.kozlov.web.application.WriterBean;
+
+
+
+
+
+
+
+
+
 
 
 
@@ -36,7 +43,7 @@ public class AuthorConverter implements Converter {
 			try {
 				for (WriterBean writer : writerBean) {
 					if (value.equals(String.valueOf(writer.getId()))) {
-						LOGGER.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!converter"+writer.toString());
+						LOGGER.info("!!!!!!!!!!!!!!!!!!!!!converter"+writer.toString());
 						return writer;
 					}
 				}

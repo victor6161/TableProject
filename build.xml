@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<project>
+	<property name = "project.dir" value = "..\hibernate"/>
+	<property name = "lombok" value = "lombok-1.16.12.jar"/>
+	<property name = "log4j" value = "log4j-1.2.17.jar"/>
+	<property name = "javax" value = "javax.faces.jar"/>
+	<property name = "javax_el" value = "javax.el.jar"/>
+	<property name = "hibernateProject" value = "hibernateProject.jar"/>
+	<property name = "TableProjectService2" value = "TableProjectService2.jar"/>
+	<property name = "web.dir" value = "WebContent/WEB-INF"/>
+	
+	<target name="make jar" >
+	     <ant antfile="${project.dir}\build.xml" target="clean" />
+	     <ant antfile="${project.dir}\build.xml" target="compile" />
+		 <ant antfile="${project.dir}\build.xml" target="jar" />	
+	</target>
+	
+	<target name="clean">
+		<delete dir="build"/>
+	</target>
+	
+	<target name="compile" depends="make jar">
+	     <mkdir dir="build/classes"/>
+	        <javac  includeantruntime="false" srcdir="src" destdir="build/classes">
+	    	 	<classpath>
+	    			<pathelement location="lib\${lombok}"></pathelement>
+	    			<pathelement location="lib\${log4j}"></pathelement>
+	    	 		<pathelement location="lib\${javax}"></pathelement>
+	    	 		<pathelement location="lib\${javax_el}"></pathelement>
+	    	 		<pathelement location="WebContent/WEB-INF/lib/${hibernateProject}"></pathelement>
+	    	 	</classpath>
+	        </javac>
+	</target>
+	
+	<target name="war">
+		<war destfile = "fax.war" webxml = "${web.dir}/web.xml">
+
+		   <fileset dir = "WebContent/resources/pages">
+		      <include name = "**/*.*"/>
+		   </fileset>
+		      
+		   <classes dir = "build/classes"/>
+		   
+		</war>
+	</target>
+	
+</project>

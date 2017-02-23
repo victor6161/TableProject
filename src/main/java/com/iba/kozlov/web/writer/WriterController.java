@@ -61,10 +61,7 @@ public class WriterController implements Serializable{
 
 	}
 	public void add() {
-		LOGGER.info("add!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		//if(false)
-		  //  RequestContext.getCurrentInstance().execute("PF('addWriter').hide()");
-		
+		LOGGER.info("add!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");	
 		facade.add();
 	}
 	public void edit() {

@@ -54,7 +54,9 @@
 				
 					<f:facet name="footer">
 						<p:commandButton icon="ui-icon-add"
-							onclick="PF('createBook').show();">
+							oncomplete="PF('createBook').show();" 
+							actionListener="#{bookController.onAddOpen}"
+							update=":#{p:component('createBook')}">
 							<p:resetInput target=":#{p:component('createBook')}"></p:resetInput>
 						</p:commandButton>
 					</f:facet>

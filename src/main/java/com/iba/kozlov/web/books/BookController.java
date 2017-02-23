@@ -66,7 +66,7 @@ public class BookController implements Serializable {
 
 	public void edit() {
 		LOGGER.info("edit" + mainBean.getEditorBean().toString());
-		LOGGER.info("***********************************************writer is "+mainBean.getEditorBean().getWriter());
+		LOGGER.info("*********writer is "+mainBean.getEditorBean().getWriter());
 		facade.editBook();
 	}
 
@@ -83,9 +83,13 @@ public class BookController implements Serializable {
 	}
 
 	public void add() {
-		LOGGER.info("add");
+		LOGGER.info("add"+mainBean.getAddBean().toString());
 
 		facade.add();
+	}
+	public void onAddOpen(){
+		LOGGER.info("onAddOpen()");
+		facade.onAddOpen();
 	}
 
 	public void onRemove() {
