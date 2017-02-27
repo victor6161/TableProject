@@ -12,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
 
+
 import com.iba.kozlov.bl.service.BookService;
 import com.iba.kozlov.bl.service.BookServiceImpl;
 import com.iba.kozlov.bl.service.ReaderService;
@@ -36,6 +37,8 @@ public class BookController implements Serializable {
 	@ManagedProperty(value = "#{mainBean}")
 	MainBean mainBean;
 	
+/*	@Ejb
+	Test test;*/
 
 	@Setter
 	@Getter

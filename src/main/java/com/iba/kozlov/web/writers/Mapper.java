@@ -1,4 +1,4 @@
-package com.iba.kozlov.web.writer;
+package com.iba.kozlov.web.writers;
 
 import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.application.WriterBean;

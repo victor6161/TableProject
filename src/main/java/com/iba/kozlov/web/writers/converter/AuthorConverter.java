@@ -1,4 +1,4 @@
-package com.iba.kozlov.web.writer.converter;
+package com.iba.kozlov.web.writers.converter;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.application.ApplicationBean;
 import com.iba.kozlov.web.application.WriterBean;
-import com.iba.kozlov.web.writer.Mapper;
+import com.iba.kozlov.web.writers.Mapper;
 import com.iba.kozlov.web.writers.view.SearchBean;
 
 

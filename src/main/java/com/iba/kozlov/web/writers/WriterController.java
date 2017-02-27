@@ -1,4 +1,4 @@
-package com.iba.kozlov.web.writer;
+package com.iba.kozlov.web.writers;
 
 import java.io.Serializable;
 

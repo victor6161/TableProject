@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.iba.kozlov.entity.WriterEntity" table="writer" schema="mydb">
+        <id name="id" column="id"/>
+        <property name="name" column="name"/>
+        <property name="surname" column="surname"/>
+       	<property name="country" column="country"></property>
+        
+        <set name="bookEntities" table="book" inverse="true">
+            <key>
+                <column name="writer_id"/>
+            </key>
+            <one-to-many class="com.iba.kozlov.entity.BookEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

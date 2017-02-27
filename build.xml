@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project>
-	<property name = "project.dir" value = "..\hibernate"/>
+	<property name = "project.dir" value = "..\TableProjectService2"/>
 	<property name = "lombok" value = "lombok-1.16.12.jar"/>
 	<property name = "log4j" value = "log4j-1.2.17.jar"/>
 	<property name = "javax" value = "javax.faces.jar"/>
@@ -27,7 +27,7 @@
 	    			<pathelement location="lib\${log4j}"></pathelement>
 	    	 		<pathelement location="lib\${javax}"></pathelement>
 	    	 		<pathelement location="lib\${javax_el}"></pathelement>
-	    	 		<pathelement location="WebContent/WEB-INF/lib/${hibernateProject}"></pathelement>
+	    	 		<pathelement location="WebContent/WEB-INF/lib/${TableProjectService2}"></pathelement>
 	    	 	</classpath>
 	        </javac>
 	</target>
