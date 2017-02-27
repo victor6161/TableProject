@@ -4,3 +4,4 @@ target/**
 .project
 .settings/**
 build/**
+WebContent/WEB-INF/test/**
