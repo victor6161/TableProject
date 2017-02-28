@@ -5,10 +5,12 @@ import java.io.Serializable;
 
 
 import javax.annotation.PostConstruct;
-
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
@@ -23,6 +25,9 @@ import com.iba.kozlov.web.books.view.MainBean;
 
 import lombok.Getter;
 import lombok.Setter;
+import test.ejb.LibrarySessionBeanLocal;
+
+
 
 @ManagedBean(name = "bookController", eager = true)
 @SessionScoped
@@ -37,9 +42,6 @@ public class BookController implements Serializable {
 	@ManagedProperty(value = "#{mainBean}")
 	MainBean mainBean;
 	
-/*	@Ejb
-	Test test;*/
-
 	@Setter
 	@Getter
 	@ManagedProperty(value = "#{applicationBean}")
@@ -59,14 +61,21 @@ public class BookController implements Serializable {
 	public void onPaginate() {
 		LOGGER.info("select row " + rowsPerPage);
 	}
+	
+	@EJB
+	LibrarySessionBeanLocal ejbTest;
+	
+	public void info(){
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ejbTest.getTest()));
+	}
 
 	@PostConstruct
 	public void init() {
-		
 		facade.initData();
-
 	}
-
+	
+	
+	
 	public void edit() {
 		LOGGER.info("edit" + mainBean.getEditorBean().toString());
 		LOGGER.info("*********writer is "+mainBean.getEditorBean().getWriter());

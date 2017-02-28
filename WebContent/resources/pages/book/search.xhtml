@@ -78,6 +78,12 @@
 					<p:resetInput target=":#{p:component('booknameSearch')}"></p:resetInput>
 				</p:commandButton>
 			</h:form>
+			<h:form>
+    			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+    			<p:commandButton value="Info" actionListener="#{bookController.info}" />
+ 			</h:form>
+    			
+			
 
 		</p:column>
 
