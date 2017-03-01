@@ -84,7 +84,9 @@ public class BookController implements Serializable {
 	public void init() {
 		facade.initData();
 	}
-	
+	 public void postProcessXLS(Object document){
+		 facade.postProcessXLS(document);
+	 }
 	
 	
 	public void edit() {
@@ -96,7 +98,7 @@ public class BookController implements Serializable {
 	public void onSearch() {
 		LOGGER.info("Search*");
 
-
+			
 		facade.onSearch();
 	}
 

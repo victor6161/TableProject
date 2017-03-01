@@ -61,7 +61,7 @@
 						</p:commandButton>
 						<h:commandLink>
                 			<p:graphicImage name="/images/excel.png" width="24"/>
-                			<p:dataExporter type="xls" target=":#{p:component('customerTableForm')}" fileName="books"/>
+                			<p:dataExporter type="xls" target=":#{p:component('customerTableForm')}" fileName="books" postProcessor="#{bookController.postProcessXLS}"/>
             			</h:commandLink>
 					</f:facet>
 
