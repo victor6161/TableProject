@@ -27,15 +27,12 @@ public class BookDataFacade implements Serializable {
 	}
 
 	public void initData() {
+
 		controller.mainBean.setTableRowBeanList(getTable());
-		
-		
-		
+
 		controller.mainBean.getEditorBean().setWriters(controller.applicationBean.getWriters());
 		controller.mainBean.getAddBean().setWriters(controller.applicationBean.getWriters());
 	}
-
-
 
 	public List<TableRowBean> getTable() {
 		List<BookDto> bookDto = controller.bookService.readBooks();
@@ -61,7 +58,7 @@ public class BookDataFacade implements Serializable {
 			List<WriterBean> writersSearch = controller.mainBean.getSearchBean().getAuthorSearch();
 			List<WriterDto> result = new ArrayList<>();
 			for (WriterBean writer : writersSearch) {
-				LOGGER.info("2 "+writer.toString());
+				LOGGER.info("2 " + writer.toString());
 				result.add(controller.mapper.writerBeanToDto(writer));
 			}
 			bookDto.setWriters(result);
@@ -103,8 +100,7 @@ public class BookDataFacade implements Serializable {
 		controller.mainBean.setEditorBean(mapper.bookDtoToEditorBean(bookDto));
 
 		controller.mainBean.getEditorBean().setWriters(writerBean);
-		LOGGER.info("onEditOpen"
-				+ controller.mainBean.getSelectedBook().getWriterBean().toString());
+		LOGGER.info("onEditOpen" + controller.mainBean.getSelectedBook().getWriterBean().toString());
 
 		controller.mainBean.getEditorBean().setWriter(controller.mainBean.getSelectedBook().getWriterBean());
 
@@ -118,22 +114,21 @@ public class BookDataFacade implements Serializable {
 
 		controller.mainBean.setTableRowBeanList(getTable());
 
-		
 	}
+
 	public void onAddOpen() {
 		LOGGER.info("onAddOpen");
-		
-		/*addBean.setAuthor("");*/
-		/*addBean.setBookname("");
-		addBean.setPrice(0);
-		addBean.setWriters(controller.applicationBean.getWriters());*/
-		/*controller.mainBean.setAddBean(addBean);*/
+
+		/* addBean.setAuthor(""); */
+		/*
+		 * addBean.setBookname(""); addBean.setPrice(0);
+		 * addBean.setWriters(controller.applicationBean.getWriters());
+		 */
+		/* controller.mainBean.setAddBean(addBean); */
 		controller.mainBean.getAddBean().setBookname("");
 		controller.mainBean.getAddBean().setPrice(0);
 		controller.mainBean.getAddBean().setWriter(new WriterBean());
 
-		
-	
 	}
 
 }

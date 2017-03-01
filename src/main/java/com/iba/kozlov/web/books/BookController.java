@@ -49,10 +49,20 @@ public class BookController implements Serializable {
 
 	BookDataFacade facade = new BookDataFacade(this);
 	
-	BookService bookService = new BookServiceImpl();
+/*	BookService bookService = new BookServiceImpl();
 	ReaderService readerService=new ReaderService();
-	WriterService writerService=new WriterService();
+	WriterService writerService=new WriterService();*/
 	Mapper mapper = new Mapper();
+	
+	
+	@EJB
+	BookService bookService;
+	@EJB
+	ReaderService readerService;
+	@EJB
+	ReaderService writerService;
+	
+	
 
 	@Setter
 	@Getter
@@ -61,6 +71,7 @@ public class BookController implements Serializable {
 	public void onPaginate() {
 		LOGGER.info("select row " + rowsPerPage);
 	}
+	
 	
 	@EJB
 	LibrarySessionBeanLocal ejbTest;

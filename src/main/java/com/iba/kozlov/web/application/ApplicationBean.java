@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -27,10 +28,17 @@ public class ApplicationBean implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 5550768740315016091L;
-	WriterService writerService = new WriterService();
+	/*WriterService writerService = new WriterService();
 	BookService bookService = new BookServiceImpl();
-	ReaderService readerService = new ReaderService();
+	ReaderService readerService = new ReaderService();*/
 	Mapper mapper = new Mapper();
+	
+	@EJB
+	WriterService writerService;
+	@EJB
+	BookService bookService;
+	@EJB
+	ReaderService readerService;
 
 	public ApplicationBean() {
 

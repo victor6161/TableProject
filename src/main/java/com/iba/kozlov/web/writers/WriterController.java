@@ -3,9 +3,12 @@ package com.iba.kozlov.web.writers;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
@@ -49,9 +52,15 @@ public class WriterController implements Serializable{
 	
 	WriterDataFacade facade = new WriterDataFacade(this);
 
-	BookService bookService = new BookServiceImpl();
+	/*BookService bookService = new BookServiceImpl();
 	ReaderService readerService=new ReaderService();
-	WriterService writerService=new WriterService();
+	WriterService writerService=new WriterService();*/
+	@EJB
+	BookService bookService ;
+	@EJB
+	ReaderService readerService;
+	@EJB
+	WriterService writerService;
 
 	Mapper mapper = new Mapper();
 	@PostConstruct
@@ -66,7 +75,7 @@ public class WriterController implements Serializable{
 	}
 	public void edit() {
 		LOGGER.info("edit");
-
+		 
 		facade.edit();
 	}
 	public void onEditOpen() {

@@ -59,6 +59,10 @@
 							update=":#{p:component('createBook')}">
 							<p:resetInput target=":#{p:component('createBook')}"></p:resetInput>
 						</p:commandButton>
+						<h:commandLink>
+                			<p:graphicImage name="/images/excel.png" width="24"/>
+                			<p:dataExporter type="xls" target=":#{p:component('customerTableForm')}" fileName="books"/>
+            			</h:commandLink>
 					</f:facet>
 
 					<p:ajax event="page" oncomplete="rowsPerPageUpdate()" />
@@ -77,6 +81,8 @@
 			</script>
 		</p:column>
 	</p:row>
+
+	
 	<book:addBook />
 	<book:updateBook />
 </composite:implementation>

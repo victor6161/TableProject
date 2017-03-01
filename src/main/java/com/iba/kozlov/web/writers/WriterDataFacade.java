@@ -3,6 +3,9 @@ package com.iba.kozlov.web.writers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.apache.log4j.Logger;
 
 import com.iba.kozlov.db.dto.WriterDto;
@@ -47,9 +50,12 @@ public class WriterDataFacade {
 	}
 
 	public void edit() {
+	
 		controller.writerService
 				.editWriter(controller.mapper.editBeanToWriterDto(controller.writerMainBean.getEditorBean()));
 		controller.writerMainBean.setTableRowBeanList(getWriters());
+		FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Successful",  controller.mapper.editBeanToWriterDto(controller.writerMainBean.getEditorBean()).toString()) );
 		
 		
 	}

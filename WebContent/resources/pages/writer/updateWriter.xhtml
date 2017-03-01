@@ -13,7 +13,7 @@
 <composite:implementation>
 	<p:dialog id="updateWriter" header="Update Writer" widgetVar="updateWriter" minHeight="40" modal="true">
 		<h:form>
-			
+			<p:growl id="growl" showDetail="true" sticky="true" /> 
 			<div style="margin: 10px; font-weight: bold;">
 				<h:outputText value="Update Name" />
 			</div>
@@ -40,11 +40,11 @@
 				</p:inputText>
 			</div>
 
-		
+		 	 
 
 			<p:commandButton value="Update"
 				actionListener="#{writerController.edit}"
-				update=":#{p:component('writerTableForm')} :#{p:component('updateWriter')} @form"
+				update=":#{p:component('writerTableForm')} :#{p:component('updateWriter')} :#{p:component('growl')} @form"
 				oncomplete="PF('updateWriter').hide();" />
 
 			<p:commandButton value="Close" onclick="PF('updateWriter').hide();"

@@ -11,10 +11,11 @@
 <composite:implementation>
 	<p:row>
 
-		<p:column style="text-align: center;">
+		<p:column style="text-align: left;" colspan="2">
 			<h:form>
-				<p:outputLabel value="Search by Author" for="authorSearch" />
 				<div style="margin: 10px">
+					<p:outputLabel value="Search by Author" for="authorSearch"  style="margin-right:10px;"  />
+				
 					<p:autoComplete id="authorSearch"
 						value="#{bookController.mainBean.searchBean.authorSearch}"
 						completeMethod="#{applicationBean.byAuthor}" var="writer"
@@ -33,8 +34,9 @@
 
 					</p:autoComplete>
 				</div>
-				<p:outputLabel value="Search by bookname" for="booknameSearch" />
 				<div style="margin: 10px">
+				<p:outputLabel value="Search by bookname" for="booknameSearch"  style="margin-right:10px;"  />
+				
 					<p:autoComplete id="booknameSearch"
 						value="#{bookController.mainBean.searchBean.bookSearch}"
 						completeMethod="#{applicationBean.byBookname}" var="book"
@@ -51,8 +53,9 @@
 
 					</p:autoComplete>
 				</div>
-				<p:outputLabel value="Search by reader" for="readerSearch" />
 				<div style="margin: 10px">
+				<p:outputLabel value="Search by reader" for="readerSearch"  style="margin-right:10px;" />
+				
 					<p:autoComplete id="readerSearch"
 						value="#{bookController.mainBean.searchBean.readerSearch}"
 						completeMethod="#{applicationBean.byReader}" var="reader"

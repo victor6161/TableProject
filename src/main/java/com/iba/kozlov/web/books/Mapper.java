@@ -1,8 +1,6 @@
 package com.iba.kozlov.web.books;
 
-
-
-
+import javax.ejb.EJB;
 
 import com.iba.kozlov.bl.service.WriterService;
 import com.iba.kozlov.db.dto.BookDto;
@@ -16,11 +14,9 @@ import com.iba.kozlov.web.books.view.EditorBean;
 
 import com.iba.kozlov.web.books.view.TableRowBean;
 
-
-
 public class Mapper {
-	WriterService writerService=new WriterService();
-
+	@EJB
+	WriterService writerService ;
 
 	public TableRowBean bookDtoToViewTableDto(BookDto bookDto) {
 		TableRowBean viewDto = new TableRowBean();
@@ -50,68 +46,72 @@ public class Mapper {
 		bookDto.setWriter(new WriterDto(addBean.getWriter().getSurname()));
 		return bookDto;
 	}
-	
+
 	public BookDto editorBeanToBookDto(EditorBean editorBean) {
 		BookDto bookDto = new BookDto();
 		bookDto.setPrice(editorBean.getPrice());
 		bookDto.setId(editorBean.getId());
-		if(editorBean.getWriter()!=null)
-		bookDto.setWriter(writerBeanToDto(editorBean.getWriter()));
+		if (editorBean.getWriter() != null)
+			bookDto.setWriter(writerBeanToDto(editorBean.getWriter()));
 		bookDto.setBookname(editorBean.getBookname());
 		return bookDto;
 	}
-	
+
 	public EditorBean bookDtoToEditorBean(BookDto bookDto) {
 		EditorBean editorBean = new EditorBean();
-	/*	=mainBean.getEditorBean();*/
+		/* =mainBean.getEditorBean(); */
 		editorBean.setId(bookDto.getId());
-		/*editorBean.setAuthor(bookDto.getWriter().getSurname());*/
+		/* editorBean.setAuthor(bookDto.getWriter().getSurname()); */
 		editorBean.setBookname(bookDto.getBookname());
 		editorBean.setPrice(bookDto.getPrice());
 		return editorBean;
 	}
-	public WriterBean viewWriterBean(WriterDto writerDto){
-		WriterBean writerBean=new WriterBean();
+
+	public WriterBean viewWriterBean(WriterDto writerDto) {
+		WriterBean writerBean = new WriterBean();
 		writerBean.setId(writerDto.getId());
 		writerBean.setName(writerDto.getName());
 		writerBean.setSurname(writerDto.getSurname());
 		writerBean.setCountry(writerDto.getCountry());
-		
+
 		return writerBean;
 	}
-	public WriterDto writerBeanToDto(WriterBean writerBean){
-		WriterDto writerDto=new WriterDto();
+
+	public WriterDto writerBeanToDto(WriterBean writerBean) {
+		WriterDto writerDto = new WriterDto();
 		writerDto.setId(writerBean.getId());
 		writerDto.setName(writerBean.getName());
 		writerDto.setSurname(writerBean.getSurname());
-		
+
 		return writerDto;
 	}
-	
-	public ReaderBean readerDtoToBean(ReaderDto readerDto){
-		ReaderBean readerBean=new ReaderBean();
+
+	public ReaderBean readerDtoToBean(ReaderDto readerDto) {
+		ReaderBean readerBean = new ReaderBean();
 		readerBean.setId(readerDto.getId());
 		readerBean.setName(readerDto.getName());
 		readerBean.setSurname(readerDto.getSurname());
 		return readerBean;
-		
+
 	}
 
 	public ReaderDto readerBeanToDto(ReaderBean reader) {
-		ReaderDto readerDto=new ReaderDto();
+		ReaderDto readerDto = new ReaderDto();
 		readerDto.setId(reader.getId());
 		readerDto.setName(reader.getName());
 		readerDto.setSurname(reader.getSurname());
 		return readerDto;
 	}
+
 	public BookDto bookBeanToDto(BookBean bookBean) {
-		BookDto bookDto=new BookDto();
+		BookDto bookDto = new BookDto();
 		bookDto.setId(bookBean.getId());
 		bookDto.setBookname(bookBean.getBookname());
 		return bookDto;
 	}
+
 	public BookBean bookDtoToBean(BookDto bookDto) {
-		BookBean bookBean=new BookBean();
+		BookBean bookBean = new BookBean();
 		bookBean.setId(bookDto.getId());
 		bookBean.setBookname(bookDto.getBookname());
 		bookBean.setPrice(bookDto.getPrice());

@@ -13,5 +13,6 @@ public class BookBean {
 	@Setter
 	@Getter
 	private Integer price;
+	
 
 }
