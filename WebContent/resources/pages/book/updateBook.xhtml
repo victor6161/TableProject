@@ -12,7 +12,7 @@
 
 <composite:implementation>
 	<p:dialog id="updateBook" header="Update Book" widgetVar="updateBook"
-		minHeight="40" modal="true">
+		minHeight="40" modal="true" >
 	
 <h:form>
 			<div style="margin: 10px; font-weight: bold;">
@@ -33,17 +33,6 @@
 				</p:inputText>
 			</div>
 				
-		
-			
-			
-				<p:commandButton value="Update"
-					actionListener="#{bookController.edit}"
-					update=":#{p:component('customerTableForm')} :#{p:component('updateBook')} @form" 
-					oncomplete="PF('updateBook').hide();" />
-			
-			<p:commandButton value="Close" onclick="PF('updateBook').hide();"
-				immediate="true"/>
-		</h:form>
 			<div style="margin: 10px">
 				
 				<p:selectOneMenu
@@ -58,6 +47,17 @@
 				</p:selectOneMenu>
 			
 			</div>
+			
+			
+				<p:commandButton value="Update"
+					actionListener="#{bookController.edit}"
+					update=":#{p:component('customerTableForm')} :#{p:component('updateBook')} @form" 
+					oncomplete="PF('updateBook').hide();" />
+			
+			<p:commandButton value="Close" onclick="PF('updateBook').hide();"
+				immediate="true"/>
+		</h:form>
+		
 	</p:dialog>
 </composite:implementation>
 </html>
