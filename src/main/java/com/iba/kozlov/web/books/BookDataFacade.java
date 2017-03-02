@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 
 import com.iba.kozlov.db.dto.BookDto;
 
@@ -31,26 +32,37 @@ public class BookDataFacade implements Serializable {
 		controller = pController;
 
 	}
-    public void postProcessXLS(Object document) {
-        HSSFWorkbook wb = (HSSFWorkbook) document;
-        HSSFSheet sheet = wb.getSheetAt(0);
-        HSSFRow header = sheet.getRow(0);
-     LOGGER.info(sheet.getLastRowNum());
-         
-        HSSFCellStyle cellStyle = wb.createCellStyle();  
-        cellStyle.setFillForegroundColor(HSSFColor.GREEN.index);
-        cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-         
-        for(int i=0; i < header.getPhysicalNumberOfCells()-1;i++) {
-            HSSFCell cell = header.getCell(i);
-            
-            cell.setCellStyle(cellStyle);
-        }
-        
-        
-    }
-     
-	
+
+	public void postProcessXLS(Object document) {
+		LOGGER.info("1");
+		HSSFWorkbook wb = (HSSFWorkbook) document;
+		HSSFSheet sheet = wb.getSheetAt(0);
+		HSSFRow headerRow = sheet.getRow(0);
+		CellStyle style = wb.createCellStyle();
+		Font font = wb.createFont();
+		font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		style.setFont(font);
+		for (int i = 0; i < headerRow.getPhysicalNumberOfCells() - 1; i++) {
+			sheet.autoSizeColumn(i);
+			headerRow.getCell(i).setCellStyle(style);
+		}
+
+
+
+		// удаление последней колонки
+		for (int i = 0; i < sheet.getLastRowNum() + 1; i++) {
+			LOGGER.info("2");
+			HSSFRow row = sheet.getRow(i);
+			Cell cell = row.getCell(row.getPhysicalNumberOfCells() - 1);
+			LOGGER.info(row.getPhysicalNumberOfCells());
+			if (cell != null) {
+				if (cell.getCellType() != Cell.CELL_TYPE_BLANK) {
+					cell.setCellType(Cell.CELL_TYPE_BLANK);
+				}
+			}
+		}
+	}
+
 	public void initData() {
 
 		controller.mainBean.setTableRowBeanList(getTable());
