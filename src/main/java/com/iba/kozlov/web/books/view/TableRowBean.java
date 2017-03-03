@@ -1,12 +1,14 @@
 package com.iba.kozlov.web.books.view;
 
+import java.io.Serializable;
+
 import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.web.application.WriterBean;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class TableRowBean {
+public class TableRowBean implements Serializable {
 	
 	@Override
 	public String toString() {

@@ -158,7 +158,10 @@ public class BookDataFacade implements Serializable {
 		BookDto book = controller.mapper.addBeanToBookDto(controller.mainBean.getAddBean());
 		LOGGER.info("book" + book.toString());
 		controller.bookService.addBooks(book);
-
+		Integer amount = controller.mainBean.getAmount();
+		amount++;
+		LOGGER.info("amount" + amount);
+		controller.mainBean.setAmount(amount);
 		controller.mainBean.setTableRowBeanList(getTable());
 
 	}
@@ -166,12 +169,6 @@ public class BookDataFacade implements Serializable {
 	public void onAddOpen() {
 		LOGGER.info("onAddOpen");
 
-		/* addBean.setAuthor(""); */
-		/*
-		 * addBean.setBookname(""); addBean.setPrice(0);
-		 * addBean.setWriters(controller.applicationBean.getWriters());
-		 */
-		/* controller.mainBean.setAddBean(addBean); */
 		controller.mainBean.getAddBean().setBookname("");
 		controller.mainBean.getAddBean().setPrice(0);
 		controller.mainBean.getAddBean().setWriter(new WriterBean());

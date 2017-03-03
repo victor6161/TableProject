@@ -1,9 +1,11 @@
 package com.iba.kozlov.web.writers.view;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
-public class EditorBean {
+public class EditorBean implements Serializable {
 	@Setter
 	@Getter
 	private int id;

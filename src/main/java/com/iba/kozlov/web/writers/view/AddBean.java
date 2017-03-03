@@ -1,9 +1,11 @@
 package com.iba.kozlov.web.writers.view;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
-public class AddBean {
+public class AddBean implements Serializable{
 	public AddBean(){
 		this.id=0;
 		this.name="";

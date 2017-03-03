@@ -28,6 +28,9 @@ public class MainBean {
 	@Setter
 	@Getter
 	private SearchBean authorSearch;
+	@Setter
+	@Getter
+	private Integer amount;
 
 	public MainBean() {
 		addBean = new AddBean();

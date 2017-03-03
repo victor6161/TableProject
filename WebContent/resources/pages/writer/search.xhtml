@@ -4,14 +4,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:composite="http://java.sun.com/jsf/composite">
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:general="http://java.sun.com/jsf/composite/pages/general">
 
 <composite:interface />
 
 <composite:implementation>
 	<p:row>
 
-		<p:column style="text-align: left;" colspan="2">
+		<p:column style="text-align: left;" >
 			<h:form>
 			
 				<div style="margin: 10px">
@@ -41,6 +42,9 @@
 				</p:commandButton>
 			</h:form>
 
+		</p:column>
+		<p:column>
+		<general:informationComp id="informationComp"  label1="Writers" value1="#{writerController.writerMainBean.amount}"/>
 		</p:column>
 
 	</p:row>

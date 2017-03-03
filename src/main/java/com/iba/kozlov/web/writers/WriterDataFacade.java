@@ -24,6 +24,7 @@ public class WriterDataFacade {
 
 	public void initData() {
 		controller.writerMainBean.setTableRowBeanList(getWriters());
+		controller.writerMainBean.setAmount(getWriters().size());
 	}
 
 	public List<TableRowBean> getWriters() {

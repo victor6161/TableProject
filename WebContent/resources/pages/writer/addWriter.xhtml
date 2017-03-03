@@ -51,7 +51,7 @@
 					required="true" />
 			</div>
 			<p:commandButton value="Add"  oncomplete="handleEditRequest(xhr, status,args);" actionListener="#{writerController.add}"
-				update="@form :#{p:component('writerTableForm')}" >
+				update="@form :#{p:component('writerTableForm')} :#{p:component('informationComp')}" >
 				
 				</p:commandButton>
 			<p:commandButton value="Close" onclick="PF('addWriter').hide();"

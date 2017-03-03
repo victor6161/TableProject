@@ -1,6 +1,7 @@
 package com.iba.kozlov.web.books.view;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.iba.kozlov.web.application.WriterBean;
@@ -9,7 +10,7 @@ import com.iba.kozlov.web.application.WriterBean;
 import lombok.Getter;
 import lombok.Setter;
 
-public class EditorBean {
+public class EditorBean implements Serializable {
 
 
 	@Override

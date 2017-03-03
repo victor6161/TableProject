@@ -1,5 +1,6 @@
 package com.iba.kozlov.web.books.view;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.iba.kozlov.web.application.WriterBean;
@@ -7,7 +8,7 @@ import com.iba.kozlov.web.application.WriterBean;
 import lombok.Getter;
 import lombok.Setter;
 
-public class AddBean {
+public class AddBean implements Serializable {
 	@Override
 	public String toString() {
 		return "AddBean [bookname=" + bookname + ", username=" + username + ", price=" + price + ", writer=" + writer
