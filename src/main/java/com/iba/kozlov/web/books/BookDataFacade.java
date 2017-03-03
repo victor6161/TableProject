@@ -47,8 +47,6 @@ public class BookDataFacade implements Serializable {
 			headerRow.getCell(i).setCellStyle(style);
 		}
 
-
-
 		// удаление последней колонки
 		for (int i = 0; i < sheet.getLastRowNum() + 1; i++) {
 			LOGGER.info("2");
@@ -69,6 +67,18 @@ public class BookDataFacade implements Serializable {
 
 		controller.mainBean.getEditorBean().setWriters(controller.applicationBean.getWriters());
 		controller.mainBean.getAddBean().setWriters(controller.applicationBean.getWriters());
+
+		controller.mainBean.setTotalPrice(totalCost());
+		controller.mainBean.setAmount(getTable().size());
+	}
+
+	private Integer totalCost() {
+		Integer totalPrice = 0;
+		List<TableRowBean> table = getTable();
+		for (TableRowBean row : table) {
+			totalPrice += row.getPrice();
+		}
+		return totalPrice;
 	}
 
 	public List<TableRowBean> getTable() {

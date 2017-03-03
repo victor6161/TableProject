@@ -35,6 +35,14 @@ public class MainBean {
 	@Setter
 	@Getter
 	private SearchBean searchBean;
+	
+	@Setter
+	@Getter
+	private Integer totalPrice;
+	
+	@Setter
+	@Getter
+	private Integer amount;
 
 
 	public MainBean() {

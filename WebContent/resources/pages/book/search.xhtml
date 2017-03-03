@@ -4,14 +4,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:composite="http://java.sun.com/jsf/composite">
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:general="http://java.sun.com/jsf/composite/pages/general">
 
 <composite:interface />
 
 <composite:implementation>
 	<p:row>
-
-		<p:column style="text-align: left;" colspan="2">
+		<p:column style="text-align: left;">
 			<h:form>
 				<div style="margin: 10px">
 					<p:outputLabel value="Search by Author" for="authorSearch"  style="margin-right:10px;"  />
@@ -72,9 +72,6 @@
 
 					</p:autoComplete>
 				</div>
-
-
-
 				<p:commandButton value="Search"
 					update=":#{p:component('customerTableForm')}"
 					actionListener="#{bookController.onSearch}">
@@ -85,9 +82,9 @@
     			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
     			<p:commandButton value="Info" actionListener="#{bookController.info}" />
  			</h:form>
-    			
-			
-
+		</p:column>
+		<p:column>
+				<general:informationComp label1="Books" value1="#{bookController.mainBean.amount}" label2="totalPrice" value2="#{bookController.mainBean.totalPrice}"/>
 		</p:column>
 
 	</p:row>

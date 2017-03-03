@@ -48,7 +48,7 @@
 				</p:inputText>
 			</div>
 
-			<p:commandButton value="Add" oncomplete="handleEditRequest(xhr, status,args);" actionListener="#{bookController.add}" update="@form :#{p:component('customerTableForm')}"   />
+			<p:commandButton value="Add"  actionListener="#{bookController.add}" update="@form :#{p:component('customerTableForm')}" oncomplete="PF('createBook').hide();"   />
 			<p:commandButton value="Close" onclick="PF('createBook').hide();" immediate="true"  update=":#{p:component('createBook')}" >
 				
 			</p:commandButton>
