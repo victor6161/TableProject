@@ -9,6 +9,7 @@
 	xmlns:composite="http://java.sun.com/jsf/composite">
 
 <composite:interface>
+	<composite:attribute name="ccid" />
 	<composite:attribute name="label1" />
 	<composite:attribute name="value1" />
 	<composite:attribute name="label2"/>
@@ -21,7 +22,7 @@
 
 
 
-<h:panelGrid>
+<h:panelGrid id="#{cc.attrs.ccid}">
 	    <p:outputLabel for="value1" value="#{cc.attrs.label1}" />
         <p:outputLabel id="value1" value="#{cc.attrs.value1}" />
 		<p:outputLabel for="value2" value="#{cc.attrs.label2}" />

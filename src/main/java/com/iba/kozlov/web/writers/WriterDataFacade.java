@@ -43,7 +43,7 @@ public class WriterDataFacade {
 		WriterDto writer = controller.mapper.addBeanToWriterDto(controller.writerMainBean.getAddBean());
 		LOGGER.info("writer" + writer.toString());
 		controller.writerService.createWriter(writer);
-
+		controller.writerMainBean.setAmount(getWriters().size());
 		controller.writerMainBean.setTableRowBeanList(getWriters());
 		controller.writerMainBean.getAddBean().setName(null);
 		controller.writerMainBean.getAddBean().setSurname(null);

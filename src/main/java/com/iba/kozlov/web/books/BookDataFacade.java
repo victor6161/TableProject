@@ -28,6 +28,7 @@ public class BookDataFacade implements Serializable {
 
 	private BookController controller;
 
+
 	public BookDataFacade(BookController pController) {
 		controller = pController;
 
@@ -159,9 +160,12 @@ public class BookDataFacade implements Serializable {
 		LOGGER.info("book" + book.toString());
 		controller.bookService.addBooks(book);
 		Integer amount = controller.mainBean.getAmount();
+		Integer totalPrice = controller.mainBean.getTotalPrice();
+		totalPrice += controller.mainBean.getAddBean().getPrice();
 		amount++;
 		LOGGER.info("amount" + amount);
 		controller.mainBean.setAmount(amount);
+		controller.mainBean.setTotalPrice(totalPrice);
 		controller.mainBean.setTableRowBeanList(getTable());
 
 	}
