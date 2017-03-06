@@ -30,7 +30,7 @@ public class AuthorConverter implements Converter {
 			try {
 				for (WriterBean writer : writerBean) {
 					if (value.equals(String.valueOf(writer.getId()))) {
-						LOGGER.info("!!!!!!!!!!!!!!!!!!!!!converter" + writer.toString());
+						LOGGER.info("!!!!!!!converter" + writer.toString());
 						return writer;
 					}
 				}

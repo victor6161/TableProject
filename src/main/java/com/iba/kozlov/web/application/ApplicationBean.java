@@ -44,11 +44,11 @@ public class ApplicationBean implements Serializable{
 
 	}
 
-	@PostConstruct
+	//@PostConstruct
 	public void init() {
 		setWriterBeans(getWriters());
 		setReaderBeans(getReaders());
-		//setBookBeans(getBookBean());
+		setBookBeans(getBookBean());
 	}
 
 	public List<BookBean> getBookBean() {

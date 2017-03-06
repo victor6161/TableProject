@@ -79,7 +79,7 @@ public class BookController implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ejbTest.getTest()));
 	}
 
-	@PostConstruct
+	//@PostConstruct
 	public void init() {
 		facade.initData();
 	}

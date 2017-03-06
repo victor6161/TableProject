@@ -13,25 +13,27 @@ import javax.faces.event.PhaseListener;
 import org.apache.log4j.Logger;
 
 import com.iba.kozlov.bl.service.BookService;
+import com.iba.kozlov.bl.service.ReaderService;
+import com.iba.kozlov.bl.service.WriterService;
 import com.iba.kozlov.db.dto.BookDto;
+import com.iba.kozlov.db.dto.ReaderDto;
+import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.application.ApplicationBean;
 import com.iba.kozlov.web.application.BookBean;
+import com.iba.kozlov.web.application.ReaderBean;
+import com.iba.kozlov.web.application.WriterBean;
+import com.iba.kozlov.web.books.view.MainBean;
+import com.iba.kozlov.web.books.view.TableRowBean;
 
 public class CustomPhaseListener implements PhaseListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1525317892440855268L;
 	private static final Logger LOGGER = Logger.getLogger(CustomPhaseListener.class);
 	ApplicationBean applBean = null;
-	@EJB
-	BookService bookService;
-	Mapper mapper = new Mapper();
-
-	public List<BookBean> getBookBean() {
-		List<BookDto> bookDto = bookService.readBooks();
-		List<BookBean> bookBean = new ArrayList<>();
-		for (BookDto book : bookDto) {
-			bookBean.add(mapper.bookDtoToBean(book));
-		}
-		return bookBean;
-	}
+	BookController bookController=null;
+	
 
 	@Override
 	public void afterPhase(PhaseEvent event) {
@@ -48,7 +50,10 @@ public class CustomPhaseListener implements PhaseListener {
 			LOGGER.info("not ajax");
 			applBean = (ApplicationBean) FacesContext.getCurrentInstance().getApplication().evaluateExpressionGet(
 					FacesContext.getCurrentInstance(), "#{applicationBean}", ApplicationBean.class);
-			applBean.setBookBeans(getBookBean());
+			applBean.init();
+			bookController = (BookController) FacesContext.getCurrentInstance().getApplication().evaluateExpressionGet(
+					FacesContext.getCurrentInstance(), "#{bookController}", BookController.class);
+			bookController.init();
 		}
 
 	}
