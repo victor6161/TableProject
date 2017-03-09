@@ -55,9 +55,9 @@ public class BookController implements Serializable {
 	@EJB
 	BookService bookService;
 	@EJB
-	ReaderService readerService;
-	@EJB
 	ReaderService writerService;
+	@EJB
+	ReaderService readerService;
 	
 	
 
