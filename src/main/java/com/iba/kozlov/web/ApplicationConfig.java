@@ -8,7 +8,7 @@ import javax.ws.rs.core.Application;
 
 @ApplicationPath("rest")
 public class ApplicationConfig extends Application {
-	public Set<Class<?>> getClasses(){
+	public Set<Class<?>> getClasses() {
 		Set<Class<?>> resources = new HashSet<>();
 		resources.add(com.iba.kozlov.web.HelloWorldService.class);
 		return resources;
