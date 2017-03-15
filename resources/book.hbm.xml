@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.iba.kozlov.entity.BookEntity" table="book" schema="mydb">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="bookname" column="bookname"/>
+        <property name="price" column="price"/>
+       
+        <many-to-one name="writerEntity" class="com.iba.kozlov.entity.WriterEntity">
+            <column name="writer_id"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -14,16 +14,16 @@
 		<p:column style="text-align: left;">
 			<h:form>
 				<div style="margin: 10px">
-					<p:outputLabel value="Search by Author" for="authorSearch"  style="margin-right:10px;"  />
-				
+					<p:outputLabel value="Search by Author" for="authorSearch"
+						style="margin-right:10px;" />
+
 					<p:autoComplete id="authorSearch"
 						value="#{bookController.mainBean.searchBean.authorSearch}"
 						completeMethod="#{applicationBean.byAuthor}" var="writer"
 						itemLabel="#{writer.surname}" itemValue="#{writer}"
-						converter="com.iba.kozlov.AuthorConverter"
-						forceSelection="true"
+						converter="com.iba.kozlov.AuthorConverter" forceSelection="true"
 						multiple="true">
-						
+
 						<p:column>
 							<h:outputText value="#{writer.name}" />
 						</p:column>
@@ -35,8 +35,9 @@
 					</p:autoComplete>
 				</div>
 				<div style="margin: 10px">
-				<p:outputLabel value="Search by bookname" for="booknameSearch"  style="margin-right:10px;"  />
-				
+					<p:outputLabel value="Search by bookname" for="booknameSearch"
+						style="margin-right:10px;" />
+
 					<p:autoComplete id="booknameSearch"
 						value="#{bookController.mainBean.searchBean.bookSearch}"
 						completeMethod="#{applicationBean.byBookname}" var="book"
@@ -45,7 +46,7 @@
 
 						<p:column>
 							<h:outputText value="#{book.bookname}" />
-						</p:column> 
+						</p:column>
 						<p:column>
 							<h:outputText value="#{book.price}" />
 						</p:column>
@@ -54,8 +55,9 @@
 					</p:autoComplete>
 				</div>
 				<div style="margin: 10px">
-				<p:outputLabel value="Search by reader" for="readerSearch"  style="margin-right:10px;" />
-				
+					<p:outputLabel value="Search by reader" for="readerSearch"
+						style="margin-right:10px;" />
+
 					<p:autoComplete id="readerSearch"
 						value="#{bookController.mainBean.searchBean.readerSearch}"
 						completeMethod="#{applicationBean.byReader}" var="reader"
@@ -78,15 +80,14 @@
 					<p:resetInput target=":#{p:component('booknameSearch')}"></p:resetInput>
 				</p:commandButton>
 			</h:form>
-			<h:form>
-    			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-    			<p:commandButton value="Info" actionListener="#{bookController.info}" />
- 			</h:form>
+
 		</p:column>
 		<p:column>
-		
-				<general:informationComp ccid="informationComp"  label1="Books" value1="#{bookController.mainBean.amount}" label2="totalPrice" value2="#{bookController.mainBean.totalPrice}"/>
-		
+
+			<general:informationComp ccid="informationComp" label1="Books"
+				value1="#{bookController.mainBean.amount}" label2="totalPrice"
+				value2="#{bookController.mainBean.totalPrice}" />
+
 		</p:column>
 
 	</p:row>

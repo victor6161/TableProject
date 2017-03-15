@@ -25,7 +25,7 @@ import com.iba.kozlov.web.books.view.MainBean;
 
 import lombok.Getter;
 import lombok.Setter;
-import test.ejb.LibrarySessionBeanLocal;
+
 
 
 
@@ -71,13 +71,13 @@ public class BookController implements Serializable {
 	
 
 	
-	
+/*	
 	@EJB
-	LibrarySessionBeanLocal ejbTest;
+	LibrarySessionBeanLocal ejbTest;*/
 	
-	public void info(){
+/*	public void info(){
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ejbTest.getTest()));
-	}
+	}*/
 
 	//@PostConstruct
 	public void init() {
