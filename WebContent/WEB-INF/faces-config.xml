@@ -6,4 +6,10 @@
 	<lifecycle>
 		<phase-listener>com.iba.kozlov.web.books.CustomPhaseListener</phase-listener>
 	</lifecycle>
+<!-- 	<component>
+		<component-type>HtmlHelloWorld</component-type>
+		<component-class>
+			com.iba.kozlov.web.component.HtmlHelloWorld
+		</component-class>
+	</component> -->
 </faces-config>

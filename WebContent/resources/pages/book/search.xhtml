@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:general="http://java.sun.com/jsf/composite/pages/general">
+	xmlns:general="http://java.sun.com/jsf/composite/pages/general"
+	xmlns:t="http://jsfcompref.com/example">
 
 <composite:interface />
 
@@ -13,6 +14,7 @@
 	<p:row>
 		<p:column style="text-align: left;">
 			<h:form>
+			
 				<div style="margin: 10px">
 					<p:outputLabel value="Search by Author" for="authorSearch"
 						style="margin-right:10px;" />
@@ -80,7 +82,7 @@
 					<p:resetInput target=":#{p:component('booknameSearch')}"></p:resetInput>
 				</p:commandButton>
 			</h:form>
-
+			
 		</p:column>
 		<p:column>
 
@@ -88,6 +90,10 @@
 				value1="#{bookController.mainBean.amount}" label2="totalPrice"
 				value2="#{bookController.mainBean.totalPrice}" />
 
+		</p:column>
+		<p:column>
+			<t:helloWorld/>
+			
 		</p:column>
 
 	</p:row>
