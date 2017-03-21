@@ -45,11 +45,12 @@ public class MainBean {
 	private Integer amount;
 
 
+
 	public MainBean() {
 		searchBean=new SearchBean();
 		addBean = new AddBean();
 		editorBean = new EditorBean();
-
+		
 	}
 
 }

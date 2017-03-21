@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
@@ -11,10 +12,16 @@ import javax.faces.context.ResponseWriter;
 
 import org.apache.log4j.Logger;
 
+
+
 @FacesComponent(value = "HtmlHelloWorld")
 public class HtmlHelloWorld extends UIComponentBase {
 	private static final Logger LOGGER = Logger.getLogger(HtmlHelloWorld.class);
 
+	private final int topFiveWriter=5;
+
+	
+	
 	@Override
 	public String getFamily() {
 		LOGGER.info("getFamily");
@@ -23,12 +30,13 @@ public class HtmlHelloWorld extends UIComponentBase {
 
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
-		LOGGER.info("encodeAll");
-
-		//создать класс со значениями авторов
+		LOGGER.info("encodeAll!!!!!");
 		
+		List<ChartBean> listWriter  =(List<ChartBean>) this.getAttributes().get("hellomsg");
+		
+		 
 		ResponseWriter writer = context.getResponseWriter();
-		writer.write("Hello World!");
+		writer.write("TOP 5 Most Popular Writer");
 		StringBuffer json = new StringBuffer();
 
 		json.append("\nfunction exampleData() {\n");
@@ -36,24 +44,22 @@ public class HtmlHelloWorld extends UIComponentBase {
 		json.append("{\n");
 		json.append("key: 'Cumulative Return',\n");
 		json.append("values: [\n");
-		json.append("{ \n");
-		json.append("'label' : 'A Label' ,\n");
-		json.append("'value' : -29.765957771107\n");
-		json.append(" } , \n");
-		json.append(" { \n");
-		json.append("  'label' : 'B Label' ,  \n");
-		json.append("'value' : 21\n");
-		json.append(" }  \n");
+		
+		for(int i=0;i<topFiveWriter;i++){
+			json.append("{ \n");
+			json.append("'label' : '" + listWriter.get(i).getWriterSurname() + "',\n");
+			json.append("'value' : '" + listWriter.get(i).getBookAmount() + "'\n");
+			json.append(" } , \n");
+		}
 		json.append(" ]  \n");
 		json.append(" }  \n");
-		json.append(" ]  \n"); 
+		json.append(" ]  \n");
 		json.append(" }  \n");
 
 		StringBuffer html = new StringBuffer();
 		html.append("<div id='chart'>");
 		html.append("<svg></svg>");
 		html.append("</div>");
-		
 
 		writer.write(html.toString());
 

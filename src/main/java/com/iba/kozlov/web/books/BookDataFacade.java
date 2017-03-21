@@ -2,6 +2,7 @@ package com.iba.kozlov.web.books;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -18,8 +19,8 @@ import com.iba.kozlov.db.dto.BookDto;
 import com.iba.kozlov.db.dto.WriterDto;
 
 import com.iba.kozlov.web.application.WriterBean;
-
 import com.iba.kozlov.web.books.view.TableRowBean;
+import com.iba.kozlov.web.component.ChartBean;
 
 public class BookDataFacade implements Serializable {
 	private static final Logger LOGGER = Logger.getLogger(BookDataFacade.class);
@@ -27,7 +28,6 @@ public class BookDataFacade implements Serializable {
 	private static final long serialVersionUID = -5823792094177216548L;
 
 	private BookController controller;
-
 
 	public BookDataFacade(BookController pController) {
 		controller = pController;
@@ -48,7 +48,7 @@ public class BookDataFacade implements Serializable {
 			headerRow.getCell(i).setCellStyle(style);
 		}
 
-		// удаление последней колонки
+		
 		for (int i = 0; i < sheet.getLastRowNum() + 1; i++) {
 			LOGGER.info("2");
 			HSSFRow row = sheet.getRow(i);
@@ -71,6 +71,7 @@ public class BookDataFacade implements Serializable {
 
 		controller.mainBean.setTotalPrice(totalCost());
 		controller.mainBean.setAmount(getTable().size());
+		controller.getDataModel().setChartValue(setMostPopularWriter());
 	}
 
 	private Integer totalCost() {
@@ -135,14 +136,14 @@ public class BookDataFacade implements Serializable {
 		BookDto bookDto = mapper.viewTableDtoToBookDto(controller.mainBean.getSelectedBook());
 		LOGGER.info("onEditOpen" + bookDto.toString());
 
-		List<WriterBean> writerBean = new ArrayList<WriterBean>();// не смог в
-																	// маппер
-																	// получить
+		List<WriterBean> writerBean = new ArrayList<WriterBean>();// пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ
+																	// пїЅпїЅпїЅпїЅпїЅпїЅ
+																	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 																	// mainBean
-																	// , так
-																	// сохраняется
-																	// , список
-																	// писателей
+																	// , пїЅпїЅпїЅ
+																	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+																	// , пїЅпїЅпїЅпїЅпїЅпїЅ
+																	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		writerBean = controller.mainBean.getEditorBean().getWriters();
 
 		controller.mainBean.setEditorBean(mapper.bookDtoToEditorBean(bookDto));
@@ -172,11 +173,31 @@ public class BookDataFacade implements Serializable {
 
 	public void onAddOpen() {
 		LOGGER.info("onAddOpen");
-
 		controller.mainBean.getAddBean().setBookname("");
 		controller.mainBean.getAddBean().setPrice(0);
 		controller.mainBean.getAddBean().setWriter(new WriterBean());
 
+	}
+
+	public List<ChartBean> setMostPopularWriter() {
+		List<BookDto> bookAll = controller.bookService.readBooks();
+		List<WriterDto> writerAll = controller.writerService.readWriters();
+		List<ChartBean> chartValue = new ArrayList<>();
+		int amountBooksByWriter;
+		for (WriterDto writer : writerAll) {
+			amountBooksByWriter = 0;
+			for (BookDto book : bookAll) {
+				if (book.getWriter().getId() == writer.getId()) {
+					amountBooksByWriter++;
+				}
+			}
+			chartValue.add(new ChartBean(writer.getSurname(), amountBooksByWriter));
+
+		}
+		Collections.sort( chartValue);
+		return chartValue;
+	
+		
 	}
 
 }

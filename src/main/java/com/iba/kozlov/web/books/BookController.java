@@ -21,7 +21,7 @@ import com.iba.kozlov.bl.service.ReaderService;
 import com.iba.kozlov.bl.service.WriterService;
 import com.iba.kozlov.web.application.ApplicationBean;
 import com.iba.kozlov.web.books.view.MainBean;
-
+import com.iba.kozlov.web.component.DataModel;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -44,6 +44,10 @@ public class BookController implements Serializable {
 	
 	@Setter
 	@Getter
+	@ManagedProperty(value = "#{dataModel}")
+	private DataModel dataModel;
+	@Setter
+	@Getter
 	@ManagedProperty(value = "#{applicationBean}")
 	ApplicationBean applicationBean;
 
@@ -55,7 +59,7 @@ public class BookController implements Serializable {
 	@EJB
 	BookService bookService;
 	@EJB
-	ReaderService writerService;
+	WriterService writerService;
 	@EJB
 	ReaderService readerService;
 	
@@ -119,4 +123,6 @@ public class BookController implements Serializable {
 	public void onRemove() {
 
 	}
+	
+
 }
