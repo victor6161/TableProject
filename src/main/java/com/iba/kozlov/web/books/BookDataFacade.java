@@ -71,7 +71,7 @@ public class BookDataFacade implements Serializable {
 
 		controller.mainBean.setTotalPrice(totalCost());
 		controller.mainBean.setAmount(getTable().size());
-		controller.getDataModel().setChartValue(setMostPopularWriter());
+		controller.mainBean.getDataModel().setChartValue(setMostPopularWriter());
 	}
 
 	private Integer totalCost() {

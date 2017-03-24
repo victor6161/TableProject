@@ -15,8 +15,8 @@
 
 	<h:outputStylesheet library="css" name="nv.d3.css"></h:outputStylesheet>
 		
-	<h:outputScript library="js" name="d3.js" target="head"></h:outputScript>
-	<h:outputScript library="js" name="nv.d3.min.js"  target="head"></h:outputScript>
+<!-- 	<h:outputScript library="js" name="d3.js" target="head"></h:outputScript>
+	<h:outputScript library="js" name="nv.d3.min.js"  target="head"></h:outputScript> -->
 	<h:outputScript library="js" name="test.js"></h:outputScript>
 	
 	<p:row>
@@ -103,7 +103,7 @@
 		<!-- 	<div id="chart">
 				<svg></svg>
 			</div> -->
-			<t:helloWorld hellomsg="#{dataModel.chartValue}"/>
+			<t:helloWorld model="#{bookController.mainBean.dataModel}"/>
 	
 		</p:column>
 

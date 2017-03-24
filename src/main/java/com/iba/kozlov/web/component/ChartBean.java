@@ -24,7 +24,7 @@ public class ChartBean implements Comparable<ChartBean> {
 
 	@Override
 	public int compareTo(ChartBean o) {
-		if (this.getBookAmount() < o.getBookAmount()) {
+		if (this.getBookAmount() < o.getBookAmount()) {//сортировка по убыванию 
 			return 1;
 		}
 		if (this.getBookAmount() > o.getBookAmount()) {

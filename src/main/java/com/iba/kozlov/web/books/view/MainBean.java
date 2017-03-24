@@ -9,6 +9,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import com.iba.kozlov.web.component.ChartBean;
+import com.iba.kozlov.web.component.DataModel;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -43,6 +45,12 @@ public class MainBean {
 	@Setter
 	@Getter
 	private Integer amount;
+/*	@Setter
+	@Getter
+	private List<ChartBean> chartValue;*/
+	@Setter
+	@Getter
+	private DataModel dataModel;
 
 
 
@@ -50,6 +58,7 @@ public class MainBean {
 		searchBean=new SearchBean();
 		addBean = new AddBean();
 		editorBean = new EditorBean();
+		dataModel = new DataModel();
 		
 	}
 

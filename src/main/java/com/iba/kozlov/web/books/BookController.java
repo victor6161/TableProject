@@ -42,10 +42,10 @@ public class BookController implements Serializable {
 	@ManagedProperty(value = "#{mainBean}")
 	MainBean mainBean;
 	
-	@Setter
+/*	@Setter
 	@Getter
 	@ManagedProperty(value = "#{dataModel}")
-	private DataModel dataModel;
+	private DataModel dataModel;*/
 	@Setter
 	@Getter
 	@ManagedProperty(value = "#{applicationBean}")
