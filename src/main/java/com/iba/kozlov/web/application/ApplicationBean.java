@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.iba.kozlov.bl.service.BookService;
-import com.iba.kozlov.bl.service.BookServiceImpl;
+
 import com.iba.kozlov.bl.service.ReaderService;
 import com.iba.kozlov.bl.service.WriterService;
 import com.iba.kozlov.db.dto.BookDto;
@@ -18,19 +18,16 @@ import com.iba.kozlov.db.dto.ReaderDto;
 import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.books.Mapper;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
 @ManagedBean(name = "applicationBean", eager = true)
 @SessionScoped
 public class ApplicationBean implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 5550768740315016091L;
-	/*WriterService writerService = new WriterService();
-	BookService bookService = new BookServiceImpl();
-	ReaderService readerService = new ReaderService();*/
+
 	Mapper mapper = new Mapper();
 	
 	@EJB
@@ -41,10 +38,10 @@ public class ApplicationBean implements Serializable{
 	ReaderService readerService;
 
 	public ApplicationBean() {
-
+		loginBean = new LoginBean();
 	}
 
-	//@PostConstruct
+	
 	public void init() {
 		setWriterBeans(getWriters());
 		setReaderBeans(getReaders());
@@ -89,6 +86,10 @@ public class ApplicationBean implements Serializable{
 	@Setter
 	@Getter
 	private List<BookBean> bookBeans;
+	
+	@Setter
+	@Getter
+	private LoginBean loginBean;
 
 	public List<WriterBean> byAuthor(String autoCompleteText) {
 		List<WriterBean> results = new ArrayList<>();

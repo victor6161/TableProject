@@ -4,24 +4,24 @@ package com.iba.kozlov.web.books;
 import java.io.Serializable;
 
 
-import javax.annotation.PostConstruct;
+
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+
 
 import org.apache.log4j.Logger;
 
 
 import com.iba.kozlov.bl.service.BookService;
-import com.iba.kozlov.bl.service.BookServiceImpl;
+
 import com.iba.kozlov.bl.service.ReaderService;
 import com.iba.kozlov.bl.service.WriterService;
 import com.iba.kozlov.web.application.ApplicationBean;
 import com.iba.kozlov.web.books.view.MainBean;
-import com.iba.kozlov.web.component.DataModel;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -55,7 +55,6 @@ public class BookController implements Serializable {
 	
 	Mapper mapper = new Mapper();
 	
-	
 	@EJB
 	BookService bookService;
 	@EJB
@@ -63,8 +62,6 @@ public class BookController implements Serializable {
 	@EJB
 	ReaderService readerService;
 	
-	
-
 	@Setter
 	@Getter
 	private String rowsPerPage = "10";
@@ -73,17 +70,6 @@ public class BookController implements Serializable {
 		LOGGER.info("select row " + rowsPerPage);
 	}
 	
-
-	
-/*	
-	@EJB
-	LibrarySessionBeanLocal ejbTest;*/
-	
-/*	public void info(){
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", ejbTest.getTest()));
-	}*/
-
-	//@PostConstruct
 	public void init() {
 		facade.initData();
 	}
@@ -94,14 +80,11 @@ public class BookController implements Serializable {
 	
 	public void edit() {
 		LOGGER.info("edit" + mainBean.getEditorBean().toString());
-		LOGGER.info("*********writer is "+mainBean.getEditorBean().getWriter());
 		facade.editBook();
 	}
 
 	public void onSearch() {
 		LOGGER.info("Search*");
-
-			
 		facade.onSearch();
 	}
 
@@ -123,6 +106,8 @@ public class BookController implements Serializable {
 	public void onRemove() {
 
 	}
+
+
 	
 
 }

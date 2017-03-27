@@ -70,7 +70,7 @@ public class WriterController implements Serializable{
 
 	}
 	public void add() {
-		LOGGER.info("add!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");	
+		LOGGER.info("add");	
 		facade.add();
 	}
 	public void edit() {

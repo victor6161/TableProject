@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -21,6 +25,7 @@ import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.application.WriterBean;
 import com.iba.kozlov.web.books.view.TableRowBean;
 import com.iba.kozlov.web.component.ChartBean;
+import com.iba.kozlov.web.security.SessionUtils;
 
 public class BookDataFacade implements Serializable {
 	private static final Logger LOGGER = Logger.getLogger(BookDataFacade.class);
@@ -199,5 +204,11 @@ public class BookDataFacade implements Serializable {
 	
 		
 	}
+
+	
+
+		
+		
+	
 
 }

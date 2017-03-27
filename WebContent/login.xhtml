@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:writer="http://java.sun.com/jsf/composite/pages/writer"
+	xmlns:general="http://java.sun.com/jsf/composite/pages/general">
+
+<h:head>
+
+</h:head>
+<h:body>
+	<p:panelGrid columns="1"  style="width:100%;text-align:center;">
+		<f:facet name="header">
+			<!-- <general:navigation /> -->
+
+		</f:facet>
+		
+			<h:form>
+				<p:column style="display:block; text-align:center">
+					<p:row>
+						<p:outputLabel value="Username" />
+						<br></br>
+						<p:inputText id="username"
+							value="#{applicationBean.loginBean.login}"></p:inputText>
+					</p:row>
+					<br></br><br></br>
+	
+				
+					<p:row>
+						<p:outputLabel value="Password" />
+						<br></br>
+						<p:password id="password" value="#{applicationBean.loginBean.password}"></p:password>
+					</p:row>
+					<br></br>
+						<p:commandButton action="#{securityController.validateUsernamePassword}" value="Login"></p:commandButton>
+				</p:column>	
+			</h:form>
+	
+		<f:facet name="footer">
+			<general:footer />
+		</f:facet>
+	</p:panelGrid>
+
+</h:body>
+</html>

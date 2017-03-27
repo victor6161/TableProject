@@ -12,4 +12,12 @@
 			com.iba.kozlov.web.component.HtmlHelloWorld
 		</component-class>
 	</component> -->
+	<navigation-rule>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>book</from-outcome>
+			<to-view-id>/book.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

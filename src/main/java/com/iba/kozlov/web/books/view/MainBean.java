@@ -9,7 +9,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.iba.kozlov.web.component.ChartBean;
+
 import com.iba.kozlov.web.component.DataModel;
 
 import lombok.Getter;
@@ -54,11 +54,13 @@ public class MainBean {
 
 
 
+
 	public MainBean() {
 		searchBean=new SearchBean();
 		addBean = new AddBean();
 		editorBean = new EditorBean();
 		dataModel = new DataModel();
+	
 		
 	}
 
