@@ -11,12 +11,17 @@
 <composite:implementation>
 
 
-
 	<p:row>
+		<p:column colspan="3">
+			<p>Navigation Panel</p>
+		</p:column>
+	</p:row>
+	<p:row>
+
 		<p:column>
 
 			<h:form>
-				<p:menu style="text-align:left">
+				<p:menu style="text-align:left" rendered="#{applicationBean.loginBean.hasRole('reader')}">
 
 					<p:menuitem value="Book Page" icon="ui-icon-home" action="book.xhtml?faces-redirect=true" />
 					<p:menuitem value="Writer Page" icon="ui-icon-star" action="writer.xhtml?faces-redirect=true" />
@@ -25,7 +30,7 @@
 			</h:form>
 	
 		</p:column>
-		<p:column colspan="2">
+		<p:column colspan="2" rendered="#{applicationBean.loginBean.hasRole('reader')}">
 					<h:form>
 						<p>Welcome #{applicationBean.loginBean.login}</p>
 						<h:commandLink action="#{securityController.logout}" value="Logout"></h:commandLink>

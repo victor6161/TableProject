@@ -8,6 +8,7 @@ import lombok.Setter;
 public class LoginBean implements Serializable {
 	public LoginBean() {
 		super();
+		this.role="";
 		
 	}
 

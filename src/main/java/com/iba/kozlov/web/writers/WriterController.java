@@ -4,17 +4,17 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+
 
 import org.apache.log4j.Logger;
 
 
 import com.iba.kozlov.bl.service.BookService;
-import com.iba.kozlov.bl.service.BookServiceImpl;
+
 import com.iba.kozlov.bl.service.ReaderService;
 import com.iba.kozlov.bl.service.WriterService;
 import com.iba.kozlov.web.application.ApplicationBean;

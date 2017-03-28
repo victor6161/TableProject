@@ -6,17 +6,26 @@
 	<lifecycle>
 		<phase-listener>com.iba.kozlov.web.books.CustomPhaseListener</phase-listener>
 	</lifecycle>
-<!-- 	<component>
-		<component-type>HtmlHelloWorld</component-type>
-		<component-class>
-			com.iba.kozlov.web.component.HtmlHelloWorld
-		</component-class>
-	</component> -->
+
 	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>book</from-outcome>
 			<to-view-id>/book.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/registration.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>registration</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,18 +17,17 @@ import com.iba.kozlov.db.dto.ReaderDto;
 import com.iba.kozlov.db.dto.WriterDto;
 import com.iba.kozlov.web.books.Mapper;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
 @ManagedBean(name = "applicationBean", eager = true)
 @SessionScoped
-public class ApplicationBean implements Serializable{
+public class ApplicationBean implements Serializable {
 
 	private static final long serialVersionUID = 5550768740315016091L;
 
 	Mapper mapper = new Mapper();
-	
+
 	@EJB
 	WriterService writerService;
 	@EJB
@@ -39,9 +37,16 @@ public class ApplicationBean implements Serializable{
 
 	public ApplicationBean() {
 		loginBean = new LoginBean();
+		registrationBean = new RegistrationBean();
 	}
 
-	
+	@Setter
+	@Getter
+	private LoginBean loginBean;
+	@Setter
+	@Getter
+	private RegistrationBean registrationBean;
+
 	public void init() {
 		setWriterBeans(getWriters());
 		setReaderBeans(getReaders());
@@ -86,10 +91,6 @@ public class ApplicationBean implements Serializable{
 	@Setter
 	@Getter
 	private List<BookBean> bookBeans;
-	
-	@Setter
-	@Getter
-	private LoginBean loginBean;
 
 	public List<WriterBean> byAuthor(String autoCompleteText) {
 		List<WriterBean> results = new ArrayList<>();

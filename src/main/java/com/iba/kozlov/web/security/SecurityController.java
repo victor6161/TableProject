@@ -1,19 +1,17 @@
 package com.iba.kozlov.web.security;
 
-import java.util.List;
+
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
 import com.iba.kozlov.bl.service.ReaderService;
-import com.iba.kozlov.db.dto.ReaderDto;
+
 import com.iba.kozlov.web.application.ApplicationBean;
 
 import lombok.Getter;
@@ -27,40 +25,30 @@ public class SecurityController {
 	@ManagedProperty(value = "#{applicationBean}")
 	private ApplicationBean applicationBean;
 
+	@Setter
+	@Getter
 	@EJB
 	private ReaderService readerService;
+	@Setter
+	@Getter
+	private Mapper mapper = new Mapper();
+
+	SecurityDataFacade dataFacade = new SecurityDataFacade(this);
 
 	private static final Logger LOGGER = Logger.getLogger(SecurityController.class);
 
 	public String validateUsernamePassword() {
 		LOGGER.info("validateUsernamePassword");
-		if (checkPassword()) {
-			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", applicationBean.getLoginBean().getLogin());
-			return "book";
-		} else {
-			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("Not Successful", "Not Successful"));
-			return "login";
-		}
+		return dataFacade.validateUsernamePassword();
 	}
 
 	public String logout() {
 		LOGGER.info("logout");
-		HttpSession session = SessionUtils.getSession();
-		session.invalidate();
-		return "login";
+		return dataFacade.logout();
+	}
+	public String registration() {
+		LOGGER.info("registration");
+		return dataFacade.registration();
 	}
 
-	private boolean checkPassword() {
-		List<ReaderDto> readers = readerService.readReaders();
-		for (ReaderDto reader : readers) {
-			if (applicationBean.getLoginBean().getLogin().equals(reader.getLogin())
-					&& applicationBean.getLoginBean().getPassword().equals(reader.getPassword())) {
-				applicationBean.getLoginBean().setRole(reader.getRole());
-				return true;	
-			}
-		}
-		return false;
-	}
 }

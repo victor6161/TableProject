@@ -13,33 +13,43 @@
 
 </h:head>
 <h:body>
-	<p:panelGrid columns="1"  style="width:100%;text-align:center;">
+	<p:panelGrid style="height:100%;border:0;width:100%;text-align:center;">
 		<f:facet name="header">
-			<!-- <general:navigation /> -->
-
+			<general:navigation />
 		</f:facet>
-		
-			<h:form>
-				<p:column style="display:block; text-align:center">
-					<p:row>
-						<p:outputLabel value="Username" />
-						<br></br>
-						<p:inputText id="username"
-							value="#{applicationBean.loginBean.login}"></p:inputText>
-					</p:row>
-					<br></br><br></br>
-	
-				
-					<p:row>
-						<p:outputLabel value="Password" />
-						<br></br>
-						<p:password id="password" value="#{applicationBean.loginBean.password}"></p:password>
-					</p:row>
+
+
+		<p:row>
+			<p:column colspan="2">
+				<h:form>
+					<p:outputLabel value="Username" />
 					<br></br>
-						<p:commandButton action="#{securityController.validateUsernamePassword}" value="Login"></p:commandButton>
-				</p:column>	
-			</h:form>
-	
+					<p:inputText id="username"
+						value="#{applicationBean.loginBean.login}"></p:inputText>
+					<br></br>
+					<p:outputLabel value="Password" />
+					<br></br>
+					<p:password id="password"
+						value="#{applicationBean.loginBean.password}"></p:password>
+
+					<br></br>
+					<p:commandButton
+						action="#{securityController.validateUsernamePassword}"
+						update="@form" value="Login"></p:commandButton>
+					<br></br>
+					<p:commandLink value="Don't have an account?"
+						action="registration.xhtml?faces-redirect=true"></p:commandLink>
+				</h:form>
+			</p:column>
+		</p:row>
+
+		<br></br>
+		<br></br>
+		<br></br>
+
+
+
+
 		<f:facet name="footer">
 			<general:footer />
 		</f:facet>
