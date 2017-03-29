@@ -17,6 +17,9 @@ import lombok.Setter;
 public class SearchBean implements Serializable {
 
 
+	public SearchBean() {
+		timeSearchBean = new TimeSearchBean();
+	}
 	private static final long serialVersionUID = -3320379691024559538L;
 	
 	@Setter
@@ -30,5 +33,8 @@ public class SearchBean implements Serializable {
 	@Setter
 	@Getter
 	private BookBean bookSearch;
+	@Setter
+	@Getter
+	private TimeSearchBean timeSearchBean;
 
 }

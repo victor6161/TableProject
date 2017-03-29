@@ -3,11 +3,8 @@ package com.iba.kozlov.web.books;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -19,13 +16,12 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 
 import com.iba.kozlov.db.dto.BookDto;
-
+import com.iba.kozlov.db.dto.ReaderDto;
 import com.iba.kozlov.db.dto.WriterDto;
-
+import com.iba.kozlov.web.application.ReaderBean;
 import com.iba.kozlov.web.application.WriterBean;
 import com.iba.kozlov.web.books.view.TableRowBean;
 import com.iba.kozlov.web.component.ChartBean;
-import com.iba.kozlov.web.security.SessionUtils;
 
 public class BookDataFacade implements Serializable {
 	private static final Logger LOGGER = Logger.getLogger(BookDataFacade.class);
@@ -53,7 +49,6 @@ public class BookDataFacade implements Serializable {
 			headerRow.getCell(i).setCellStyle(style);
 		}
 
-		
 		for (int i = 0; i < sheet.getLastRowNum() + 1; i++) {
 			LOGGER.info("2");
 			HSSFRow row = sheet.getRow(i);
@@ -185,6 +180,7 @@ public class BookDataFacade implements Serializable {
 	}
 
 	public List<ChartBean> setMostPopularWriter() {
+		LOGGER.info("setMostPopularWriter");
 		List<BookDto> bookAll = controller.bookService.readBooks();
 		List<WriterDto> writerAll = controller.writerService.readWriters();
 		List<ChartBean> chartValue = new ArrayList<>();
@@ -197,18 +193,30 @@ public class BookDataFacade implements Serializable {
 				}
 			}
 			chartValue.add(new ChartBean(writer.getSurname(), amountBooksByWriter));
-
 		}
-		Collections.sort( chartValue);
+		Collections.sort(chartValue);
 		return chartValue;
-	
-		
+
 	}
 
-	
-
+	public void getReaderByTime() {
+		LOGGER.info("getReaderByTime");
 		
+		controller.getMainBean().setReaderBeanList(new ArrayList<>());
 		
-	
+		List<ReaderDto> readerAll = controller.readerService.readReaders();
+		List<ReaderBean> readerBean = new ArrayList<ReaderBean>();
 
+		for (ReaderDto readerDto : readerAll) {
+			readerBean.add(controller.mapper.readerDtoToBean(readerDto));
+		}
+		Date to = controller.getMainBean().getSearchBean().getTimeSearchBean().getTo();
+		Date from = controller.getMainBean().getSearchBean().getTimeSearchBean().getFrom();
+		for (ReaderBean reader : readerBean) {
+			if (reader.getDateRegistration() != null && to != null && from != null)
+				if (reader.getDateRegistration().before(to) && reader.getDateRegistration().after(from)) {
+					controller.getMainBean().getReaderBeanList().add(reader);
+				}
+		}
+	}
 }

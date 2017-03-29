@@ -91,6 +91,8 @@ public class Mapper {
 		readerBean.setId(readerDto.getId());
 		readerBean.setName(readerDto.getName());
 		readerBean.setSurname(readerDto.getSurname());
+		readerBean.setDateRegistration(readerDto.getDateRegistration());
+		readerBean.setLogin(readerDto.getLogin());
 		return readerBean;
 
 	}

@@ -106,6 +106,11 @@ public class BookController implements Serializable {
 	public void onRemove() {
 
 	}
+	
+	public void getReaderByTime(){
+		LOGGER.info("getReaderByTime()");
+		facade.getReaderByTime();
+	}
 
 
 	

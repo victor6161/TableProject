@@ -14,9 +14,9 @@
 <composite:implementation>
 
 	<h:outputStylesheet library="css" name="nv.d3.css"></h:outputStylesheet>
-		
+
 	<h:outputScript library="js" name="test.js"></h:outputScript>
-	
+
 	<p:row>
 		<p:column style="text-align: left;">
 			<h:form>
@@ -78,14 +78,12 @@
 						<p:column>
 							<h:outputText value="#{reader.surname}" />
 						</p:column>
-
-
 					</p:autoComplete>
 				</div>
 				<p:commandButton value="Search"
 					update=":#{p:component('customerTableForm')}"
 					actionListener="#{bookController.onSearch}">
-					<p:resetInput target=":#{p:component('booknameSearch')}"  />
+					<p:resetInput target=":#{p:component('booknameSearch')}" />
 				</p:commandButton>
 			</h:form>
 
@@ -94,13 +92,38 @@
 
 			<general:informationComp ccid="informationComp" label1="Books"
 				value1="#{bookController.mainBean.amount}" label2="totalPrice"
-				value2="#{bookController.mainBean.totalPrice}"  rendered="#{applicationBean.loginBean.hasRole('admin')}"/>
+				value2="#{bookController.mainBean.totalPrice}"
+				rendered="#{applicationBean.loginBean.hasRole('reader')}" />
 
 		</p:column>
 		<p:column>
 
-			<t:helloWorld model="#{bookController.mainBean.dataModel}"/>
-	
+			<t:helloWorld model="#{bookController.mainBean.dataModel}" />
+
+		</p:column>
+		<p:column>
+			<h:form>
+
+				<p:outputLabel for="fromDatetime" value="From" />
+				<p:calendar id="fromDatetime"
+					value="#{bookController.mainBean.searchBean.timeSearchBean.from}"
+					pattern="MM/dd/yyyy HH:mm:ss" />
+
+				<br></br><br></br>
+
+				<p:outputLabel for="toDatetime" value="To" />
+				<p:calendar id="toDatetime"
+					value="#{bookController.mainBean.searchBean.timeSearchBean.to}"
+					pattern="MM/dd/yyyy HH:mm:ss" />
+
+				<br></br><br></br>
+				
+				<p:commandButton oncomplete="PF('showReaderByTime').show();"
+					value="submit" update=":#{p:component('idReader')}"
+					actionListener="#{bookController.getReaderByTime}">
+				</p:commandButton>
+
+			</h:form>
 		</p:column>
 
 	</p:row>

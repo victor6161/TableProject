@@ -31,8 +31,8 @@ public class LoginFilter implements Filter {
 			HttpSession ses = reqt.getSession(false);
 
 			String reqURI = reqt.getRequestURI();
-			if (reqURI.indexOf("/login.xhtml") >= 0 || (ses != null && ses.getAttribute("username") != null)
-					|| reqURI.indexOf("/registration.xhtml") >= 0)
+			if (reqURI.indexOf("/login.xhtml") >= 0 || (ses != null && ses.getAttribute("username") != null) ||
+					reqURI.indexOf("/registration.xhtml")>=0)
 				chain.doFilter(request, response);
 			else {
 				resp.sendRedirect(reqt.getContextPath() + "/faces/login.xhtml");

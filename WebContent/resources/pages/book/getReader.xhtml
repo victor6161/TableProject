@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface />
+
+<composite:implementation>
+
+	<p:dialog id="idReader" header="Create Book" widgetVar="showReaderByTime"  minHeight="40" modal="true">
+		<h:form>
+	
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="#{bookController.mainBean.searchBean.timeSearchBean.from}" />
+			</div>
+			<div style="margin: 10px; font-weight: bold;">
+				<h:outputText value="#{bookController.mainBean.searchBean.timeSearchBean.to}" />
+			</div>
+			<p:dataTable  var="reader" value="#{bookController.mainBean.readerBeanList}">
+					<p:column headerText="Login">
+						<h:outputText value="#{reader.login}" />
+					</p:column>
+					<p:column headerText="Time Registration">
+						<h:outputText value="#{reader.dateRegistration}" />
+					</p:column>
+			
+			</p:dataTable>
+			
+
+		</h:form>
+	</p:dialog>
+</composite:implementation>
+</html>
