@@ -35,20 +35,25 @@
 				<h:outputText value="BookName" />
 			</div>
 			<div style="margin: 10px">
-				<p:inputText id="bookname" value="#{bookController.mainBean.addBean.bookname}" required="true">
+				<p:inputText id="bookname" value="#{bookController.mainBean.addBean.bookname}" required="true" requiredMessage="Field is empty">
 					
 				</p:inputText>
+				<br></br>
+				<h:message for="bookname" style="color:red" />
 			</div>
 			<div style="margin: 10px; font-weight: bold;">
 				<h:outputText value="Price" />
 			</div>
 			<div style="margin: 10px">
-				<p:inputText id="price" value="#{bookController.mainBean.addBean.price}" required="true">
-				
+				<p:inputText id="price" value="#{bookController.mainBean.addBean.price}" required="true" converterMessage="Enter Number Please" requiredMessage="field is empty">
+				 	<f:convertNumber integerOnly="true" type="number" />
+				 	
 				</p:inputText>
+				<br></br>
+				<h:message for="price" style="color:red" />
 			</div>
 
-			<p:commandButton value="Add"  actionListener="#{bookController.add}" update="@form :#{p:component('customerTableForm')} :#{p:component('informationComp')}" oncomplete="PF('createBook').hide();"   />
+			<p:commandButton value="Add"  actionListener="#{bookController.add}" update="@form :#{p:component('customerTableForm')} :#{p:component('informationComp')}"/>
 			<p:commandButton value="Close" onclick="PF('createBook').hide();" immediate="true"  update=":#{p:component('createBook')}" >
 				
 			</p:commandButton>

@@ -201,7 +201,7 @@ public class BookDataFacade implements Serializable {
 
 	public void getReaderByTime() {
 		LOGGER.info("getReaderByTime");
-		
+		controller.getMainBean().getSearchBean().getTimeSearchBean().setShow(true);
 		controller.getMainBean().setReaderBeanList(new ArrayList<>());
 		
 		List<ReaderDto> readerAll = controller.readerService.readReaders();

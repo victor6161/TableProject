@@ -12,11 +12,9 @@ import javax.faces.context.ResponseWriter;
 import org.apache.log4j.Logger;
 
 @FacesComponent(value = "HtmlHelloWorld")
-@ResourceDependencies({
-	@ResourceDependency(library = "js",name = "d3.js" ,target="head"),
-	@ResourceDependency(library = "js",name = "nv.d3.min.js",target="head" ),
-	@ResourceDependency(library = "js",name = "barChart.js" ,target="head")
-})
+@ResourceDependencies({ @ResourceDependency(library = "js", name = "d3.js", target = "head"),
+		@ResourceDependency(library = "js", name = "nv.d3.min.js", target = "head"),
+		@ResourceDependency(library = "js", name = "barChart.js", target = "head") })
 public class HtmlHelloWorld extends UIComponentBase {
 	private static final Logger LOGGER = Logger.getLogger(HtmlHelloWorld.class);
 
@@ -33,19 +31,18 @@ public class HtmlHelloWorld extends UIComponentBase {
 		LOGGER.info("encodeBegin");
 
 		DataModel dataModel = (DataModel) this.getAttributes().get("model");
-		
-		 
+
 		ResponseWriter writer = context.getResponseWriter();
 		writer.write("TOP 5 Most Popular Writer");
 		StringBuffer json = new StringBuffer();
 
-		//json.append("\nfunction exampleData() {\n");
+		// json.append("\nfunction exampleData() {\n");
 		json.append("var chartValue =  [\n");
 		json.append("{\n");
 		json.append("key: 'Cumulative Return',\n");
 		json.append("values: [\n");
-		
-		for(int i=0;i<topFiveWriter;i++){
+
+		for (int i = 0; i < topFiveWriter; i++) {
 			json.append("{ \n");
 			json.append(String.format("'label' : '%s',\n", dataModel.getChartValue().get(i).getWriterSurname()));
 			json.append(String.format("'value' : '%s'\n", dataModel.getChartValue().get(i).getBookAmount()));
@@ -54,7 +51,7 @@ public class HtmlHelloWorld extends UIComponentBase {
 		json.append(" ]  \n");
 		json.append(" }  \n");
 		json.append(" ]  \n");
-		//json.append(" }  \n");
+		// json.append(" } \n");
 
 		StringBuffer html = new StringBuffer();
 		html.append("<div id='chart'>");
@@ -66,8 +63,9 @@ public class HtmlHelloWorld extends UIComponentBase {
 		StringBuffer javascript = new StringBuffer();
 		javascript.append("\n<script>");
 		javascript.append(json.toString());
-		javascript.append(String.format("var model={isStaggerValue:'%s',isTooltips:'%s',isShowValue:'%s'};\n",dataModel.isStaggerLabels(), dataModel.isTooltips(),dataModel.isShowValues()));
-		
+		javascript.append(String.format("var model={isStaggerValue:'%s',isTooltips:'%s',isShowValue:'%s'};\n",
+				dataModel.isStaggerLabels(), dataModel.isTooltips(), dataModel.isShowValues()));
+
 		javascript.append("test(model);\n");
 
 		javascript.append("</script>");
@@ -76,4 +74,3 @@ public class HtmlHelloWorld extends UIComponentBase {
 	}
 
 }
-

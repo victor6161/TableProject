@@ -12,5 +12,8 @@ public class TimeSearchBean {
 	@Setter
 	@Getter
 	private Date to;
+	@Setter
+	@Getter
+	private boolean show = false;
 
 }

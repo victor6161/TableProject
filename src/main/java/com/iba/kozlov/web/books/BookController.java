@@ -13,7 +13,7 @@ import javax.faces.bean.SessionScoped;
 
 
 import org.apache.log4j.Logger;
-
+import org.primefaces.context.RequestContext;
 
 import com.iba.kozlov.bl.service.BookService;
 
@@ -95,7 +95,7 @@ public class BookController implements Serializable {
 
 	public void add() {
 		LOGGER.info("add"+mainBean.getAddBean().toString());
-
+		RequestContext.getCurrentInstance().execute("PF('createBook').hide()");
 		facade.add();
 	}
 	public void onAddOpen(){

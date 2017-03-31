@@ -26,12 +26,13 @@
 					<br></br>
 					<p:inputText id="username"
 						value="#{applicationBean.loginBean.login}"></p:inputText>
+						<h:message for="username" style="color:red"></h:message>
 					<br></br>
 					<p:outputLabel value="Password" />
 					<br></br>
 					<p:password id="password"
 						value="#{applicationBean.loginBean.password}"></p:password>
-
+						<h:message for="password" style="color:red"></h:message>
 					<br></br>
 					<p:commandButton
 						action="#{securityController.validateUsernamePassword}"

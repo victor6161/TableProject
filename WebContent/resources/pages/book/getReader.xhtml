@@ -10,7 +10,7 @@
 
 <composite:implementation>
 
-	<p:dialog id="idReader" header="Create Book" widgetVar="showReaderByTime"  minHeight="40" modal="true">
+	<p:dialog id="idReader" header="Create Book" widgetVar="showReaderByTime"  minHeight="40" modal="true" >
 		<h:form>
 	
 			<div style="margin: 10px; font-weight: bold;">
@@ -19,7 +19,7 @@
 			<div style="margin: 10px; font-weight: bold;">
 				<h:outputText value="#{bookController.mainBean.searchBean.timeSearchBean.to}" />
 			</div>
-			<p:dataTable  var="reader" value="#{bookController.mainBean.readerBeanList}">
+			<p:dataTable  var="reader" value="#{bookController.mainBean.readerBeanList}" rendered="#{bookController.mainBean.searchBean.timeSearchBean.show}">
 					<p:column headerText="Login">
 						<h:outputText value="#{reader.login}" />
 					</p:column>
