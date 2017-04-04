@@ -25,21 +25,27 @@
 					<p:outputLabel value="Username" />
 					<br></br>
 					<p:inputText id="username"
-						value="#{applicationBean.loginBean.login}"></p:inputText>
+						value="#{applicationBean.loginBean.login}" required="true" requiredMessage="field is empty"></p:inputText>
+						<br></br>
 						<h:message for="username" style="color:red"></h:message>
 					<br></br>
 					<p:outputLabel value="Password" />
 					<br></br>
 					<p:password id="password"
-						value="#{applicationBean.loginBean.password}"></p:password>
+						value="#{applicationBean.loginBean.password}" required="true"  requiredMessage="field is empty"></p:password>
+						<br></br>
 						<h:message for="password" style="color:red"></h:message>
 					<br></br>
 					<p:commandButton
 						action="#{securityController.validateUsernamePassword}"
-						update="@form" value="Login"></p:commandButton>
-					<br></br>
+						update="@form" value="Login" ajax="false"></p:commandButton>
+							<p:commandButton
+						action="#{securityController.test}"
+						 value="test" ajax="false"></p:commandButton>
+					<br></br><br></br><br></br><br></br>
 					<p:commandLink value="Don't have an account?"
-						action="registration.xhtml?faces-redirect=true"></p:commandLink>
+						action="registration.xhtml?faces-redirect=true" immediate="true"></p:commandLink>
+						<br></br><br></br><br></br><br></br>
 				</h:form>
 			</p:column>
 		</p:row>

@@ -3,15 +3,16 @@ package com.iba.kozlov.web.security;
 
 
 import javax.ejb.EJB;
-
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
 import com.iba.kozlov.bl.service.ReaderService;
-
+import com.iba.kozlov.db.dto.ReaderDto;
 import com.iba.kozlov.web.application.ApplicationBean;
 
 import lombok.Getter;
@@ -50,5 +51,14 @@ public class SecurityController {
 		LOGGER.info("registration");
 		return dataFacade.registration();
 	}
+	public void test(){
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_WARN,
+						"Incorrect Username and Passowrd",
+						"Please enter correct username and Password"));
+		
+	}
+
 
 }

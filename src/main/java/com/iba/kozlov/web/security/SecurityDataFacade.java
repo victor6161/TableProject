@@ -19,6 +19,7 @@ public class SecurityDataFacade {
 		this.sController = pController;
 	}
 	private static final Logger LOGGER = Logger.getLogger(SecurityDataFacade.class);
+	
 	public String validateUsernamePassword() {
 		LOGGER.info("validateUsernamePassword");
 		if (checkPassword()) {
@@ -26,11 +27,16 @@ public class SecurityDataFacade {
 			session.setAttribute("username",sController.getApplicationBean().getLoginBean().getLogin());
 			return "book";
 		} else {
-			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("Not Successful", "Not Successful"));
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Incorrect Username and Passowrd",
+							"Please enter correct username and Password"));
+			
 			return "login";
 		}
 	}
+	
 	public String logout() {
 		LOGGER.info("logout");
 		HttpSession session = SessionUtils.getSession();
@@ -53,6 +59,7 @@ public class SecurityDataFacade {
 		}
 		return false;
 	}
+	
 	public String registration() {
 		LOGGER.info("registration");
 		ReaderDto readerDto = sController.getMapper().registrationBeanToReaderDto(sController.getApplicationBean().getRegistrationBean());
