@@ -7,9 +7,9 @@
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:book="http://java.sun.com/jsf/composite/pages/book">
 
-<composite:interface />
-
-<composite:implementation>
+<!-- <composite:interface /> -->
+<body>
+<ui:composition>
 	<p:row>
 		<p:column colspan="4">
 			<h:form>
@@ -85,5 +85,6 @@
 	<book:showReaderByTime />
 	<book:addBook />
 	<book:updateBook />
-</composite:implementation>
+</ui:composition>
+</body>
 </html>

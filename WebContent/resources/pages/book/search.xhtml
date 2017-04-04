@@ -8,124 +8,125 @@
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:general="http://java.sun.com/jsf/composite/pages/general"
 	xmlns:t="http://jsfcompref.com/example">
+<h:body>
+	<ui:composition>
 
-<composite:interface />
+		<h:outputStylesheet library="css" name="nv.d3.css"></h:outputStylesheet>
 
-<composite:implementation>
+		<h:outputScript library="js" name="test.js"></h:outputScript>
 
-	<h:outputStylesheet library="css" name="nv.d3.css"></h:outputStylesheet>
+		<p:row>
+			<p:column style="text-align: left;">
+				<h:form>
 
-	<h:outputScript library="js" name="test.js"></h:outputScript>
+					<div style="margin: 10px">
+						<p:outputLabel value="Search by Author" for="authorSearch"
+							style="margin-right:10px;" />
 
-	<p:row>
-		<p:column style="text-align: left;">
-			<h:form>
+						<p:autoComplete id="authorSearch"
+							value="#{bookController.mainBean.searchBean.authorSearch}"
+							completeMethod="#{applicationBean.byAuthor}" var="writer"
+							itemLabel="#{writer.surname}" itemValue="#{writer}"
+							converter="com.iba.kozlov.AuthorConverter" forceSelection="true"
+							multiple="true">
 
-				<div style="margin: 10px">
-					<p:outputLabel value="Search by Author" for="authorSearch"
-						style="margin-right:10px;" />
-
-					<p:autoComplete id="authorSearch"
-						value="#{bookController.mainBean.searchBean.authorSearch}"
-						completeMethod="#{applicationBean.byAuthor}" var="writer"
-						itemLabel="#{writer.surname}" itemValue="#{writer}"
-						converter="com.iba.kozlov.AuthorConverter" forceSelection="true"
-						multiple="true">
-
-						<p:column>
-							<h:outputText value="#{writer.name}" />
-						</p:column>
-						<p:column>
-							<h:outputText value="#{writer.surname}" />
-						</p:column>
+							<p:column>
+								<h:outputText value="#{writer.name}" />
+							</p:column>
+							<p:column>
+								<h:outputText value="#{writer.surname}" />
+							</p:column>
 
 
-					</p:autoComplete>
-				</div>
-				<div style="margin: 10px">
-					<p:outputLabel value="Search by bookname" for="booknameSearch"
-						style="margin-right:10px;" />
+						</p:autoComplete>
+					</div>
+					<div style="margin: 10px">
+						<p:outputLabel value="Search by bookname" for="booknameSearch"
+							style="margin-right:10px;" />
 
-					<p:autoComplete id="booknameSearch"
-						value="#{bookController.mainBean.searchBean.bookSearch}"
-						completeMethod="#{applicationBean.byBookname}" var="book"
-						itemLabel="#{book.bookname}" itemValue="#{book}"
-						converter="com.iba.kozlov.web.converter.BookConverter">
+						<p:autoComplete id="booknameSearch"
+							value="#{bookController.mainBean.searchBean.bookSearch}"
+							completeMethod="#{applicationBean.byBookname}" var="book"
+							itemLabel="#{book.bookname}" itemValue="#{book}"
+							converter="com.iba.kozlov.web.converter.BookConverter">
 
-						<p:column>
-							<h:outputText value="#{book.bookname}" />
-						</p:column>
-						<p:column>
-							<h:outputText value="#{book.price}" />
-						</p:column>
+							<p:column>
+								<h:outputText value="#{book.bookname}" />
+							</p:column>
+							<p:column>
+								<h:outputText value="#{book.price}" />
+							</p:column>
 
 
-					</p:autoComplete>
-				</div>
-				<div style="margin: 10px">
-					<p:outputLabel value="Search by reader" for="readerSearch"
-						style="margin-right:10px;" />
+						</p:autoComplete>
+					</div>
+					<div style="margin: 10px">
+						<p:outputLabel value="Search by reader" for="readerSearch"
+							style="margin-right:10px;" />
 
-					<p:autoComplete id="readerSearch"
-						value="#{bookController.mainBean.searchBean.readerSearch}"
-						completeMethod="#{applicationBean.byReader}" var="reader"
-						itemLabel="#{reader.surname}" itemValue="#{reader}"
-						converter="com.iba.kozlov.ReaderConverter">
+						<p:autoComplete id="readerSearch"
+							value="#{bookController.mainBean.searchBean.readerSearch}"
+							completeMethod="#{applicationBean.byReader}" var="reader"
+							itemLabel="#{reader.surname}" itemValue="#{reader}"
+							converter="com.iba.kozlov.ReaderConverter">
 
-						<p:column>
-							<h:outputText value="#{reader.name}" />
-						</p:column>
-						<p:column>
-							<h:outputText value="#{reader.surname}" />
-						</p:column>
-					</p:autoComplete>
-				</div>
-				<p:commandButton value="Search"
-					update=":#{p:component('customerTableForm')}"
-					actionListener="#{bookController.onSearch}">
-					<p:resetInput target=":#{p:component('booknameSearch')}" />
-				</p:commandButton>
-			</h:form>
+							<p:column>
+								<h:outputText value="#{reader.name}" />
+							</p:column>
+							<p:column>
+								<h:outputText value="#{reader.surname}" />
+							</p:column>
+						</p:autoComplete>
+					</div>
+					<p:commandButton value="Search"
+						update=":#{p:component('customerTableForm')}"
+						actionListener="#{bookController.onSearch}">
+						<p:resetInput target=":#{p:component('booknameSearch')}" />
+					</p:commandButton>
+				</h:form>
 
-		</p:column>
-		<p:column>
+			</p:column>
+			<p:column>
 
-			<general:informationComp ccid="informationComp" label1="Books"
-				value1="#{bookController.mainBean.amount}" label2="totalPrice"
-				value2="#{bookController.mainBean.totalPrice}"
-				rendered="#{applicationBean.loginBean.hasRole('reader') or applicationBean.loginBean.hasRole('admin')}" />
+				<general:informationComp ccid="informationComp" label1="Books"
+					value1="#{bookController.mainBean.amount}" label2="totalPrice"
+					value2="#{bookController.mainBean.totalPrice}"
+					rendered="#{applicationBean.loginBean.hasRole('reader') or applicationBean.loginBean.hasRole('admin')}" />
 
-		</p:column>
-		<p:column>
+			</p:column>
+			<p:column>
 
-			<t:helloWorld model="#{bookController.mainBean.dataModel}" />
+				<t:helloWorld model="#{bookController.mainBean.dataModel}" />
 
-		</p:column>
-		<p:column>
-			<h:form>
+			</p:column>
+			<p:column>
+				<h:form>
 
-				<p:outputLabel for="fromDatetime" value="From" />
-				<p:calendar id="fromDatetime"
-					value="#{bookController.mainBean.searchBean.timeSearchBean.from}"
-					pattern="MM/dd/yyyy HH:mm:ss" />
+					<p:outputLabel for="fromDatetime" value="From" />
+					<p:calendar id="fromDatetime"
+						value="#{bookController.mainBean.searchBean.timeSearchBean.from}"
+						pattern="MM/dd/yyyy HH:mm:ss" />
 
-				<br></br><br></br>
+					<br></br>
+					<br></br>
 
-				<p:outputLabel for="toDatetime" value="To" />
-				<p:calendar id="toDatetime"
-					value="#{bookController.mainBean.searchBean.timeSearchBean.to}"
-					pattern="MM/dd/yyyy HH:mm:ss" />
+					<p:outputLabel for="toDatetime" value="To" />
+					<p:calendar id="toDatetime"
+						value="#{bookController.mainBean.searchBean.timeSearchBean.to}"
+						pattern="MM/dd/yyyy HH:mm:ss" />
 
-				<br></br><br></br>
-				
-				<p:commandButton oncomplete="PF('showReaderByTime').show();"
-					value="submit" update=":#{p:component('idReader')}"
-					actionListener="#{bookController.getReaderByTime}">
-				</p:commandButton>
+					<br></br>
+					<br></br>
 
-			</h:form>
-		</p:column>
+					<p:commandButton oncomplete="PF('showReaderByTime').show();"
+						value="submit" update=":#{p:component('idReader')}"
+						actionListener="#{bookController.getReaderByTime}">
+					</p:commandButton>
 
-	</p:row>
-</composite:implementation>
+				</h:form>
+			</p:column>
+
+		</p:row>
+	</ui:composition>
+</h:body>
 </html>
