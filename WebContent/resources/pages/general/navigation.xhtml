@@ -30,7 +30,7 @@
 			</h:form>
 	
 		</p:column>
-		<p:column colspan="2" rendered="#{applicationBean.loginBean.hasRole('reader')}">
+		<p:column colspan="2" rendered="#{applicationBean.loginBean.hasRole('reader') or applicationBean.loginBean.hasRole('admin')}">
 					<h:form>
 						<p>Welcome #{applicationBean.loginBean.login}</p>
 						<h:commandLink action="#{securityController.logout}" value="Logout"></h:commandLink>

@@ -65,11 +65,10 @@
             			</h:commandLink>
 					</f:facet>
 
-					<p:ajax event="page" oncomplete="rowsPerPageUpdate()" />
-				
+					<p:ajax event="page" listener="#{bookController.onPaginate}" />
+			
 				</p:dataTable>
-				<p:remoteCommand name="rowsPerPageUpdate"
-					actionListener="#{bookController.onPaginate}" />
+			
 
 			</h:form>
 			<script>
@@ -83,7 +82,7 @@
 	</p:row>
 
 
-	<book:getReader />
+	<book:showReaderByTime />
 	<book:addBook />
 	<book:updateBook />
 </composite:implementation>

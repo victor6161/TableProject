@@ -13,7 +13,7 @@ import com.iba.kozlov.web.application.ApplicationBean;
 import com.iba.kozlov.web.application.BookBean;
 
 
-@FacesConverter("com.iba.kozlov.BookConverter")
+@FacesConverter("com.iba.kozlov.web.converter.BookConverter")
 public class BookConverter implements Converter {
 
 	@Override
@@ -39,14 +39,14 @@ public class BookConverter implements Converter {
 		} else {
 			return null;
 		}
-		// получить список
-		// найти по id - value
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ id - value
 	
 	}
 
 	@Override
 	public String getAsString(FacesContext fc, UIComponent component, Object value) {
-		//получается что отсюда берется value для getAsObject
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ valueпїЅпїЅпїЅ getAsObject
 		if (value instanceof BookBean)
 			return String.valueOf((((BookBean) value).getId()));
 		

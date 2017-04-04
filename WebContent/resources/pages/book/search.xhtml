@@ -50,7 +50,7 @@
 						value="#{bookController.mainBean.searchBean.bookSearch}"
 						completeMethod="#{applicationBean.byBookname}" var="book"
 						itemLabel="#{book.bookname}" itemValue="#{book}"
-						converter="com.iba.kozlov.BookConverter">
+						converter="com.iba.kozlov.web.converter.BookConverter">
 
 						<p:column>
 							<h:outputText value="#{book.bookname}" />
@@ -93,7 +93,7 @@
 			<general:informationComp ccid="informationComp" label1="Books"
 				value1="#{bookController.mainBean.amount}" label2="totalPrice"
 				value2="#{bookController.mainBean.totalPrice}"
-				rendered="#{applicationBean.loginBean.hasRole('reader')}" />
+				rendered="#{applicationBean.loginBean.hasRole('reader') or applicationBean.loginBean.hasRole('admin')}" />
 
 		</p:column>
 		<p:column>
