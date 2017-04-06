@@ -74,7 +74,7 @@ public class BookDataFacade implements Serializable {
 		controller.mainBean.getDataModel().setChartValue(setMostPopularWriter());
 	}
 
-	private Integer totalCost() {
+	public Integer totalCost() {
 		Integer totalPrice = 0;
 		List<TableRowBean> table = getTable();
 		for (TableRowBean row : table) {
@@ -137,13 +137,9 @@ public class BookDataFacade implements Serializable {
 		LOGGER.info("onEditOpen" + bookDto.toString());
 
 		List<WriterBean> writerBean = new ArrayList<WriterBean>();// �� ���� �
-																	// ������
-																	// ��������
+																
 																	// mainBean
-																	// , ���
-																	// �����������
-																	// , ������
-																	// ���������
+																
 		writerBean = controller.mainBean.getEditorBean().getWriters();
 
 		controller.mainBean.setEditorBean(mapper.bookDtoToEditorBean(bookDto));

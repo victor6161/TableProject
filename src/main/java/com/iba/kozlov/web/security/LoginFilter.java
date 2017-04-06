@@ -48,7 +48,6 @@ public class LoginFilter implements Filter {
 					|| reqURI.contains("javax.faces.resource"))
 				chain.doFilter(request, response);
 			else {
-		
 				resp.sendRedirect(reqt.getContextPath() + "/faces/login.xhtml");
 			}
 		} catch (Exception e) {

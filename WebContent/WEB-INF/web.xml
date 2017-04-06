@@ -38,5 +38,13 @@
 	<welcome-file-list>
 		<welcome-file>faces/book.xhtml</welcome-file>
 	</welcome-file-list>
+	<error-page>
+    	<error-code>404</error-code>
+    	<location>/resources/pages/error/error.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/resources/pages/error/error.xhtml</location>
+	</error-page>
 
 </web-app>

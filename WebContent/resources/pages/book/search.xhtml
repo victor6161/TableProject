@@ -95,7 +95,9 @@
 
 			</p:column>
 			<p:column>
-
+			<h:form>
+				<p:commandButton value="test" actionListener="#{bookController.test}" ajax="false"></p:commandButton>
+				</h:form>
 				<t:helloWorld model="#{bookController.mainBean.dataModel}" />
 
 			</p:column>

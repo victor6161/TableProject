@@ -10,18 +10,17 @@
 
 <h:head>
 
-	<h:outputScript library="js" name="selectRow.js" />
-
+	
+	<h:outputStylesheet href="https://fonts.googleapis.com/css?family=Spirax"  />
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </h:head>
 <h:body>
-	<ui:composition template="/resources/pages/template/mainPage.xhtml">
-		<ui:define name="search">
-			<ui:include src="/resources/pages/book/search.xhtml" />
-		</ui:define>
-		<ui:define name="table">
-			<ui:include src="/resources/pages/book/table.xhtml"/>
-		</ui:define>
-    </ui:composition>	
+<div style="text-align:center; color:red; margin-top: 20%; font-family: 'Spirax', cursive; font-size: 50px;">
+	The application is in danger
+	
+</div>
+<h:form>
+	<p:commandLink action = "book.xhtml" >Page 1</p:commandLink> 
+</h:form>
 </h:body>
 </html>

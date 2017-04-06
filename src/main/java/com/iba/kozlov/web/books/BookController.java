@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 
 import com.iba.kozlov.bl.service.BookService;
-
+import com.iba.kozlov.bl.service.BookServiceImpl;
 import com.iba.kozlov.bl.service.ReaderService;
 import com.iba.kozlov.bl.service.WriterService;
 import com.iba.kozlov.web.application.ApplicationBean;
@@ -55,8 +55,8 @@ public class BookController implements Serializable {
 	
 	Mapper mapper = new Mapper();
 	
-	@EJB
-	BookService bookService;
+	//@EJB
+	BookService bookService = new BookServiceImpl();
 	@EJB
 	WriterService writerService;
 	@EJB
@@ -111,7 +111,10 @@ public class BookController implements Serializable {
 		LOGGER.info("getReaderByTime()");
 		facade.getReaderByTime();
 	}
-
+	
+	public void test() throws Exception{
+		throw new Exception();
+	}
 
 	
 
